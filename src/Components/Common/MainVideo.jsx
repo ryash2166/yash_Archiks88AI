@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const MainVideo = () => {
+
+  // Using AI get on hover video and auto play video
+
   const firstVideoRef = useRef(null);
   const secondVideoRef = useRef(null);
   const [hasInteracted, setHasInteracted] = useState(false);

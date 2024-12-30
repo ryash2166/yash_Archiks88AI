@@ -7,6 +7,9 @@ import { useRef } from "react";
 import Button from "./Button";
 
 const TrendingCreatives = () => {
+
+  // Using AI get on hover video and auto play video
+
   const videoRefs = useRef([null]);
 
   // Handler for mouse enter and leave to play/pause video

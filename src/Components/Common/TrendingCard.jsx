@@ -10,6 +10,9 @@ const TrendingCard = ({
   time,
   author,
 }) => {
+
+  // Using AI get on hover video and auto play video
+
   const videoRef = useRef(null);
 
   const handleMouseEnter = () => {
