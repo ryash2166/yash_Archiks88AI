@@ -1,0 +1,87 @@
+@layer tailwind-base, antd;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  text-size-adjust: 100%;
+  font-family: "Nunito", serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: 100vh;
+  line-height: 1.6;
+  background: #0d1116;
+  font-size: 15px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  text-rendering: optimizeLegibility;
+}
+
+.gradient-text {
+  background: linear-gradient(89.38deg, #a8ff1a 0.12%, #60edff 106.24%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.side-tag {
+  background: linear-gradient(89.38deg, #a8ff1a 0.12%, #60edff 106.24%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.new-tag {
+  transform-origin: bottom left;
+  animation: NewTag 1.8s infinite linear;
+  animation-timing-function: ease-in;
+}
+
+@keyframes NewTag {
+  0% {
+    transform: scale(1) translate(0) rotate(0);
+  }
+
+  20% {
+    transform: scale(0.8) translate(-8%) rotate(0);
+  }
+
+  48% {
+    transform: scale(0.8) translate(-8%) rotate(-25deg);
+  }
+
+  60% {
+    transform: scale(1) translate(0) rotate(5deg);
+  }
+
+  70% {
+    transform: scale(1) translate(0) rotate(0);
+  }
+
+  to {
+    transform: scale(1) translate(0) rotate(0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 1px; /* Scrollbar width */
+}
+
+.bg-custom-gradient {
+  @apply bg-gradient-to-r; /* Tailwind class */
+  background: linear-gradient(
+    135deg,
+    rgba(82, 255, 186, 0.04) 9.27%,
+    rgba(35, 250, 236, 0.04) 46.96%,
+    rgba(0, 170, 255, 0.04) 88.5%
+  );
+}
