@@ -7,7 +7,6 @@ import { useRef } from "react";
 import Button from "./Button";
 
 const TrendingCreatives = () => {
-
   // Using AI get on hover video and auto play video
 
   const videoRefs = useRef([null]);
@@ -51,6 +50,7 @@ const TrendingCreatives = () => {
                   playsInline
                   disableRemotePlayback
                   src={item.video}
+                  className="object-fill"
                 ></video>
               </div>
               <img
@@ -58,7 +58,7 @@ const TrendingCreatives = () => {
                 alt=""
                 className="w-8 h-8 top-3 right-3 absolute"
               />
-              <div className="absolute bottom-0 left-0 top-0 right-0 [background-image:linear-gradient(360deg,#0f1319d9,#0e0e0e00 94.05%)] [background-size:100%,234px] [background-position:bottom] bg-no-repeat rounded-md flex flex-row items-end p-[16px]">
+              <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-md flex flex-row items-end p-[16px]">
                 <div className="inline-block w-full align-bottom ">
                   <h4 className="text-base leading-[22.4px] mb-[2px] text-white overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap text-ellipsis">
                     {item.title}

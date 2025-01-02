@@ -10,7 +10,8 @@ const Navbar = () => {
       <header className="h-[68px] w-full px-5">
         <div className="flex h-full justify-between items-center">
           <div className="flex h-full items-center">
-            <img src={logo} alt="" className="" width={146.75} height={32} />
+            <img src={logo} alt="Logo" className="w-9 h-9 max-sm:w-7 max-sm:h-7" />
+            <h1 className="text-xl text-white h-9 flex items-center ml-2">Archiks88 AI</h1>
           </div>
           <div className="flex items-center h-full">
             <div className="flex cursor-pointer justify-center items-center flex-row rounded-[10em] h-9 px-5 bg-[#ffffff14] leading-9 text-sm mr-5 max-md:hidden">

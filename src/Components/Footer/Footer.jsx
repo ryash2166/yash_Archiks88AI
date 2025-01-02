@@ -9,8 +9,9 @@ const Footer = () => {
   return (
     <div className="pt-10 pb-9 px-6 lg:ml-[260px] lg:pr-[42px] border-t-[1px] border-[#333]">
       <div className="text-white flex flex-wrap justify-between gap-3">
-        <div className="mb-6 lg:mb-0 w-full lg:w-auto max-xl:hidden">
-          <img src={logo} alt="Logo" width={146.75} height={32} />
+        <div className="mb-6 lg:mb-0w-full lg:w-auto max-xl:hidden flex  justify-center ">
+          <img src={logo} alt="Logo" className="w-9 h-9" />
+          <h1 className="text-xl h-9 flex items-center ml-2">Archiks88 AI</h1>
         </div>
 
         <div className="mb-6">
@@ -36,7 +37,7 @@ const Footer = () => {
 
         <div className="mb-6">
           <p className="text-[15px] font-medium leading-6 mb-4">Contact Us</p>
-          <span>kling@kuaishou.com</span>
+          <span>Archiks88@kuaishou.com</span>
         </div>
 
         <div className="block lg:flex justify-center lg:justify-end w-full lg:w-auto lg:space-x-6">
@@ -76,7 +77,7 @@ const Footer = () => {
       {/* Footer Bottom Section */}
       <div className="text-xs text-center mt-12 mb-20 text-[#4e495a]">
         <p>
-          klingai.com 2024 © All rights Reserved
+          Archiks88ai.com 2024 © All rights Reserved
           <span className="mx-2">京ICP备15023266号-171</span>
         </p>
       </div>

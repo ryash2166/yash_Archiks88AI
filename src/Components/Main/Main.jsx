@@ -19,7 +19,7 @@ const Main = () => {
           <h1 className="absolute mt-[-320px] ml-5 lg:ml-0 max-lg:static max-lg:mx-5 max-lg:mt-0">
             <img
               src={title}
-              alt="KLING AI: A New Era of Creative Production"
+              alt="Archiks88 AI: A New Era of Creative Production"
               className="mt-10 max-w-full"
             />
           </h1>
@@ -34,7 +34,7 @@ const Main = () => {
             <Banner
               title="AI Videos"
               className="mr-6 mb-4 lg:mb-0"
-              subtitle="Powered by KLING"
+              subtitle="Powered by Archiks88"
             />
             <Banner
               title="Video Editor"

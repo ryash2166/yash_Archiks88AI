@@ -212,7 +212,7 @@ const Sidebar = () => {
                 <span className="align-middle">AI Videos</span>
                 <div className="h-[20px] p-1 bg-[#ffffff14] rounded flex items-center">
                   <span className="text-[10px] font-normal align-middle side-tag">
-                    Try KLING 1.6
+                    Try Archiks88 1.6
                   </span>
                 </div>
                 {active === "AI Videos" && (
