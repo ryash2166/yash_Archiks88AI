@@ -34,7 +34,7 @@ const TrendingCard = ({
       onMouseLeave={handleMouseLeave}
     >
       {/* Video Section */}
-      <div className="absolute w-full h-full bg-[#222]">
+      <div className="absolute w-full h-full bg-[#222] ">
         <video
           ref={videoRef}
           loop
@@ -50,7 +50,7 @@ const TrendingCard = ({
       </div>
 
       {/* Content Section */}
-      <div className="absolute w-full h-full bg-gradient-to-t from-[#0f1319cc] via-[#0e0e0e00] to-transparent  flex flex-col justify-end p-4">
+      <div className="absolute w-full h-full bg-creative to-transparent  flex flex-col justify-end p-4">
         <h4 className="text-base leading-[22.4px] mb-[2px] text-white overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap text-ellipsis">
           {title}
         </h4>
