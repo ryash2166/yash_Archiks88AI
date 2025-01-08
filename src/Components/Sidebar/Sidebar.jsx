@@ -8,9 +8,10 @@ import { GoHomeFill } from "react-icons/go";
 import { FaImage, FaVideo } from "react-icons/fa";
 import { TbChartCandle } from "react-icons/tb";
 import { FaFolderClosed, FaShield } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const Sidebar = () => {
-  const [active, setActive] = useState("Home");
+  const [active, setActive] = useState("");
 
   return (
     <header className="max-h-[calc(100vh-68px)] h-full max-w-[260px] bg-[#0b1116] absolute float-left z-[2] max-lg:hidden">
@@ -19,10 +20,15 @@ const Sidebar = () => {
         <div className="grow ">
           <ul className="p-0">
             {/* Home */}
-            <div>
-              <li
+            <div
+              className={`${
+                active === "Home" ? "bg-[#191d21] rounded-full" : ""
+              }`}
+            >
+              <Link
+                to="/"
                 onClick={() => setActive("Home")}
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full hover:!bg-[#24282c] duration-100 ease-linear flex items-center cursor-pointer ${
+                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
                   active === "Home"
                     ? "bg-[#191d21] rounded-full text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] "
                     : "text-[#c5c7d5]"
@@ -61,14 +67,18 @@ const Sidebar = () => {
                 {active === "Home" && (
                   <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] mt-[6px]" />
                 )}
-              </li>
+              </Link>
             </div>
 
             {/* Explore */}
-            <div>
+            <div
+              className={`${
+                active === "Explore" ? "bg-[#191d21] rounded-full" : ""
+              }`}
+            >
               <li
                 onClick={() => setActive("Explore")}
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full hover:!bg-[#24282c] duration-100 ease-linear flex items-center cursor-pointer ${
+                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
                   active === "Explore"
                     ? "bg-[#1d232c] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
@@ -121,10 +131,14 @@ const Sidebar = () => {
             </div>
 
             {/* AI Images */}
-            <div>
+            <div
+              className={`${
+                active === "AI Images" ? "bg-[#191d21] rounded-full" : ""
+              }`}
+            >
               <li
                 onClick={() => setActive("AI Images")}
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full hover:!bg-[#24282c] duration-100 ease-linear flex items-center cursor-pointer ${
+                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
                   active === "AI Images"
                     ? "bg-[#1d232c] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
@@ -169,10 +183,14 @@ const Sidebar = () => {
             </div>
 
             {/* AI Videos */}
-            <div>
+            <div
+              className={`${
+                active === "AI Videos" ? "bg-[#191d21] rounded-full" : ""
+              }`}
+            >
               <li
                 onClick={() => setActive("AI Videos")}
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full hover:!bg-[#24282c] duration-100 ease-linear flex items-center cursor-pointer ${
+                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
                   active === "AI Videos"
                     ? "bg-[#1d232c] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
@@ -229,10 +247,6 @@ const Sidebar = () => {
                 </div>
                 <span className="align-middle">AI Custom Model</span>
               </li>
-              {/* Tooltip */}
-              <div className="absolute left-32 w-full top-1/2  -translate-y-1/2  bg-[#24282c] text-white text-xs px-3 py-2 rounded-md opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ease-in-out">
-                Custom model is only for Pro and Premier Users.
-              </div>
             </div>
 
             <div>
@@ -246,12 +260,17 @@ const Sidebar = () => {
               </li>
             </div>
             {/* My Creatives */}
-            <div>
-              <li
+            <div
+              className={`${
+                active === "My Creatives" ? "bg-[#191d21] rounded-full" : ""
+              }`}
+            >
+              <Link
+                to="/profile"
                 onClick={() => setActive("My Creatives")}
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full hover:!bg-[#24282c] duration-100 ease-linear flex items-center cursor-pointer ${
+                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
                   active === "My Creatives"
-                    ? "bg-[#1d232c] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
+                    ? "text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
                 }`}
               >
@@ -290,7 +309,7 @@ const Sidebar = () => {
                 {active === "My Creatives" && (
                   <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] mt-[6px]" />
                 )}
-              </li>
+              </Link>
             </div>
 
             {/* My Models */}
@@ -303,10 +322,6 @@ const Sidebar = () => {
                 </div>
                 <span className="align-middle">My Models</span>
               </li>
-              {/* Tooltip */}
-              <div className="absolute left-32 w-full top-1/2 -translate-y-1/2 bg-[#24282c] text-white text-xs px-3 py-2 rounded-md opacity-0 group-hover:opacity-100 group-hover:visible transition-opacity duration-200 ease-in-out">
-                My Models is only for Pro and Premier Users.
-              </div>
             </div>
 
             {/* Divider */}

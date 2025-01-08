@@ -5,7 +5,7 @@ import slider2 from "../../assets/slider2.jpeg";
 import slider3 from "../../assets/slider3.jpeg";
 
 const AutoCarousel = () => (
-  <div className="w-full max-w-[926.4px] max-md:w-auto">
+  <div className="!w-full max-w-[926.4px] max-md:w-auto">
     <Carousel autoplay>
       <div className="w-full h-[325.605px] max-md:h-auto">
         <img

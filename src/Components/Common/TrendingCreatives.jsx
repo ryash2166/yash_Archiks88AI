@@ -31,7 +31,7 @@ const TrendingCreatives = () => {
       </div>
       <ResponsiveMasonry
         className="mt-3"
-        columnsCountBreakPoints={{ 350: 2, 750: 2, 900: 3 }}
+        columnsCountBreakPoints={{ 576: 2, 768: 2, 992: 3 }}
       >
         <Masonry className="!m-auto" gutter="10px">
           {TrendingCreativesData.map((item, index) => (

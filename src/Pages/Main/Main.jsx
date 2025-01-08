@@ -1,14 +1,14 @@
 import React from "react";
 import title from "../../assets/title.svg";
-import Banner from "../Common/Banner";
-import SectionTitle from "../Common/SectionTitle";
-import MainVideo from "../Common/MainVideo";
+import Banner from "../../Components/Common/Banner";
+import SectionTitle from "../../Components/Common/SectionTitle";
+import MainVideo from "../../Components/Common/MainVideo";
 import { TrendingCardData } from "../../Data/AllData";
-import AutoCarousel from "../Common/AutoCarousel";
-import TrendingCard from "../Common/TrendingCard";
-import TrendingCreatives from "../Common/TrendingCreatives";
-import Footer from "../Footer/Footer";
-import Button from "../Common/Button";
+import AutoCarousel from "../../Components/Common/AutoCarousel";
+import TrendingCard from "../../Components/Common/TrendingCard";
+import TrendingCreatives from "../../Components/Common/TrendingCreatives";
+import Footer from "../../Components/Footer/Footer";
+import Button from "../../Components/Common/Button";
 
 const Main = () => {
   return (
@@ -71,7 +71,7 @@ const Main = () => {
             <div className="md:hidden">
               <AutoCarousel />
             </div>
-            <TrendingCreatives />
+            {/* <TrendingCreatives /> */}
           </div>
           <Button
             title="Explore More"
