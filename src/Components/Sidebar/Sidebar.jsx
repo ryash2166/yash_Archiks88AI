@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import insta from "../../assets/insta.svg";
 import discord from "../../assets/discord.svg";
 import twitter from "../../assets/twitter.svg";
@@ -9,9 +9,10 @@ import { FaImage, FaVideo } from "react-icons/fa";
 import { TbChartCandle } from "react-icons/tb";
 import { FaFolderClosed, FaShield } from "react-icons/fa6";
 import { Link } from "react-router";
+import { useNavigation } from "../../Context/NavigationContext";
 
 const Sidebar = () => {
-  const [active, setActive] = useState("");
+  const { activeTab, setActiveTab } = useNavigation();
 
   return (
     <header className="max-h-[calc(100vh-68px)] h-full max-w-[260px] bg-[#0b1116] absolute float-left z-[2] max-lg:hidden">
@@ -22,21 +23,21 @@ const Sidebar = () => {
             {/* Home */}
             <div
               className={`${
-                active === "Home" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "Home" ? "bg-[#191d21] rounded-full" : ""
               }`}
             >
               <Link
                 to="/"
-                onClick={() => setActive("Home")}
+                onClick={() => setActiveTab("Home")}
                 className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
-                  active === "Home"
+                  activeTab === "Home"
                     ? "bg-[#191d21] rounded-full text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] "
                     : "text-[#c5c7d5]"
                 }`}
               >
                 <div
                   className={`w-[18px] h-[18px] flex items-center align-top ${
-                    active === "Home"
+                    activeTab === "Home"
                       ? "text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                       : "text-[#c5c7d5]"
                   }`}
@@ -44,7 +45,7 @@ const Sidebar = () => {
                   <GoHomeFill
                     style={{
                       fill:
-                        active === "Home" ? "url(#homeGradient)" : "#c5c7d5",
+                        activeTab === "Home" ? "url(#homeGradient)" : "#c5c7d5",
                     }}
                   />
                 </div>
@@ -64,7 +65,7 @@ const Sidebar = () => {
                   </defs>
                 </svg>
                 <span className="align-middle">Home</span>
-                {active === "Home" && (
+                {activeTab === "Home" && (
                   <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] mt-[6px]" />
                 )}
               </Link>
@@ -73,20 +74,21 @@ const Sidebar = () => {
             {/* Explore */}
             <div
               className={`${
-                active === "Explore" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "Explore" ? "bg-[#191d21] rounded-full" : ""
               }`}
             >
-              <li
-                onClick={() => setActive("Explore")}
+              <Link
+                to="/explore"
+                onClick={() => setActiveTab("Explore")}
                 className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
-                  active === "Explore"
+                  activeTab === "Explore"
                     ? "bg-[#1d232c] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
                 }`}
               >
                 <div
                   className={`w-[18px] h-[18px] flex items-center align-top ${
-                    active === "Home"
+                    activeTab === "Explore"
                       ? "text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                       : "text-[#c5c7d5]"
                   }`}
@@ -94,7 +96,7 @@ const Sidebar = () => {
                   <PiLightbulbFilamentBold
                     style={{
                       fill:
-                        active === "Explore" ? "url(#homeGradient)" : "#c5c7d5",
+                        activeTab === "Explore" ? "url(#homeGradient)" : "#c5c7d5",
                     }}
                   />
                 </div>
@@ -114,10 +116,10 @@ const Sidebar = () => {
                   </defs>
                 </svg>
                 <span className="align-middle">Explore</span>
-                {active === "Explore" && (
+                {activeTab === "Explore" && (
                   <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] mt-[6px]" />
                 )}
-              </li>
+              </Link>
             </div>
             <div>
               <li className="!h-[16px] mt-0 mb-0 pb-0 text-[#727485] text-[14px] pt-[27px]">
@@ -133,20 +135,21 @@ const Sidebar = () => {
             {/* AI Images */}
             <div
               className={`${
-                active === "AI Images" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "ImageAI" ? "bg-[#191d21] rounded-full" : ""
               }`}
             >
-              <li
-                onClick={() => setActive("AI Images")}
+              <Link
+                to="/ImageAI"
+                onClick={() => setActiveTab("ImageAI")}
                 className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
-                  active === "AI Images"
+                  activeTab === "ImageAI"
                     ? "bg-[#1d232c] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
                 }`}
               >
                 <div
                   className={`w-[18px] h-[18px] flex items-center align-top ${
-                    active === "Home"
+                    activeTab === "ImageAI"
                       ? "text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                       : "text-[#c5c7d5]"
                   }`}
@@ -154,7 +157,7 @@ const Sidebar = () => {
                   <FaImage
                     style={{
                       fill:
-                        active === "AI Images"
+                        activeTab === "ImageAI"
                           ? "url(#homeGradient)"
                           : "#c5c7d5",
                     }}
@@ -176,29 +179,30 @@ const Sidebar = () => {
                   </defs>
                 </svg>
                 <span className="align-middle">AI Images</span>
-                {active === "AI Images" && (
+                {activeTab === "ImageAI" && (
                   <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] mt-[6px]" />
                 )}
-              </li>
+              </Link>
             </div>
 
-            {/* AI Videos */}
+            {/* VideoAI */}
             <div
               className={`${
-                active === "AI Videos" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "VideoAI" ? "bg-[#191d21] rounded-full" : ""
               }`}
             >
-              <li
-                onClick={() => setActive("AI Videos")}
+              <Link 
+                to="/VideoAI"
+                onClick={() => setActiveTab("VideoAI")}
                 className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
-                  active === "AI Videos"
+                  activeTab === "VideoAI"
                     ? "bg-[#1d232c] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
                 }`}
               >
                 <div
                   className={`w-[18px] h-[18px] flex items-center align-top ${
-                    active === "Home"
+                    activeTab === "VideoAI"
                       ? "text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                       : "text-[#c5c7d5]"
                   }`}
@@ -206,7 +210,7 @@ const Sidebar = () => {
                   <FaVideo
                     style={{
                       fill:
-                        active === "AI Videos"
+                        activeTab === "VideoAI"
                           ? "url(#homeGradient)"
                           : "#c5c7d5",
                     }}
@@ -233,10 +237,10 @@ const Sidebar = () => {
                     Try Archiks88 1.6
                   </span>
                 </div>
-                {active === "AI Videos" && (
+                {activeTab === "VideoAI" && (
                   <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] mt-[6px]" />
                 )}
-              </li>
+              </Link>
             </div>
             <div className="relative group">
               <li
@@ -262,21 +266,21 @@ const Sidebar = () => {
             {/* My Creatives */}
             <div
               className={`${
-                active === "My Creatives" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "My Creatives" ? "bg-[#191d21] rounded-full" : ""
               }`}
             >
               <Link
                 to="/profile"
-                onClick={() => setActive("My Creatives")}
+                onClick={() => setActiveTab("My Creatives")}
                 className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full  duration-100 ease-linear flex items-center cursor-pointer ${
-                  active === "My Creatives"
+                  activeTab === "My Creatives"
                     ? "text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                     : "text-[#c5c7d5]"
                 }`}
               >
                 <div
                   className={`w-[18px] h-[18px] flex items-center align-top ${
-                    active === "Home"
+                    activeTab === "Home"
                       ? "text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]"
                       : "text-[#c5c7d5]"
                   }`}
@@ -284,7 +288,7 @@ const Sidebar = () => {
                   <FaFolderClosed
                     style={{
                       fill:
-                        active === "My Creatives"
+                        activeTab === "My Creatives"
                           ? "url(#homeGradient)"
                           : "#c5c7d5",
                     }}
@@ -306,7 +310,7 @@ const Sidebar = () => {
                   </defs>
                 </svg>
                 <span className="align-middle">My Creatives</span>
-                {active === "My Creatives" && (
+                {activeTab === "My Creatives" && (
                   <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] mt-[6px]" />
                 )}
               </Link>

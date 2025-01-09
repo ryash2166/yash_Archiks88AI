@@ -1,21 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const MainVideo = () => {
-
-  // Using AI get on hover video and auto play video
-
   const firstVideoRef = useRef(null);
   const secondVideoRef = useRef(null);
   const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     if (hasInteracted) {
-      // When the first video ends, switch to the second video
-      if (firstVideoRef.current) {
+      // Ensure the first video is set up to hide itself and show the second video on end
+      if (firstVideoRef.current && secondVideoRef.current) {
         firstVideoRef.current.onended = () => {
           // Hide the first video and show the second video
           firstVideoRef.current.style.display = "none";
           secondVideoRef.current.style.display = "block";
+          secondVideoRef.current.play(); // Ensure second video starts playing
         };
       }
     }
@@ -34,7 +32,8 @@ const MainVideo = () => {
         className="max-h-[360px] pointer-events-none w-auto"
         autoPlay
         muted
-        style={{ display: "block" }} // First video will be shown initially
+        style={{ display: "block" }} 
+        onPlay={() => setHasInteracted(true)}
       />
 
       {/* Second video with autoplay and loop */}
@@ -42,12 +41,11 @@ const MainVideo = () => {
         ref={secondVideoRef}
         src="https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/home-loop-DOmEh9Jl.mp4"
         loop
-        autoPlay
         preload="auto"
-        className="max-h-[360px] pointer-events-none w-auto -mt-[400px] right-0"
+        className="max-h-[360px] pointer-events-none w-auto right-0"
         playsInline
         muted
-        style={{ display: "none" }} // Initially hidden
+        style={{ display: "none" }}
       />
     </div>
   );
