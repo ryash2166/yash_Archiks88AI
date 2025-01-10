@@ -20,7 +20,7 @@ const MainVideo = () => {
   }, [hasInteracted]);
 
   return (
-    <div className="ml-8 mt-5 leading-[0] text-right h-[360px] overflow-hidden max-lg:hidden">
+    <div className="ml-8 leading-[0] text-right h-[360px] overflow-hidden max-lg:hidden">
       {/* First video with autoplay */}
       <video
         ref={firstVideoRef}

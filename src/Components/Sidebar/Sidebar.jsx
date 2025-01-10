@@ -23,7 +23,7 @@ const Sidebar = () => {
             {/* Home */}
             <div
               className={`${
-                activeTab === "Home" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "Home" ? "bg-[#191d21] rounded-full " : "hover:bg-[#24282c] rounded-full"
               }`}
             >
               <Link
@@ -74,7 +74,7 @@ const Sidebar = () => {
             {/* Explore */}
             <div
               className={`${
-                activeTab === "Explore" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "Explore" ? "bg-[#191d21] rounded-full" : "hover:bg-[#24282c] rounded-full"
               }`}
             >
               <Link
@@ -135,7 +135,7 @@ const Sidebar = () => {
             {/* AI Images */}
             <div
               className={`${
-                activeTab === "ImageAI" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "ImageAI" ? "bg-[#191d21] rounded-full" : "hover:bg-[#24282c] rounded-full"
               }`}
             >
               <Link
@@ -188,7 +188,7 @@ const Sidebar = () => {
             {/* VideoAI */}
             <div
               className={`${
-                activeTab === "VideoAI" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "VideoAI" ? "bg-[#191d21] rounded-full" : "hover:bg-[#24282c] rounded-full"
               }`}
             >
               <Link 
@@ -266,7 +266,7 @@ const Sidebar = () => {
             {/* My Creatives */}
             <div
               className={`${
-                activeTab === "My Creatives" ? "bg-[#191d21] rounded-full" : ""
+                activeTab === "My Creatives" ? "bg-[#191d21] rounded-full" : "hover:bg-[#24282c] rounded-full"
               }`}
             >
               <Link
