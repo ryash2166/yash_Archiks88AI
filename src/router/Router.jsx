@@ -1,14 +1,13 @@
 import React from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Sidebar from "../Components/Sidebar/Sidebar";
-import { Outlet } from "react-router";
-import NavbarAI from "../Components/Navbar/NavbarAI";
+import { Outlet, useLocation } from "react-router";
 
 const Router = () => {
   return (
     <>
-      <NavbarAI />
-      <Sidebar />
+      <Navbar />
+      {/* <Sidebar /> */}
       <Outlet />
     </>
   );

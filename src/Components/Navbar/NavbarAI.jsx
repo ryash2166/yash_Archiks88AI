@@ -21,7 +21,7 @@ const NavbarAI = () => {
       <header className="h-[68px] w-full px-5">
         <div className="flex h-full justify-between items-center">
             <h1 className="text-xl text-white h-9 flex items-center ml-2">
-                 AI Images
+                AI Images
             </h1>   
           <div className="flex items-center h-full">
             <div className="flex cursor-pointer justify-center items-center flex-row rounded-full h-9 px-5 bg-[#ffffff14] text-sm mr-5 max-md:hidden">

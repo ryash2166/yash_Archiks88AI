@@ -244,7 +244,7 @@ const Sidebar = () => {
             </div>
             <div className="relative group">
               <li
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full flex items-center cursor-pointer text-[#727485]`}
+                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full flex items-center cursor-not-allowed text-[#727485]`}
               >
                 <div className="w-[18px] h-[18px] flex items-center align-top">
                   <TbChartCandle />
@@ -319,7 +319,7 @@ const Sidebar = () => {
             {/* My Models */}
             <div className="relative group">
               <li
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full flex items-center cursor-pointer text-[#727485]`}
+                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full flex items-center cursor-not-allowed text-[#727485]`}
               >
                 <div className="w-[18px] h-[18px] flex items-center align-top">
                   <FaShield />
@@ -355,3 +355,12 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+
+{/* <div className="float-right mr-0">
+        <div className="flex flex-row items-center h-full right-5 absolute">
+          <div className="w-[204px] border-[1px] text-white border-[#2e3136] h-[calc(100%-30px)] p-[15px] mt-6 bg-[#0d1116] overflow-y-hidden">
+            
+          </div>
+        </div>
+      </div> */}
