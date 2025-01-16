@@ -10,6 +10,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import camera from "../../assets/camera.svg";
 import camera2 from "../../assets/camera2.svg";
 import negative from "../../assets/negative.svg";
+import AssetsPanel from "../../Components/Common/AssetsPanel";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
@@ -24,7 +25,11 @@ const SectionHeader = ({ icon, title, subtitle }) => (
 );
 
 const Card = ({ children, className = "", disabled = false }) => (
-  <div className={`bg-video rounded-2xl p-4 text-white backdrop-blur-sm w-full mb-3 overflow-hidden ${className} ${disabled ? 'cursor-not-allowed' : ''}`}>
+  <div
+    className={`bg-video rounded-2xl p-4 text-white backdrop-blur-sm w-full mb-3 overflow-hidden ${className} ${
+      disabled ? "cursor-not-allowed" : ""
+    }`}
+  >
     {children}
   </div>
 );
@@ -32,12 +37,17 @@ const Card = ({ children, className = "", disabled = false }) => (
 const VideoAI = () => {
   const [mainTab, setMainTab] = useState("Image to Video");
   const [opacity, setOpacity] = useState(1);
+  const [inputText, setInputText] = useState("");
 
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
     const maxScroll = 75;
     const newOpacity = Math.max(1 - scrollTop / maxScroll, 0);
     setOpacity(newOpacity);
+  };
+
+  const handleClear = () => {
+    setInputText("");
   };
 
   return (
@@ -56,8 +66,14 @@ const VideoAI = () => {
         Creative Space
       </p>
 
-      <main className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]" onScroll={handleScroll}>
-        <nav className="flex flex-wrap items-center justify-between sm:justify-normal transition-opacity duration-300" style={{ opacity }}>
+      <main
+        className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
+        onScroll={handleScroll}
+      >
+        <nav
+          className="flex flex-wrap items-center justify-between sm:justify-normal transition-opacity duration-300"
+          style={{ opacity }}
+        >
           {["Text to Video", "Image to Video", "Lip Sync"].map((tab) => (
             <button
               key={tab}
@@ -86,7 +102,13 @@ const VideoAI = () => {
                   <div className="flex items-center justify-center h-[174px]">
                     <div className="text-center">
                       <div className="text-[#36ee45] text-lg flex items-center justify-center">
-                        <img src={upload} alt="Upload Icon" width={20} height={20} className="mr-2" />
+                        <img
+                          src={upload}
+                          alt="Upload Icon"
+                          width={20}
+                          height={20}
+                          className="mr-2"
+                        />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af]">
                           Click / Drop / Paste
                         </span>
@@ -204,25 +226,78 @@ const VideoAI = () => {
                 </div>
               </div>
               <div className="bg-[#0d1116] rounded-[12px] h-[158px] relative">
-                <div className="ml-5 mt-[13px] absolute">
-                  <p>
-                    Please describe your creative ideas for the video, or view
-                    <span className="text-[#82fac2]"> Help Center</span> for a
-                    quick start.
-                  </p>
+                <div className="bg-[#0d1116] rounded-[12px] h-[158px] relative">
+                  <div className="mx-5 mt-[13px] absolute">
+                    {!inputText && (
+                      <p className="text-[#727485] leading-7">
+                        Please describe your creative ideas for the video, or
+                        view
+                        <span className="text-[#82fac2]"> Help Center</span> for
+                        a quick start.
+                      </p>
+                    )}
+                  </div>
                   <input
                     type="text"
-                    className="w-full absolute bg-transparent outline-none"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    className="w-full absolute mx-5 top-[27px] text-ellipsis bg-transparent outline-none z-10 text-white pr-8 "
                   />
+                  {inputText && (
+                    <button
+                      onClick={handleClear}
+                      className="absolute right-4 bottom-2 text-white hover:text-white"
+                    >
+                      <svg
+                        data-v-9e64a36d=""
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M5.55005 6.10856V14.4419C5.55005 15.209 6.17188 15.8308 6.93894 15.8308H13.05C13.8171 15.8308 14.4389 15.209 14.4389 14.4419V6.10856H16.1056V14.4419C16.1056 16.1294 14.7376 17.4974 13.05 17.4974H6.93894C5.2514 17.4974 3.88338 16.1294 3.88338 14.4419V6.10856H5.55005Z"
+                        ></path>
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M2.49512 6.46038C2.49512 6.00015 2.86821 5.62705 3.32845 5.62705H16.6618C17.122 5.62705 17.4951 6.00015 17.4951 6.46038C17.4951 6.92062 17.122 7.29372 16.6618 7.29372H3.32845C2.86821 7.29372 2.49512 6.92062 2.49512 6.46038Z"
+                        ></path>
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M6.38401 4.44689C6.38401 3.373 7.25456 2.50244 8.32845 2.50244H11.6618C12.7357 2.50244 13.6062 3.373 13.6062 4.44689V5.79133C13.6062 6.25157 13.2331 6.62466 12.7729 6.62466C12.3127 6.62466 11.9396 6.25157 11.9396 5.79133V4.44689C11.9396 4.29347 11.8152 4.16911 11.6618 4.16911H8.32845C8.17504 4.16911 8.05067 4.29347 8.05067 4.44689V5.79133C8.05067 6.25157 7.67758 6.62466 7.21734 6.62466C6.7571 6.62466 6.38401 6.25157 6.38401 5.79133V4.44689Z"
+                        ></path>
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M7.71734 13.3331C7.71734 12.8421 8.11531 12.4442 8.60623 12.4442H11.384C11.8749 12.4442 12.2729 12.8421 12.2729 13.3331C12.2729 13.824 11.8749 14.222 11.384 14.222H8.60623C8.11531 14.222 7.71734 13.824 7.71734 13.3331Z"
+                        ></path>
+                      </svg>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
           </Card>
 
-          <Card>
-            <SectionHeader icon={motion} title="Motion Brush" subtitle="Control the Movement of Objects" />
+          <Card disabled>
+            <SectionHeader
+              icon={motion}
+              title="Motion Brush"
+              subtitle="Control the Movement of Objects"
+            />
             <div className="text-[#3b3c4d] py-3 px-4 rounded-[10px] bg-[#0d1116] flex flex-row-reverse mt-4">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path d="M5.00011 2.5C5.46035 2.5 5.83344 2.8731 5.83344 3.33333V5C5.83344 5.46024 5.46035 5.83333 5.00011 5.83333C4.53987 5.83333 4.16678 5.46024 4.16678 5V3.33333C4.16678 2.8731 4.53987 2.5 5.00011 2.5Z"></path>
                 <path d="M15.0001 2.5C15.4603 2.5 15.8334 2.8731 15.8334 3.33333V6.66667C15.8334 7.1269 15.4603 7.5 15.0001 7.5C14.5399 7.5 14.1668 7.1269 14.1668 6.66667V3.33333C14.1668 2.8731 14.5399 2.5 15.0001 2.5Z"></path>
                 <path d="M9.16678 14.7222H8.889C8.42876 14.7222 8.05566 14.3491 8.05566 13.8889C8.05566 13.4287 8.42876 13.0556 8.889 13.0556H11.1112C11.5715 13.0556 11.9446 13.4287 11.9446 13.8889C11.9446 14.3491 11.5715 14.7222 11.1112 14.7222H10.8334V16.6667C10.8334 17.1269 10.4603 17.5 10.0001 17.5C9.53987 17.5 9.16678 17.1269 9.16678 16.6667V14.7222Z"></path>
@@ -360,13 +435,33 @@ const VideoAI = () => {
               <div className="opacity-[30%] flex items-center justify-between mt-2 h-8 w-full  px-3">
                 <div className="text-[#fffc] flex items-center ">
                   <span className="pr-1">Camera Controls</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1024 1024"><path fill="currentColor" d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z"></path></svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 1024 1024"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z"
+                    ></path>
+                  </svg>
                 </div>
                 <div className="flex justify-end">
                   <div className="w-full align-bottom">
                     <div className="bg-[#0002] border-[1px] border-[#2d3e3f] rounded-lg flex items-center justify-between gap-4 px-3 h-8">
                       <span className="">Camera Movement</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1024 1024"><path fill="currentColor" d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z"></path></svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 1024 1024"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z"
+                        ></path>
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -374,32 +469,42 @@ const VideoAI = () => {
             </div>
           </Card>
 
-          <Card className="mb-36" disabled>
-            <SectionHeader icon={negative} title="Negative Prompt" subtitle="Optional" />
+          <Card className="mb-[85px] md:mb-32" disabled>
+            <SectionHeader
+              icon={negative}
+              title="Negative Prompt"
+              subtitle="Optional"
+            />
             <div className="text-[#727485] mt-4 text-sm leading-6">
               <div className="bg-[#0d1116] rounded-[10px] h-[158px]">
                 <div className="grow-1 pt-3 px-4 pb-0  whitespace-pre-wrap">
-                List the types of content you don't want to see in the video.
-                Examples: animation, blur, distortion, disfigurement, low quality, collage, grainy, logos, abstract, illustrations, computer-generated, warped...
+                  List the types of content you don't want to see in the video.
+                  Examples: animation, blur, distortion, disfigurement, low
+                  quality, collage, grainy, logos, abstract, illustrations,
+                  computer-generated, warped...
                 </div>
               </div>
             </div>
           </Card>
         </section>
       </main>
-
+      <AssetsPanel />
       <footer className="flex items-center justify-center md:block">
         <div
-          className="fixed bottom-0 left-0 w-full h-[118px] pt-1 md:px-12 z-[3]"
+          className="fixed bottom-0 left-0 w-full h-[118px] md:block hidden pt-1 md:px-12 z-[3]"
           style={{ background: "linear-gradient(0deg,#0d1116 40%,#0d111600)" }}
         />
-        <div className="fixed bottom-0 left-0 w-full h-[118px] pt-1 px-4 md:px-12 z-[3]">
+        <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-1 px-4 md:px-12 z-[3]">
           <div className="inline-block md:ml-[10px]">
             <button className="bg-[#333a45] text-[#727485] px-4 py-[6px] rounded-full w-[calc(100vw-32px)]  md:w-[344px]  h-12">
               Generate
             </button>
           </div>
         </div>
+        <p className="text-[#727485] text-sm mb-3 hidden md:block fixed bottom-0 w-full  pt-1 px-4 lg:px-12 z-[3] text-center">
+          The generated contents do not represent the views, positions or
+          attitudes of KLING AI. Please use them responsibly and kindly.
+        </p>
       </footer>
     </div>
   );

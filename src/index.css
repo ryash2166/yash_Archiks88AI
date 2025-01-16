@@ -136,7 +136,7 @@ body {
 
 .css-lq5hqx-MuiSlider-mark{
   border-radius: 50% !important;
-  background-color: white !important;
+  background: white !important; 
   width: 8px !important;
   height: 8px !important;
 }
@@ -145,6 +145,9 @@ body {
   background: #333a45 !important;
 }
 
+.Mui-disabled .css-lq5hqx-MuiSlider-mark{
+  background: #4e5062d9 !important;
+}
 .Mui-disabled .css-xvk2i-MuiSlider-track{
   background: #4e5062d9 !important;
 }

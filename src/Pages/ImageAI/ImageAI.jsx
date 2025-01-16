@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
 import sun from "../../assets/sun.svg";
-import upload from "../../assets/upload.svg";
-import motion from "../../assets/motion.svg";
 import setting from "../../assets/setting.svg";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import camera from "../../assets/camera.svg";
-import camera2 from "../../assets/camera2.svg";
-import negative from "../../assets/negative.svg";
+import AspectRatioSelector from "../../Components/AspectRatio/AspectRatioSelector";
+import AssetsPanel from "../../Components/Common/AssetsPanel";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
@@ -36,12 +30,18 @@ const Card = ({ children, className = "", disabled = false }) => (
 const ImageAI = () => {
   const [mainTab, setMainTab] = useState("Text to Image");
   const [opacity, setOpacity] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [selectedRatio, setSelectedRatio] = useState("1:1");
 
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
     const maxScroll = 75;
     const newOpacity = Math.max(1 - scrollTop / maxScroll, 0);
     setOpacity(newOpacity);
+  };
+
+  const handleClear = () => {
+    setInputText("");
   };
 
   return (
@@ -54,18 +54,17 @@ const ImageAI = () => {
         disablePictureInPicture
         disableRemotePlayback
         playsInline
-        className="sm:absolute sm:-top-[5px] md:left-[150px] sm:max-w-[450px] pointer-events-none hidden md:!block"
+        className="sm:absolute sm:-top-[5px] md:left-[200px] sm:max-w-[380px] pointer-events-none hidden md:!block"
       />
-      <p className="absolute md:left-3 top-[88px] md:top-[130px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
+      <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
         Creative Space
       </p>
-
       <main
         className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
         onScroll={handleScroll}
       >
         <nav
-          className="flex flex-wrap items-center justify-between sm:justify-normal transition-opacity duration-300"
+          className="flex flex-wrap items-center transition-opacity duration-300"
           style={{ opacity }}
         >
           {["Text to Image", "AI Virtual Try-On"].map((tab) => (
@@ -83,22 +82,62 @@ const ImageAI = () => {
           ))}
         </nav>
 
-        <section className="lg:max-w-[404px] relative mt-6 ">
+        <section className="lg:max-w-[460px] relative mt-6 ">
           <Card>
             <SectionHeader icon={sun} title="Start / End Frame and Prompt" />
             <div className="text-sm text-[#727485] mt-4">
               <div className="bg-[#0d1116] rounded-[12px] h-[158px] relative">
-                <div className="ml-5 mt-[13px] absolute">
-                  <p>
-                    Please describe your creative ideas for the video, or view
-                    <span className="text-[#82fac2]"> Help Center</span> for a
-                    quick start.
-                  </p>
-                  <input
-                    type="text"
-                    className="w-full absolute bg-transparent outline-none"
-                  />
+                <div className="mx-5 mt-[13px] absolute">
+                  {!inputText && (
+                    <p className="text-[#727485] leading-7">
+                      Please describe your creative ideas for the video, or view
+                      <span className="text-[#82fac2]"> Help Center</span> for a
+                      quick start.
+                    </p>
+                  )}
                 </div>
+                <input
+                  type="text"
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  className="w-full absolute mx-5 top-[27px] text-ellipsis bg-transparent outline-none z-10 text-white pr-8 "
+                />
+                {inputText && (
+                  <button
+                    onClick={handleClear}
+                    className="absolute right-4 bottom-2 text-white hover:text-white"
+                  >
+                    <svg
+                      data-v-9e64a36d=""
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M5.55005 6.10856V14.4419C5.55005 15.209 6.17188 15.8308 6.93894 15.8308H13.05C13.8171 15.8308 14.4389 15.209 14.4389 14.4419V6.10856H16.1056V14.4419C16.1056 16.1294 14.7376 17.4974 13.05 17.4974H6.93894C5.2514 17.4974 3.88338 16.1294 3.88338 14.4419V6.10856H5.55005Z"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M2.49512 6.46038C2.49512 6.00015 2.86821 5.62705 3.32845 5.62705H16.6618C17.122 5.62705 17.4951 6.00015 17.4951 6.46038C17.4951 6.92062 17.122 7.29372 16.6618 7.29372H3.32845C2.86821 7.29372 2.49512 6.92062 2.49512 6.46038Z"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M6.38401 4.44689C6.38401 3.373 7.25456 2.50244 8.32845 2.50244H11.6618C12.7357 2.50244 13.6062 3.373 13.6062 4.44689V5.79133C13.6062 6.25157 13.2331 6.62466 12.7729 6.62466C12.3127 6.62466 11.9396 6.25157 11.9396 5.79133V4.44689C11.9396 4.29347 11.8152 4.16911 11.6618 4.16911H8.32845C8.17504 4.16911 8.05067 4.29347 8.05067 4.44689V5.79133C8.05067 6.25157 7.67758 6.62466 7.21734 6.62466C6.7571 6.62466 6.38401 6.25157 6.38401 5.79133V4.44689Z"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.71734 13.3331C7.71734 12.8421 8.11531 12.4442 8.60623 12.4442H11.384C11.8749 12.4442 12.2729 12.8421 12.2729 13.3331C12.2729 13.824 11.8749 14.222 11.384 14.222H8.60623C8.11531 14.222 7.71734 13.824 7.71734 13.3331Z"
+                      ></path>
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
             <div className="flex w-full  items-center justify-between rounded-b-[12px] p-2">
@@ -147,63 +186,15 @@ const ImageAI = () => {
             </div>
           </Card>
 
-          <Card className="mb-32">
+          <Card className="mb-[85px] md:mb-32">
             <SectionHeader icon={setting} title="Settings" />
             <div className="mb-5 text-[#999bac] flex justify-start items-start">
               <div className="text-sm leading-8">
-                <div className="flex items-center">Aspect Ratio:</div>
-                <div className="flex flex-wrap gap-y-2 gap-x-4">
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-[#72e528] border-2 rounded-md inline-block w-7 h-7"></div>
-                    </div>
-                    <div className="text-center text-xs text-[#72e528]">
-                      1:1
-                    </div>
-                  </div>
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-white border-2 rounded-md inline-block w-7 h-[15.75px]"></div>
-                    </div>
-                    <div className="text-center text-xs text-white">16:9</div>
-                  </div>
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-white border-2 rounded-md inline-block w-7 h-[21px]"></div>
-                    </div>
-                    <div className="text-center text-xs text-white">4:3</div>
-                  </div>
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-white border-2 rounded-md inline-block w-7 h-[18.6667px]"></div>
-                    </div>
-                    <div className="text-center text-xs text-white">3:2</div>
-                  </div>
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-white border-2 rounded-md inline-block w-[18.6667px] h-7"></div>
-                    </div>
-                    <div className="text-center text-xs text-white">2:3</div>
-                  </div>
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-white border-2 rounded-md inline-block w-[21px] h-7"></div>
-                    </div>
-                    <div className="text-center text-xs text-white">3:4</div>
-                  </div>
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-white border-2 rounded-md inline-block w-[5.75px] h-7"></div>
-                    </div>
-                    <div className="text-center text-xs text-white">9:16</div>
-                  </div>
-                  <div className="inline-block cursor-pointer">
-                    <div className="w-12 h-12 text-center">
-                      <div className="border-white border-2 rounded-md inline-block w-7 h-3"></div>
-                    </div>
-                    <div className="text-center text-xs text-white">21:9</div>
-                  </div>
-                </div>
+                <div className="mb-2">Aspect Ratio:</div>
+                <AspectRatioSelector
+                  selectedRatio={selectedRatio}
+                  onRatioChange={setSelectedRatio}
+                />
               </div>
             </div>
             <div className="mt-5 block cursor-not-allowed">
@@ -216,19 +207,23 @@ const ImageAI = () => {
           </Card>
         </section>
       </main>
-
+      <AssetsPanel />
       <footer className="flex items-center justify-center md:block">
         <div
-          className="fixed bottom-0 left-0 w-full h-[118px] pt-1 md:px-12 z-[3]"
+          className="fixed bottom-0 left-0 w-full h-[118px] md:block hidden pt-1 md:px-12 z-[3]"
           style={{ background: "linear-gradient(0deg,#0d1116 40%,#0d111600)" }}
         />
-        <div className="fixed bottom-0 left-0 w-full h-[118px] pt-1 px-4 md:px-12 z-[3]">
+        <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-1 px-4 md:px-12 z-[3]">
           <div className="inline-block md:ml-[10px]">
             <button className="bg-[#333a45] text-[#727485] px-4 py-[6px] rounded-full w-[calc(100vw-32px)]  md:w-[344px]  h-12">
               Generate
             </button>
           </div>
         </div>
+        <p className="text-[#727485] text-sm mb-3 hidden md:block fixed bottom-0 w-full  pt-1 px-4 lg:px-12 z-[3] text-center">
+          The generated contents do not represent the views, positions or
+          attitudes of KLING AI. Please use them responsibly and kindly.
+        </p>
       </footer>
     </div>
   );
