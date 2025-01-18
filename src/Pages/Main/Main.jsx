@@ -29,12 +29,14 @@ const Main = () => {
             <Banner
               title="AI Images"
               className="mr-6 mb-4 lg:mb-0"
-              subtitle="Powered by KOLORS"
+              subtitle="Powered by Archiks88"
+              to="ImageAI"
             />
             <Banner
               title="AI Videos"
               className="mr-6 mb-4 lg:mb-0"
               subtitle="Powered by Archiks88"
+              to="VideoAI"
             />
             <Banner
               title="Video Editor"

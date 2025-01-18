@@ -4,6 +4,7 @@ import sun from "../../assets/sun.svg";
 import setting from "../../assets/setting.svg";
 import AspectRatioSelector from "../../Components/AspectRatio/AspectRatioSelector";
 import AssetsPanel from "../../Components/Common/AssetsPanel";
+import nowork from "../../assets/nowork.svg";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
@@ -59,6 +60,12 @@ const ImageAI = () => {
       <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
         Creative Space
       </p>
+      <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center overflow-hidden h-[calc(100%-68px)] mt-[68px] max-lg:hidden">
+        <div className="flex flex-col items-center">
+          <img src={nowork} alt="" width={120} height={120} />
+          <p className="text-[#c5c7d5] text-sm">Release your creative potential. Experience the magic of Archiks88 AI.</p>
+        </div>
+      </div>
       <main
         className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
         onScroll={handleScroll}

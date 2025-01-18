@@ -36,16 +36,16 @@ const AspectRatioButton = ({ ratio, isSelected = false, onClick }) => {
   }
 
   return (
-    <div className="inline-block cursor-pointer" onClick={onClick}>
+    <div className="inline-block cursor-pointer group" onClick={onClick}>
       <div className="w-12 h-12 text-center">
         <div
-          className={`border-2 rounded-md inline-block ${
+          className={`border-2 rounded-md inline-block group-hover:border-[#72e528] duration-200 ${
             isSelected ? "border-[#72e528]" : "border-white"
           } ${buttonWidth} ${buttonHeight}`}
         ></div>
       </div>
       <div
-        className={`text-center text-xs ${
+        className={`text-center text-xs group-hover:text-[#72e528] duration-200 ${
           isSelected ? "text-[#72e528]" : "text-white"
         }`}
       >

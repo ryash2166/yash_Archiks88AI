@@ -15,7 +15,7 @@ const Sidebar = () => {
   const { activeTab, setActiveTab } = useNavigation();
 
   return (
-    <header className="max-h-[calc(100vh-68px)] h-full max-w-[260px] bg-[#0b1116] absolute float-left z-[2] max-lg:hidden">
+    <header className="max-h-[calc(100vh-68px)] overflow-y-auto h-full max-w-[260px] bg-[#0b1116] absolute float-left z-[2] max-lg:hidden">
       {/* Logo */}
       <div className="h-full pt-[16px] px-3 pb-[32px] flex flex-col gap-[16px]">
         <div className="grow ">
