@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 import { FaAngleRight } from "react-icons/fa";
 import QRDiscord from "../../assets/QRDiscord.png";
 import QRYoutube from "../../assets/QRYoutube.png";
@@ -9,9 +9,8 @@ const Footer = () => {
   return (
     <div className="pt-10 pb-9 px-6 lg:ml-[260px] lg:pr-[42px] border-t-[1px] border-[#333]">
       <div className="text-white flex flex-wrap justify-between gap-3">
-        <div className="mb-6 lg:mb-0w-full lg:w-auto max-xl:hidden flex  justify-center ">
-          <img src={logo} alt="Logo" className="w-9 h-9" />
-          <h1 className="text-xl h-9 flex items-center ml-2">Archiks88 AI</h1>
+        <div className="mb-6 lg:mb-0 w-full lg:w-auto max-xl:hidden flex items-start  justify-center ">
+          <img src={logo} alt="Logo" className="" />
         </div>
 
         <div className="mb-6">
