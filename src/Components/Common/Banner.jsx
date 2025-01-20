@@ -11,7 +11,6 @@ const Banner = ({
   to,
 }) => {
   const isDisabled = !to;
-  const Component = isDisabled ? "div" : Link;
   const hoverClasses = isDisabled
     ? ""
     : "hover:shadow-[#1be5ec33] hover:border-[#1be5ec3f] group";
@@ -82,11 +81,10 @@ const Banner = ({
 
   return (
     <Link
-      {...(!isDisabled && { to })}
       ref={bannerRef}
       style={style}
       className={`${className} h-[127px] w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-[#1be5ec1f] text-[#e5e6ee] text-sm sm:text-base md:text-lg leading-6 inline-block pt-8 pl-8 backdrop-blur-[5px] bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
-        isDisabled ? "opacity-70 cursor-not-allowed" : ""
+        isDisabled ? "opacity-80 cursor-not-allowed" : ""
       }`}
     >
       {/* Interactive background gradient */}

@@ -74,7 +74,7 @@ const ImageAI = () => {
           className="flex flex-wrap items-center transition-opacity duration-300"
           style={{ opacity }}
         >
-          {["Text to Image", "AI Virtual Try-On"].map((tab) => (
+          {["Text to Image"].map((tab) => (  // , "AI Virtual Try-On"
             <button
               key={tab}
               className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
@@ -107,7 +107,7 @@ const ImageAI = () => {
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  className="w-full absolute mx-5 top-[27px] text-ellipsis bg-transparent outline-none z-10 text-white pr-8 "
+                  className=" absolute w-full ml-5 top-[17px] text-ellipsis bg-transparent outline-none z-10 text-white"
                 />
                 {inputText && (
                   <button
@@ -204,7 +204,7 @@ const ImageAI = () => {
                 />
               </div>
             </div>
-            <div className="mt-5 block cursor-not-allowed">
+            <div className="mt-5 block">
               <label className="pr-3 mb-2 text-[#999bac] ">
                 Generating Count:
                 <span className="text-white"> 4</span>

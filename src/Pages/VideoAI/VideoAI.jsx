@@ -36,7 +36,7 @@ const Card = ({ children, className = "", disabled = false }) => (
 );
 
 const VideoAI = () => {
-  const [mainTab, setMainTab] = useState("Image to Video");
+  const [mainTab, setMainTab] = useState("Text to Video");
   const [opacity, setOpacity] = useState(1);
   const [inputText, setInputText] = useState("");
 
@@ -80,7 +80,7 @@ const VideoAI = () => {
           className="flex flex-wrap items-center justify-between sm:justify-normal transition-opacity duration-300"
           style={{ opacity }}
         >
-          {["Text to Video", "Image to Video", "Lip Sync"].map((tab) => (
+          {["Text to Video"].map((tab) => ( //, "Image to Video", "Lip Sync"
             <button
               key={tab}
               className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${

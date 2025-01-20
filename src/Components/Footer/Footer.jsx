@@ -9,11 +9,11 @@ const Footer = () => {
   return (
     <div className="pt-10 pb-9 px-6 lg:ml-[260px] lg:pr-[42px] border-t-[1px] border-[#333]">
       <div className="text-white flex flex-wrap justify-between gap-3">
-        <div className="mb-6 lg:mb-0 w-full lg:w-auto max-xl:hidden flex items-start  justify-center ">
+        <div className="mb-6 lg:mb-0 w-full lg:w-auto flex items-start  justify-center ">
           <img src={logo} alt="Logo" className="" />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 ">
           <p className="text-[15px] font-medium leading-6 mb-4">About</p>
           <div className="space-y-3">
             <span className="flex items-center gap-2">
@@ -76,8 +76,7 @@ const Footer = () => {
       {/* Footer Bottom Section */}
       <div className="text-xs text-center mt-12 mb-20 text-[#4e495a]">
         <p>
-          Archiks88ai.com 2024 © All rights Reserved
-          <span className="mx-2">京ICP备15023266号-171</span>
+          Archiks88ai.com 2024 © All rights Reserved.
         </p>
       </div>
     </div>
