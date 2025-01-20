@@ -41,15 +41,15 @@ const Footer = () => {
 
         <div className="block lg:flex justify-center lg:justify-end w-full lg:w-auto lg:space-x-6">
           <div className="flex flex-col items-center max-lg:mb-4">
-            <img src={discord} alt="" width={80} height={80} className="mb-1" />
+            <img src={discord} alt="" width={65} height={65} className="mb-1" />
             <p className="text-center">Discord</p>
           </div>
           <div className="flex flex-col items-center max-lg:mb-4">
-            <img src={youtube} alt="" width={80} height={80} className="mb-1" />
+            <img src={youtube} alt="" width={65} height={65} className="mb-1" />
             <p>YouTube</p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={twitter} alt="" width={80} height={80} className="mb-1" />
+            <img src={twitter} alt="" width={65} height={65} className="mb-1" />
             <p>Twitter</p>
           </div>
         </div>
