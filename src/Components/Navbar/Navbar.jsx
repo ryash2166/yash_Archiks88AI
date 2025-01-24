@@ -23,9 +23,9 @@ const Navbar = () => {
       <header className="h-[68px] w-full px-1 sm:px-5">
         <div className="flex h-full justify-between items-center">
           <div className="flex items-center  h-full ">
-            <div className="md:hidden ">
+            {/* <div className="md:hidden ">
             <MobileMenu  />
-            </div>
+            </div> */}
           <Link to="/" className="flex h-full max-sm:ml-[2px] items-center" onClick={handleLogoClick}>
             <img src={logo} alt="Logo" className="" />
           </Link>
