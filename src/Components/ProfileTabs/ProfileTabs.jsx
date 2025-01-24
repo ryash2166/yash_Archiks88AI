@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DateRangePicker } from "@nextui-org/react";
+// import { DateRangePicker } from "@nextui-org/react"; 
 import nowork from "../../assets/nowork.svg";
 import Button from "../Common/Button";
 import { useNavigation } from "../../Context/NavigationContext";
@@ -203,7 +203,7 @@ const ProfileTabs = () => {
             <button className="px-4 py-2 bg-gray-800 text-white text-sm rounded-lg hover:bg-gray-700 transition">
               Hierarchy
             </button>
-            <DateRangePicker variant="" />
+            {/* <DateRangePicker variant="" /> */}
           </div>
         ) : (
           <Button

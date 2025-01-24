@@ -157,3 +157,7 @@ body {
   background: #4e5062d9 !important;
   border: none !important;
 }
+
+.bg-mobilemenu{
+  background: linear-gradient(254.03deg, #1b2829bb -4.51%,#171b21bb 46.42%,#191d23bb 91.45%);
+}

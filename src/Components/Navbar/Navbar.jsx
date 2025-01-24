@@ -6,6 +6,7 @@ import Button from "../Common/Button";
 import Login from "../Login/Login";
 import { Link } from "react-router";
 import { useNavigation } from "../../Context/NavigationContext";
+import MobileMenu from "./MobileMenu";
 
 const Navbar = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
@@ -19,11 +20,13 @@ const Navbar = () => {
 
   return (
     <div className="bg-[#0d1116] sticky top-0 z-20">
-      <header className="h-[68px] w-full px-2 sm:px-5">
+      <header className="h-[68px] w-full px-1 sm:px-5">
         <div className="flex h-full justify-between items-center">
-          <Link to="/" className="flex h-full items-center" onClick={handleLogoClick}>
+          <div className="flex items-center h-full ">
+          <Link to="/" className="flex h-full max-sm:ml-[2px] items-center" onClick={handleLogoClick}>
             <img src={logo} alt="Logo" className="" />
           </Link>
+          </div>
           <div className="flex items-center h-full">
             {/* <div className="flex cursor-pointer justify-center items-center flex-row rounded-full h-9 px-5 bg-[#ffffff14] text-sm mr-5 max-md:hidden">
               <img src={creadits} alt="" width={16} height={16} />
@@ -43,7 +46,7 @@ const Navbar = () => {
               />
             </div> */}
             <Button
-              className="bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] sm:px-6 hover:!bg-[linear-gradient(89.86deg,#81d100,#56d69a,#1aaad6)]"
+              className="bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] !px-3 sm:!px-6 hover:!bg-[linear-gradient(89.86deg,#81d100,#56d69a,#1aaad6)]"
               title="Sign In"
               onClick={togglePopup}
             />

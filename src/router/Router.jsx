@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import { Outlet, useLocation } from "react-router-dom";
+import NavbarAI from "../Components/Navbar/NavbarAI";
 
 const Router = () => {
   const location = useLocation();
@@ -10,7 +11,8 @@ const Router = () => {
 
   return (
     <>
-      <Navbar />
+      {shouldShowSidebar ? <Navbar /> : <NavbarAI /> }
+
       {shouldShowSidebar && <Sidebar />}
       <Outlet />
     </>

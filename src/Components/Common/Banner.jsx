@@ -83,7 +83,7 @@ const Banner = ({
     <Link
       ref={bannerRef}
       style={style}
-      className={`${className} h-[127px] w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-[#1be5ec1f] text-[#e5e6ee] text-sm sm:text-base md:text-lg leading-6 inline-block pt-8 pl-8 backdrop-blur-[5px] bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
+      className={`${className} h-[92px] md:h-[127px] w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-[#1be5ec1f] text-[#e5e6ee] text-sm sm:text-base md:text-lg leading-6 inline-block pt-4 pl-4 md:pt-5 md:pl-5 xl:pt-8 xl:pl-8 backdrop-blur-[5px] bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
         isDisabled ? "opacity-80 cursor-not-allowed" : ""
       }`}
     >
@@ -120,7 +120,7 @@ const Banner = ({
       </h2>
 
       {/* Subtitle */}
-      <span className="block text-xs sm:text-sm md:text-base relative">
+      <span className="block text-xs sm:text-sm relative">
         {subtitle}
         {showR && (
           <span className="relative ml-[3px] text-[10px] sm:text-[12px] md:text-[14px]">

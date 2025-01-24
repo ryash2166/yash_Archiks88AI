@@ -12,7 +12,7 @@ import Button from "../../Components/Common/Button";
 
 const Main = () => {
   return (
-    <div className="relative h-lvh w-full overflow-auto">
+    <div className="relative h-lvh w-full overflow-auto overflow-x-hidden">
       <main className="lg:pl-[260px] pt-0 m-0 bg-[#0d1116]">
         <MainVideo />
         <div className="relative max-lg:static">
@@ -25,16 +25,16 @@ const Main = () => {
           </h1>
         </div>
         <div className="">
-          <div className="w-[calc(100%-40px)] -mt-[120px] mx-5 mb-0 max-lg:flex-col flex flex-wrap justify-center max-lg:mt-10">
+          <div className="w-[calc(100%-40px)] -mt-[120px] mx-5 mb-0 max-lg:flex-col flex flex-wrap max-lg:mt-10">
             <Banner
               title="AI Images"
-              className="mr-6 mb-4 lg:mb-0"
+              className="mr-6 lg:mr-4 mb-4 lg:mb-0"
               subtitle="Powered by Archiks88"
               to="ImageAI"
             />
             <Banner
               title="AI Videos"
-              className="mr-6 mb-4 lg:mb-0"
+              className="mr-6 lg:mr-4 mb-4 lg:mb-0"
               subtitle="Powered by Archiks88"
               to="VideoAI"
             />
@@ -79,6 +79,10 @@ const Main = () => {
             title="Explore More"
             className="mx-auto flex items-center justify-center mt-[2em] px-8 bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] hover:!bg-[linear-gradient(89.86deg,#81d100,#56d69a,#1aaad6)]"
           />
+
+
+
+
         </div>
       </main>
       <Footer />
