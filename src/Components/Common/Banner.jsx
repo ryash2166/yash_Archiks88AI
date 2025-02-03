@@ -83,6 +83,7 @@ const Banner = ({
     <Link
       ref={bannerRef}
       style={style}
+      to={to}
       className={`${className} h-[92px] md:h-[127px] w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-[#1be5ec1f] text-[#e5e6ee] text-sm sm:text-base md:text-lg leading-6 inline-block pt-4 pl-4 md:pt-5 md:pl-5 xl:pt-8 xl:pl-8 backdrop-blur-[5px] bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
         isDisabled ? "opacity-80 cursor-not-allowed" : ""
       }`}

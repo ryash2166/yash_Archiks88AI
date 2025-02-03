@@ -5,12 +5,12 @@ const AssetsPanel = () => {
 
   return (
     <div
-      className={`h-screen border-[#2e3136] bg-[#0d1116] border-[1px] rounded-xl pt-[16px] pb-0 px-[15px] absolute right-5 transition-all duration-300 ease-in-out ${
+      className={`h-full border-[#2e3136] bg-[#0d1116] border-[1px] rounded-xl pt-[16px] pb-0 px-[15px] absolute right-5 transition-all duration-300 ease-in-out  ${
         isExpanded ? "w-[548px]" : "w-[152px]"
-      }`}
+      } `}
     >
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between overflow-hidden">
         <div className="flex flex-row items-center justify-between w-full gap-2">
           <h2 className="text-white leading-6 text-left flex-1 text-[16px] font-semibold">
             Assets
