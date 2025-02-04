@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
-import promt from "../../assets/prompt.svg";
-import upload from "../../assets/upload.svg";
-import motion from "../../assets/motion.svg";
+// import promt from "../../assets/prompt.svg";
+// import upload from "../../assets/upload.svg";
+// import motion from "../../assets/motion.svg";
 import sun from "../../assets/sun.svg";
 import setting from "../../assets/setting.svg";
 import Radio from "@mui/material/Radio";
@@ -11,8 +11,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import camera from "../../assets/camera.svg";
 import camera2 from "../../assets/camera2.svg";
 import negative from "../../assets/negative.svg";
-import AssetsPanel from "../../Components/Common/AssetsPanel";
+// import AssetsPanel from "../../Components/Common/AssetsPanel";
 import nowork from "../../assets/nowork.svg";
+import { useNavigation } from "../../Context/NavigationContext";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
@@ -39,7 +40,9 @@ const Card = ({ children, className = "", disabled = false }) => (
 const VideoAI = () => {
   const [mainTab, setMainTab] = useState("Text to Video");
   const [opacity, setOpacity] = useState(1);
-  const [inputText, setInputText] = useState("");
+  // const [inputText, setInputText] = useState("");
+  const { generateAIVideo, generatedVideos } = useNavigation();
+  const [prompt, setPrompt] = useState('');
 
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
@@ -49,7 +52,12 @@ const VideoAI = () => {
   };
 
   const handleClear = () => {
-    setInputText("");
+    setPrompt("");
+  };
+
+  const handleGenerateVideo = () => {
+    generateAIVideo(prompt);
+    setPrompt('');
   };
 
   return (
@@ -323,7 +331,7 @@ const VideoAI = () => {
             <div className="text-sm text-[#727485] mt-4">
               <div className="bg-[#0d1116] rounded-[12px] h-[210px] relative">
                 <div className="mx-5 mt-[13px] absolute">
-                  {!inputText && (
+                  {!prompt && (
                     <p className="text-[#727485] leading-7">
                       Please describe your creative ideas for the video, or view
                       <span className="text-[#82fac2]"> Help Center</span> for a
@@ -333,11 +341,11 @@ const VideoAI = () => {
                 </div>
                 <input
                   type="text"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
                   className=" absolute w-full ml-5 top-[30px] text-ellipsis bg-transparent outline-none z-10 text-white"
                 />
-                {inputText && (
+                {prompt && (
                   <button
                     onClick={handleClear}
                     className="absolute right-4 bottom-2 text-white hover:text-white"
@@ -633,7 +641,7 @@ const VideoAI = () => {
         />
         <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-1 px-4 md:px-12 z-[3]">
           <div className="inline-block md:ml-[10px]">
-            <button className="bg-[#333a45] text-[#727485] px-4 py-[6px] rounded-full w-[calc(100vw-32px)]  md:w-[344px]  h-12">
+            <button onClick={handleGenerateVideo} className="bg-[#333a45] text-[#727485] px-4 py-[6px] rounded-full w-[calc(100vw-32px)]  md:w-[344px]  h-12">
               Generate
             </button>
           </div>
