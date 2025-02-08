@@ -77,12 +77,8 @@ const Main = () => {
           </div>
           <Button
             title="Explore More"
-            className="mx-auto flex items-center justify-center mt-[2em] px-8 bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] hover:!bg-[linear-gradient(89.86deg,#81d100,#56d69a,#1aaad6)]"
+            className="mx-auto flex items-center justify-center mt-[2em] px-8 !py-2 bg-[#6c6cf5] hover:!bg-[#5252e5]"
           />
-
-
-
-
         </div>
       </main>
       <Footer />

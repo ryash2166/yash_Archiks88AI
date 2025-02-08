@@ -49,7 +49,7 @@ const Navbar = () => {
               />
             </div> */}
             <Button
-              className="bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] !px-3 sm:!px-6 hover:!bg-[linear-gradient(89.86deg,#81d100,#56d69a,#1aaad6)]"
+              className="bg-[#6c6cf5] hover:!bg-[#5252e5] !px-3 sm:!px-6 "
               title="Sign In"
               onClick={togglePopup}
             />

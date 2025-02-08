@@ -5,12 +5,10 @@ import Button from "../Common/Button";
 // import New from "../../assets/new.png";
 import Login from "../Login/Login";
 import { Link } from "react-router";
-import { useNavigation } from "../../Context/NavigationContext";
 import MobileMenu from "./MobileMenu";
 
 const NavbarAI = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const { setActiveTab } = useNavigation();
 
   const togglePopup = () => setShowLoginPopup(!showLoginPopup);
 
@@ -24,7 +22,7 @@ const NavbarAI = () => {
         <div className="flex h-full justify-between items-center">
           <div className="flex items-center h-full ">
           <MobileMenu/>
-          <Link to="/" className="flex h-full max-sm:ml-[2px] items-center" onClick={handleLogoClick}>
+          <Link to="/" className="flex h-full max-sm:ml-[2px] items-center">
             <img src={logo} alt="Logo" className="" />
           </Link>
           </div>
@@ -47,7 +45,7 @@ const NavbarAI = () => {
               />
             </div> */}
             <Button
-              className="bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] !px-3 sm:!px-6 hover:!bg-[linear-gradient(89.86deg,#81d100,#56d69a,#1aaad6)]"
+              className="bg-[#6c6cf5] hover:!bg-[#5252e5] !px-3 sm:!px-6"
               title="Sign In"
               onClick={togglePopup}
             />
