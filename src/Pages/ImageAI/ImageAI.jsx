@@ -95,6 +95,7 @@ const ImageAI = () => {
       setFormState({ result: "error", message: error.message });
     } finally {
       setIsPending(false);
+      setFormState((prev) => ({ ...prev, prompt: "" }));
     }
   }
 
