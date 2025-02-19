@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileTabs from "../../Components/ProfileTabs/ProfileTabs";
 import personPlaceholder from "../../assets/person.png"; // Placeholder image for avatar
 import { MdClose } from "react-icons/md";
 import Button from "../../Components/Common/Button";
+import { FiDownload } from "react-icons/fi";
 
 const Profile = () => {
   const [profile, setProfile] = useState({
@@ -10,13 +11,44 @@ const Profile = () => {
     bio: "Create my bio: eg.'Found me! How about giving my work a like?'",
     avatar: personPlaceholder,
   });
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [tempProfile, setTempProfile] = useState(profile);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // Handlers
+  const url = "http://localhost:3000";
+  // Fetch profile data when the component mounts
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${url}/api/profile`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          // console.log("Fetched profile data:", data);
+          setProfile(data);
+          setTempProfile(data);
+        } else {
+          console.error("Failed to fetch profile");
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  // Open modal for editing
   const openModal = () => {
-    setTempProfile(profile);
+    console.log("Edit Profile button clicked");
+    setTempProfile(profile); // reset tempProfile to current profile data
     setIsModalOpen(true);
   };
 
@@ -29,21 +61,64 @@ const Profile = () => {
     setTempProfile((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Update avatar when a new file is selected
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > 500 * 1024) {
+        // For example, limit to 500KB
+        alert("Image is too large. Please choose an image under 500KB.");
+        return;
+      }
       const reader = new FileReader();
       reader.onload = () => {
+        console.log("New avatar data URL:", reader.result);
         setTempProfile((prev) => ({ ...prev, avatar: reader.result }));
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const saveProfile = (e) => {
+  const saveProfile = async (e) => {
     e.preventDefault();
-    setProfile(tempProfile);
+
+    // Immediately update the local profile state with the new avatar.
+    // Append a timestamp query parameter to force the image re-render.
+    const immediateProfile = {
+      ...tempProfile,
+    };
+    setProfile(immediateProfile);
     closeModal();
+
+    // Send updated profile to the backend.
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch("http://localhost:3000/api/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: tempProfile.name || "User",
+          bio: tempProfile.bio || "",
+          avatar: tempProfile.avatar || personPlaceholder,
+        }),
+      });
+      if (res.ok) {
+        const updatedData = await res.json();
+        console.log("Profile updated on server:", updatedData);
+        // Update state from server if needed.
+        setProfile({
+          ...updatedData,
+        });
+        setTempProfile(updatedData);
+      } else {
+        console.error("Failed to update profile on server");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   const clearBio = () => {
@@ -56,25 +131,46 @@ const Profile = () => {
     }
   };
 
+  const handleDownload = (imageUrl, fileName) => {
+    // Create a temporary anchor element
+    const link = document.createElement("a");
+    link.href = imageUrl;
+    link.download = fileName; // Set the file name for the download
+    document.body.appendChild(link);
+    link.click(); // Trigger the download
+    document.body.removeChild(link); // Clean up
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#0d1116] text-white">
+        <p>Loading profile...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-lvh w-full overflow-auto">
       <div className="lg:pl-[260px] pt-0 m-0 bg-[#0d1116]">
         <div className="w-full h-[200px] mb-7">
           <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-[18px] h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3 ">
             <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
-              <div className="md:mr-6 w-[80px] h-[80px]">
+              <div className="md:mr-6 w-[100px] h-[100px]">
                 <img
-                  src={profile.avatar}
-                  alt="Person_Profile"
+                  src={profile.avatar || personPlaceholder}
+                  alt="User Avatar"
                   className="object-cover w-full h-full rounded-full"
                 />
               </div>
-              <div className="flex flex-col max-md:pt-2 max-md:items-center justify-center text-white">
+              <div className="flex flex-col gap-2 max-md:pt-2 max-md:items-center justify-center text-white">
                 <div className="leading-[26px] text-lg whitespace-nowrap text-ellipsis">
-                  {profile.name}
+                  {profile.name || "User"}
                 </div>
                 <div className="leading-6 text-sm hidden md:block">
-                  {profile.bio}
+                  {profile.bio || "Welcome to Archks88 AI"}
+                </div>
+                <div className="leading-6 text-sm ">
+                  Credits: {profile.credits}
                 </div>
               </div>
             </div>
@@ -86,8 +182,32 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        <div className="max-md:mt-14">
-          <ProfileTabs />
+        <div className="max-md:mt-24 ">
+          {!profile?.images && <ProfileTabs />}
+          <div className="flex flex-wrap w-full max-md:justify-center gap-3 rounded-[18px]">
+            {profile.images && profile.images.length > 0 ? (
+              profile.images.map((img) => (
+                <div className="relative inline-block group max-lg:m-7 lg:ml-5 lg:max-w-[300px]">
+                  <img
+                    key={img._id}
+                    src={img.imageUrl}
+                    alt={img.prompt}
+                    className=" cursor-pointer rounded-[18px] "
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
+                    <FiDownload
+                      className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      onClick={() =>
+                        handleDownload(img.imageUrl, `${img._id}.png`)
+                      }
+                    />
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No images generated yet.</p>
+            )}
+          </div>
         </div>
       </div>
 
@@ -98,7 +218,6 @@ const Profile = () => {
           onClick={handleModalClick}
         >
           <div className="bg-login p-6 rounded-lg w-full mx-3 max-w-[464px] relative">
-            {/* Close Button */}
             <button
               className="absolute top-6 right-3 text-2xl md:text-[30px] font-bold text-gray-300"
               onClick={closeModal}
@@ -115,12 +234,11 @@ const Profile = () => {
                   className="cursor-pointer relative group"
                 >
                   <img
-                    src={tempProfile.avatar}
-                    alt="Person_Profile"
+                    src={tempProfile.avatar || personPlaceholder}
+                    alt="User Avatar"
                     className="object-cover inline-flex w-[80px] h-[80px] rounded-full group-hover:opacity-50 transition-opacity"
                   />
                   <svg
-                    data-v-e8d12bc5=""
                     width="18"
                     height="18"
                     viewBox="0 0 18 18"
@@ -137,7 +255,7 @@ const Profile = () => {
                       clipRule="evenodd"
                       d="M12.619 3.10526L13.0818 3.55803C13.7587 4.22022 13.7587 5.29385 13.0818 5.95604L6.03219 12.8524C5.90337 12.9784 5.73723 13.0615 5.55737 13.0899L3.54418 13.4075C3.07164 13.4821 2.62678 13.1678 2.55057 12.7055C2.53582 12.6161 2.53582 12.525 2.55057 12.4355L2.87527 10.4661C2.90428 10.2902 2.98923 10.1276 3.11806 10.0016L10.1677 3.10526C10.8446 2.44306 11.9421 2.44306 12.619 3.10526Z"
                       stroke="currentColor"
-                      stroke-width="2"
+                      strokeWidth="2"
                     ></path>
                   </svg>
                 </label>
@@ -155,31 +273,29 @@ const Profile = () => {
                 <input
                   type="text"
                   name="name"
-                  value={tempProfile.name}
+                  value={tempProfile.name || ""}
                   onChange={handleInputChange}
                   placeholder="Enter your name"
                   maxLength={20}
                   className="w-full px-4 py-3 text-white bg-[#0d1116] rounded-xl focus:border-[1px] focus:outline-none border-[#445b5c] text-sm leading-6"
                 />
                 <div className="text-right text-sm text-gray-500 absolute bottom-3 right-4">
-                  {tempProfile.name.length}/20
+                  {tempProfile.name ? tempProfile.name.length : 0}/20
                 </div>
               </div>
               <div className="mb-4 relative">
                 <label className="block text-white mb-2">Biography</label>
                 <textarea
                   name="bio"
-                  value={tempProfile.bio}
+                  value={tempProfile.bio || ""}
                   onChange={handleInputChange}
                   placeholder="Enter your bio"
                   className="w-full text-white bg-[#0d1116] rounded-lg px-[16px] pt-3 pb-8 focus:border-[1px] focus:outline-none border-[#445b5c] text-sm leading-6 resize-none"
                   maxLength={200}
-                  tabIndex={0}
-                  autoComplete="off"
                   rows="5"
                 ></textarea>
                 <div className="text-right text-sm text-gray-500 absolute bottom-4 left-4">
-                  {tempProfile.bio.length}/200
+                  {tempProfile.bio ? tempProfile.bio.length : 0}/200
                 </div>
                 <div className="absolute right-4 bottom-5 flex items-center">
                   <div className="border-l-[1px] border-[#4e5062] h-4 mt-[1px] mr-[0.5em]"></div>
@@ -189,12 +305,12 @@ const Profile = () => {
                     onClick={clearBio}
                   >
                     <svg
-                      className="mx-[6px] "
                       width="20"
                       height="20"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="mx-[6px]"
                     >
                       <path
                         fillRule="evenodd"
