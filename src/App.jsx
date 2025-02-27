@@ -6,6 +6,7 @@ import Profile from "./Pages/Profile/Profile";
 import Explore from "./Pages/Explore/Explore";
 import ImageAI from "./Pages/ImageAI/ImageAI";
 import VideoAI from "./Pages/VideoAI/VideoAI";
+import ProtectedRoute from "./router/ProtectedRoute";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -19,7 +20,11 @@ const App = () => {
         },
         {
           path: "/profile",
-          element: <Profile />,
+          element: (
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/explore",
@@ -27,11 +32,19 @@ const App = () => {
         },
         {
           path: "/ImageAI",
-          element: <ImageAI />,
+          element: (
+            <ProtectedRoute>
+              <ImageAI />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/VideoAI",
-          element: <VideoAI />,
+          element: (
+            <ProtectedRoute>
+              <VideoAI />
+            </ProtectedRoute>
+          ),
         },
       ],
     },

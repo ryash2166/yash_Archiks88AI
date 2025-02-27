@@ -48,7 +48,7 @@
 //                 className="w-[27px] h-4 absolute -top-[6px] -right-[15px] new-tag"
 //               />
 //             </div> */}
-            
+
 //             <Button
 //               className="bg-[#6c6cf5] hover:!bg-[#5252e5] !px-3 sm:!px-6 "
 //               title="Sign In"
@@ -58,17 +58,14 @@
 //         </div>
 //       </header>
 
-
 //       {/* Import and Use Login Popup */}
-      
-      
+
 //       <Login isVisible={showLoginPopup} onClose={() => setShowLoginPopup(false)} />
 //     </div>
 //   );
 // };
 
 // export default Navbar;
-
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -78,7 +75,6 @@ import Login from "../Login/Login";
 import { useNavigation } from "../../Context/NavigationContext";
 // import MobileMenu from "./MobileMenu";
 import personPlaceholder from "../../assets/person.png"; // Placeholder image for avatar
-
 
 const Navbar = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
@@ -95,9 +91,9 @@ const Navbar = () => {
     console.log("Logout successful");
     // window.location.reload();
     window.location.href = "/";
-  }
+  };
 
-  const url = "http://localhost:3000"
+  const url = "http://localhost:3000";
   // Fetch profile data when the component mounts
   useEffect(() => {
     const fetchProfile = async () => {
@@ -121,7 +117,7 @@ const Navbar = () => {
         console.error("Error fetching profile:", error);
       }
     };
-    fetchProfile()
+    fetchProfile();
   }, []);
 
   return (
@@ -148,7 +144,9 @@ const Navbar = () => {
                     alt="User Avatar"
                     className="w-12 h-12 rounded-full object-cover"
                   />
-                  <span className="text-white text-sm">{profile.name || "User"}</span>
+                  <span className="text-white text-sm">
+                    {profile.name || "User"}
+                  </span>
                 </div>
                 {/* Remaining credits */}
                 <div className="text-white text-sm hidden md:block">
@@ -159,7 +157,6 @@ const Navbar = () => {
                   className="bg-[#ff5e57] hover:bg-[#ff2f1b] px-3 sm:px-6"
                   title="Logout"
                   onClick={logout}
-
                 />
               </div>
             ) : (
@@ -174,7 +171,10 @@ const Navbar = () => {
       </header>
 
       {/* Login Popup */}
-      <Login isVisible={showLoginPopup} onClose={() => setShowLoginPopup(false)} />
+      <Login
+        isVisible={showLoginPopup}
+        onClose={() => setShowLoginPopup(false)}
+      />
     </div>
   );
 };

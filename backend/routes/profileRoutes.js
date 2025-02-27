@@ -47,6 +47,7 @@ router.get('/', authMiddleware, async (req, res) => {
       .populate('images');
     res.json(user);
   } catch (error) {
+    console.error("Error fetching profile:", error);
     res.status(500).json({ error: 'Failed to fetch profile' });
   }
 });
@@ -75,6 +76,7 @@ router.put('/', authMiddleware, async (req, res) => {
 
     res.json(updatedUser);
   } catch (error) {
+    console.error("Error updating profile:", error);
     res.status(500).json({ error: 'Failed to update profile' });
   }
 });
