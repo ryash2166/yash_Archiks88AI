@@ -5,35 +5,70 @@ import { generateImage as generateImageUtil } from '../image.js';
 export const generateImage = async (req, res) => {
   const { prompt, options } = req.body;
   const user = req.user;
+  const count = options?.count || 1;
 
-  if (user.credits < 4) {
-    return res.status(400).json({ error: 'Insufficient credits' });
-  }
+  const requiredCredits = 4 * count;
+  if (user.credits < requiredCredits) {
+        return res.status(400).json({ error: 'Insufficient credits' });
+      }
 
   try {
-    const { image, format } = await generateImageUtil(prompt, options);
 
-    // Save image to database
+    const images = [];
+
+  //   const { image, format } = await generateImageUtil(prompt, options);
+
+  //   // Save image to database
+  //   const newImage = new Image({
+  //     user: user._id,
+  //     imageUrl: `data:${format};base64,${image.toString('base64')}`,
+  //     prompt,
+  //   });
+  //   await newImage.save();
+
+  //   // Deduct credits
+  //   // Update the user by pushing the new image ID into the images array and deducting credits atomically
+  //   await User.findByIdAndUpdate(
+  //     user._id,
+  //     { $push: { images: newImage._id }, $inc: { credits: -4 } },
+  //     { new: true }
+  //   );
+  //   await user.save();
+
+  //   res.type(format) && res.status(201).send(image) && res.status(201).json({
+  //     message: 'Image generated successfully',
+  //     imageUrl: newImage.imageUrl,
+  //     credits: user.credits,
+  //   });
+  // } catch (error) {
+  //   res.status(500).json({ error: 'Server error' });
+  // }
+
+   // Generate multiple images
+   for (let i = 0; i < count; i++) {
+    const { image, format } = await generateImageUtil(prompt, options);
+    
     const newImage = new Image({
       user: user._id,
       imageUrl: `data:${format};base64,${image.toString('base64')}`,
       prompt,
     });
+    
     await newImage.save();
+    images.push(newImage.imageUrl);
 
-    // Deduct credits
-    // Update the user by pushing the new image ID into the images array and deducting credits atomically
+    
+    // Deduct credits for each image
     await User.findByIdAndUpdate(
       user._id,
       { $push: { images: newImage._id }, $inc: { credits: -4 } },
       { new: true }
     );
-    await user.save();
-
-    res.type(format) && res.status(201).send(image) && res.status(201).json({
-      message: 'Image generated successfully',
-      imageUrl: newImage.imageUrl,
-      credits: user.credits,
+  }
+    res.type(format) && res.status(201).json({
+      message: `${count} image(s) generated successfully`,
+      imageUrls: images,
+      credits: user.credits - (4 * count)
     });
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
@@ -50,3 +85,4 @@ export const getGeneratedImages = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+

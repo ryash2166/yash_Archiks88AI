@@ -182,7 +182,7 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        <div className="max-md:mt-24 ">
+        <div className="max-md:mt-24 mb-24">
           {!profile?.images && <ProfileTabs />}
           <div className="flex flex-wrap w-full max-md:justify-center gap-3 rounded-[18px]">
             {profile.images && profile.images.length > 0 ? (

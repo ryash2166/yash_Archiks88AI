@@ -12,6 +12,7 @@ export async function generateImage(prompt, options) {
     output_quality: +options.quality || 100,
     safety_tolerance: 2,
     prompt_upsampling: true,
+    // output_count: options.count || 1,
   };
 
   const output = await replicate.run('black-forest-labs/flux-schnell', {
