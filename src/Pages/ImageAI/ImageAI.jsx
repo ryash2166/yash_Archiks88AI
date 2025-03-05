@@ -104,8 +104,9 @@ async function sendImageRequest(prompt, options) {
     }
 
     const blob = await response.blob();
-    const data = await response.json();
-    return URL.createObjectURL(blob) && data.imageUrl;
+    // const data = await response.json();
+    return URL.createObjectURL(blob)
+    //  && data.imageUrl;
 
   } catch (error) {
     console.error("API Error:", error);
@@ -128,7 +129,6 @@ const ImageAI = () => {
   // AI Images Generation
   const [formState, setFormState] = useState({
     results: [],
-    imageUrl: "",
     prompt: "",
     message: "",
     count: 1,
@@ -191,37 +191,68 @@ const ImageAI = () => {
   //   }
   // }
 
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
+  //   setIsPending(true);
+
+  //   const formData = new FormData(event.target);
+  //   const options = {
+  //     quality: formData.get("quality"),
+  //     aspect_ratio: formData.get("aspectRatio"),
+  //     format: formData.get("format"),
+  //     count: formState.count,
+  //   };
+
+  //   try {
+  //     const imageUrl = await sendImageRequest(formState.prompt, options);
+  //     setFormState({
+  //       results: 'success',
+  //       message: "",
+  //       imageUrl,
+  //       prompt: formState.prompt,
+  //     });
+  //     console.log("Generated images:", imageUrl);
+  //   } catch (error) {
+  //     setFormState({
+  //       results: "error",
+  //       message: error.message,
+  //       prompt: formState.prompt,
+  //       count: formState.count,
+  //     });
+  //   } finally {
+  //     setIsPending(false);
+  //     setFormState((prev) => ({ ...prev, prompt: "" }));
+  //   }
+  // }
+
   async function handleSubmit(event) {
     event.preventDefault();
     setIsPending(true);
-
-    const formData = new FormData(event.target);
-    const options = {
-      quality: formData.get("quality"),
-      aspect_ratio: formData.get("aspectRatio"),
-      format: formData.get("format"),
-      count: formState.count,
-    };
-
+  
     try {
-      const imageUrl = await sendImageRequest(formState.prompt, options);
-      setFormState({
-        results: imageUrl.map((url) => ({ url, prompt: formState.prompt })),
-        message: "",
-        imageUrl,
-        prompt: formState.prompt,
+      const imageUrls = await sendImageRequest(formState.prompt, {
+        aspect_ratio: selectedRatio,
+        format: 'webp',
+        quality: 100,
+        count: formState.count
       });
-      console.log("Generated images:", imageUrl);
+  
+      // Ensure results is always array
+      setFormState(prev => ({
+        ...prev,
+        results: imageUrls.map(url => ({ url, prompt: prev.prompt })),
+        message: '',
+        prompt: ''
+      }));
+  
     } catch (error) {
-      setFormState({
-        results: "error",
-        message: error.message,
-        prompt: formState.prompt,
-        count: formState.count,
-      });
+      setFormState(prev => ({
+        ...prev,
+        results: [],
+        message: error.message
+      }));
     } finally {
       setIsPending(false);
-      setFormState((prev) => ({ ...prev, prompt: "" }));
     }
   }
 
@@ -243,7 +274,7 @@ const ImageAI = () => {
         <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
           Creative Space
         </p>
-        <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)]  max-lg:hidden">
+        {/* <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)]  max-lg:hidden">
           {!formState.results && (
             <div className="flex flex-col items-center">
               <img src={nowork} alt="" />
@@ -268,16 +299,9 @@ const ImageAI = () => {
           {formState.results === "error" && (
             <p className="text-red-200 text-md">{formState.message}</p>
           )}
-        </div>
-        {/* <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)]  max-lg:hidden">
-  {formState.results.length === 0 ? (
-    <div className="flex flex-col items-center">
-      <img src={nowork} alt="" />
-      <p className="text-[#c5c7d5] text-sm">
-        Release your creative potential. Experience the magic of Archiks88 AI.
-      </p>
-    </div>
-  ) : (
+        </div> */}
+  <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
+  {formState.results.length > 0 ? (
     <div className="ml-32 flex flex-col h-full justify-end items-center">
       <div className="grid grid-cols-2 gap-4">
         {formState.results.map((result, index) => (
@@ -297,11 +321,15 @@ const ImageAI = () => {
         Generated {formState.results.length} images
       </p>
     </div>
+  ) : (
+    <div className="flex flex-col items-center">
+      <img src={nowork} alt="" />
+      <p className="text-[#c5c7d5] text-sm">
+        {formState.message || 'Release your creative potential...'}
+      </p>
+    </div>
   )}
-  {formState.message && (
-    <p className="text-red-200 text-md">{formState.message}</p>
-  )}
-</div> */}
+</div>
         <main
           className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
           onScroll={handleScroll}
