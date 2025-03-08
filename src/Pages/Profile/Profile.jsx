@@ -140,9 +140,9 @@ const Profile = () => {
           {!profile?.images && <ProfileTabs />}
           <ResponsiveMasonryWrapper
             className="mt-3"
-            columnsCountBreakPoints={{ 576: 2, 768: 2, 992: 5 }}
+            columnsCountBreakPoints={{ 576: 1, 767: 2, 1024: 4 }}
           >
-            {profile?.images && profile.images.length > 0 && <div className="sticky top-0 bg-[#0d1116] z-10 text-white p-6 w-full shadow-xl text-3xl font-semibold">Your Creativity</div>}
+            {profile?.images && profile.images.length > 0 && <div className="sticky top-0 bg-[#0d1116] z-10 text-white p-6 w-full shadow-xl text-3xl max-md:text-xl font-semibold">Your Creativity</div>}
             <Masonry className="!m-auto " gutter="10px">
               {profile.images && profile.images.length > 0 ? (
                 profile.images.map((img,index) => (
