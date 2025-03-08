@@ -4,9 +4,8 @@ import personPlaceholder from "../../assets/person.png";
 import { MdClose } from "react-icons/md";
 import Button from "../../Components/Common/Button";
 import { FiDownload } from "react-icons/fi";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { useNavigation } from "../../Context/NavigationContext";
-
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 // Create a wrapper component
 const ResponsiveMasonryWrapper = ({ children, columnsCountBreakPoints, ...rest }) => {
   // Here you can handle the columnsCountBreakPoints prop however needed
