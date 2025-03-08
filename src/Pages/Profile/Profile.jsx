@@ -1,49 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProfileTabs from "../../Components/ProfileTabs/ProfileTabs";
-import personPlaceholder from "../../assets/person.png"; // Placeholder image for avatar
+import personPlaceholder from "../../assets/person.png";
 import { MdClose } from "react-icons/md";
 import Button from "../../Components/Common/Button";
 import { FiDownload } from "react-icons/fi";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { useNavigation } from "../../Context/NavigationContext";
+
+// Create a wrapper component
+const ResponsiveMasonryWrapper = ({ children, columnsCountBreakPoints, ...rest }) => {
+  // Here you can handle the columnsCountBreakPoints prop however needed
+  return (
+    <div {...rest}>
+      <ResponsiveMasonry
+        columnsCountBreakPoints={columnsCountBreakPoints}
+      >
+        {children}
+      </ResponsiveMasonry>
+    </div>
+  );
+};
 
 const Profile = () => {
-  const [profile, setProfile] = useState({
-    name: "Person.Name",
-    bio: "Create my bio: eg.'Found me! How about giving my work a like?'",
-    avatar: personPlaceholder,
-  });
+  const { 
+    profile, 
+    isProfileLoading, 
+    updateProfile, 
+    downloadImage 
+  } = useNavigation();
+  
   const [tempProfile, setTempProfile] = useState(profile);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  const url = "http://localhost:3000";
-  // Fetch profile data when the component mounts
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const res = await fetch(`${url}/api/profile`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (res.ok) {
-          const data = await res.json();
-          // console.log("Fetched profile data:", data);
-          setProfile(data);
-          setTempProfile(data);
-        } else {
-          console.error("Failed to fetch profile");
-        }
-      } catch (error) {
-        console.error("Error fetching profile:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProfile();
-  }, []);
 
   // Open modal for editing
   const openModal = () => {
@@ -81,43 +68,15 @@ const Profile = () => {
 
   const saveProfile = async (e) => {
     e.preventDefault();
-
-    // Immediately update the local profile state with the new avatar.
-    // Append a timestamp query parameter to force the image re-render.
-    const immediateProfile = {
-      ...tempProfile,
-    };
-    setProfile(immediateProfile);
+    
+    // Close modal and update profile using context function
     closeModal();
-
-    // Send updated profile to the backend.
-    try {
-      const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/api/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name: tempProfile.name || "User",
-          bio: tempProfile.bio || "",
-          avatar: tempProfile.avatar || personPlaceholder,
-        }),
-      });
-      if (res.ok) {
-        const updatedData = await res.json();
-        console.log("Profile updated on server:", updatedData);
-        // Update state from server if needed.
-        setProfile({
-          ...updatedData,
-        });
-        setTempProfile(updatedData);
-      } else {
-        console.error("Failed to update profile on server");
-      }
-    } catch (error) {
-      console.error("Error updating profile:", error);
+    
+    // Call the context function to update profile
+    const result = await updateProfile(tempProfile);
+    
+    if (!result.success) {
+      console.error("Failed to update profile:", result.error);
     }
   };
 
@@ -131,17 +90,12 @@ const Profile = () => {
     }
   };
 
+  // Handle download using context function
   const handleDownload = (imageUrl, fileName) => {
-    // Create a temporary anchor element
-    const link = document.createElement("a");
-    link.href = imageUrl;
-    link.download = fileName; // Set the file name for the download
-    document.body.appendChild(link);
-    link.click(); // Trigger the download
-    document.body.removeChild(link); // Clean up
+    downloadImage(imageUrl, fileName);
   };
 
-  if (loading) {
+  if (isProfileLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#0d1116] text-white">
         <p>Loading profile...</p>
@@ -152,8 +106,8 @@ const Profile = () => {
   return (
     <div className="relative h-lvh w-full overflow-auto">
       <div className="lg:pl-[260px] pt-0 m-0 bg-[#0d1116]">
-        <div className="w-full h-[200px] mb-7">
-          <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-[18px] h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3 ">
+        <div className="w-full h-[200px] mb-7 ">
+          <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-[18px] h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3  ">
             <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
               <div className="md:mr-6 w-[100px] h-[100px]">
                 <img
@@ -182,32 +136,38 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        <div className="max-md:mt-24 mb-24">
+        <div className="max-md:mt-24 mb-24 mx-8">
           {!profile?.images && <ProfileTabs />}
-          <div className="flex flex-wrap w-full max-md:justify-center gap-3 rounded-[18px]">
-            {profile.images && profile.images.length > 0 ? (
-              profile.images.map((img) => (
-                <div className="relative inline-block group max-lg:m-7 lg:ml-5 lg:max-w-[300px]">
-                  <img
-                    key={img._id}
-                    src={img.imageUrl}
-                    alt={img.prompt}
-                    className=" cursor-pointer rounded-[18px] "
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
-                    <FiDownload
-                      className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      onClick={() =>
-                        handleDownload(img.imageUrl, `${img._id}.png`)
-                      }
+          <ResponsiveMasonryWrapper
+            className="mt-3"
+            columnsCountBreakPoints={{ 576: 2, 768: 2, 992: 5 }}
+          >
+            {profile?.images && profile.images.length > 0 && <div className="sticky top-0 bg-[#0d1116] z-10 text-white p-6 w-full shadow-xl text-3xl font-semibold">Your Creativity</div>}
+            <Masonry className="!m-auto " gutter="10px">
+              {profile.images && profile.images.length > 0 ? (
+                profile.images.map((img,index) => (
+                  <div key={index} className="relative inline-block group">
+                    <img
+                      key={img._id}
+                      src={img.imageUrl}
+                      alt={img.prompt}
+                      className=" cursor-pointer rounded-[18px] "
                     />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
+                      <FiDownload
+                        className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        onClick={() =>
+                          handleDownload(img.imageUrl, `${img._id}.png`)
+                        }
+                      />
+                    </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <p>No images generated yet.</p>
-            )}
-          </div>
+                ))
+              ) : (
+                <p>No images generated yet.</p>
+              )}
+            </Masonry>
+          </ResponsiveMasonryWrapper>
         </div>
       </div>
 

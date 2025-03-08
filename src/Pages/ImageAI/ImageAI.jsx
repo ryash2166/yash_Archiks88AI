@@ -31,93 +31,18 @@ const Card = ({ children, className = "", disabled = false }) => (
   </div>
 );
 
-// async function sendImageRequest(prompt, options) {
-//   console.log("Sending request with:", { prompt, options }); // Debugging
-
-//   try {
-//     const response = await fetch("http://localhost:3000/api/generate-image", {
-//       method: "POST",
-//       body: JSON.stringify({ prompt, options }),
-//       headers: { "Content-Type": "application/json" },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Failed to generate image, check your input.");
-//     }
-
-//     const imageBlob = await response.blob();
-//     return URL.createObjectURL(imageBlob);
-//   } catch (error) {
-//     console.error("Error:", error);
-//     throw error;
-//   }
-// }
-
-// async function sendImageRequest(prompt, options) {
-//   const token = localStorage.getItem('token');
-
-//   try {
-//     const response = await fetch("http://localhost:3000/api/generate-image", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Authorization": `Bearer ${token}`,
-//       },
-//       body: JSON.stringify({ prompt, options }),
-//     });
-
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       throw new Error(errorData.error || "Image generation failed");
-//     }
-
-//     const blob = await response.blob();
-//     return URL.createObjectURL(blob);
-//   } catch (error) {
-//     console.error("API Error:", error);
-//     throw error;
-//   }
-// }
-
-async function sendImageRequest(prompt, options) {
-  const token = localStorage.getItem("token");
-
-  try {
-    const response = await fetch("http://localhost:3000/api/generate-image", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        prompt,
-        options: {
-          ...options,
-          count: options.count || 1,
-        },
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || "Image generation failed");
-    }
-
-    const blob = await response.blob();
-    // const data = await response.json();
-    return URL.createObjectURL(blob)
-    //  && data.imageUrl;
-
-  } catch (error) {
-    console.error("API Error:", error);
-    throw error;
-  }
-}
-
 const ImageAI = () => {
   const [mainTab, setMainTab] = useState("Text to Image");
   const [opacity, setOpacity] = useState(1);
-  const [selectedRatio, setSelectedRatio] = useState("1:1");
+  
+  const { 
+    sendImageRequest, 
+    generatedImages,
+    loading,
+    error,
+    selectedRatio, 
+    setSelectedRatio 
+  } = useNavigation();
 
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
@@ -126,137 +51,36 @@ const ImageAI = () => {
     setOpacity(newOpacity);
   };
 
-  // AI Images Generation
+  // Local form state
   const [formState, setFormState] = useState({
-    results: [],
     prompt: "",
-    message: "",
     count: 1,
   });
 
-  const [isPending, setIsPending] = useState(false);
+  // Get results from context
+  const results = generatedImages.map(img => ({
+    url: typeof img === 'string' ? img : img.url,
+    prompt: typeof img === 'string' ? formState.prompt : img.prompt
+  }));
 
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-  //   setIsPending(true);
-  //   console.log("Form submitted!"); // Debugging
-
-  //   const formData = new FormData(event.target);
-  //   const prompt = formData.get("prompt");
-  //   const options = {
-  //     quality: formData.get("quality"),
-  //     aspect_ratio: formData.get("aspectRatio"),
-  //     format: formData.get("format"),
-  //   };
-
-  //   try {
-  //     const imageUrl = await sendImageRequest(prompt, options);
-  //     console.log("Image URL received:", imageUrl); // Debugging
-  //     setFormState({ result: "success", imageUrl, prompt });
-  //   } catch (error) {
-  //     setFormState({ result: "error", message: error.message });
-  //   } finally {
-  //     setIsPending(false);
-  //     setFormState((prev) => ({ ...prev, prompt: "" }));
-  //   }
-  // }
-
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-  //   setIsPending(true);
-
-  //   const formData = new FormData(event.target);
-  //   const options = {
-  //     quality: formData.get("quality"),
-  //     aspect_ratio: formData.get("aspectRatio"),
-  //     format: formData.get("format"),
-  //   };
-
-  //   try {
-  //     const imageUrl = await sendImageRequest(formState.prompt, options);
-  //     setFormState({
-  //       result: "success",
-  //       imageUrl,
-  //       prompt: formState.prompt
-  //     });
-  //   } catch (error) {
-  //     setFormState({
-  //       result: "error",
-  //       message: error.message,
-  //       prompt: formState.prompt
-  //     });
-  //   } finally {
-  //     setIsPending(false);
-  //     setFormState((prev) => ({ ...prev, prompt: "" }));
-  //   }
-  // }
-
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-  //   setIsPending(true);
-
-  //   const formData = new FormData(event.target);
-  //   const options = {
-  //     quality: formData.get("quality"),
-  //     aspect_ratio: formData.get("aspectRatio"),
-  //     format: formData.get("format"),
-  //     count: formState.count,
-  //   };
-
-  //   try {
-  //     const imageUrl = await sendImageRequest(formState.prompt, options);
-  //     setFormState({
-  //       results: 'success',
-  //       message: "",
-  //       imageUrl,
-  //       prompt: formState.prompt,
-  //     });
-  //     console.log("Generated images:", imageUrl);
-  //   } catch (error) {
-  //     setFormState({
-  //       results: "error",
-  //       message: error.message,
-  //       prompt: formState.prompt,
-  //       count: formState.count,
-  //     });
-  //   } finally {
-  //     setIsPending(false);
-  //     setFormState((prev) => ({ ...prev, prompt: "" }));
-  //   }
-  // }
-
-  async function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsPending(true);
-  
+    
     try {
-      const imageUrls = await sendImageRequest(formState.prompt, {
+      await sendImageRequest(formState.prompt, {
         aspect_ratio: selectedRatio,
-        format: 'webp',
-        quality: 100,
-        count: formState.count
+        count: formState.count,
       });
-  
-      // Ensure results is always array
+      
+      // Clear prompt after successful generation
       setFormState(prev => ({
         ...prev,
-        results: imageUrls.map(url => ({ url, prompt: prev.prompt })),
-        message: '',
-        prompt: ''
+        prompt: ""
       }));
-  
     } catch (error) {
-      setFormState(prev => ({
-        ...prev,
-        results: [],
-        message: error.message
-      }));
-    } finally {
-      setIsPending(false);
+      console.error("Generation failed:", error);
     }
   }
-
-  console.log("Current formState:", formState); // Debugging
 
   return (
     <div className="bg-[#0d1116]">
@@ -274,62 +98,36 @@ const ImageAI = () => {
         <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
           Creative Space
         </p>
-        {/* <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)]  max-lg:hidden">
-          {!formState.results && (
+        <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
+          {results.length > 0 ? (
+            <div className="ml-32 flex flex-col h-full justify-end items-center">
+              <div className="grid grid-cols-2 gap-4">
+                {results.map((result, index) => (
+                  <div key={index} className="relative">
+                    <img
+                      src={result.url}
+                      alt={result.prompt || "Generated image"}
+                      className="rounded-lg w-full h-64 object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2">
+                      {result.prompt || "Generated image"}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[#727485] text-center text-md mt-3">
+                Generated {results.length} images
+              </p>
+            </div>
+          ) : (
             <div className="flex flex-col items-center">
               <img src={nowork} alt="" />
               <p className="text-[#c5c7d5] text-sm">
-                Release your creative potential. Experience the magic of
-                Archiks88 AI.
+                {error || "Release your creative potential..."}
               </p>
             </div>
           )}
-          {formState.results === "success" && (
-            <div className="ml-32 flex flex-col h-full justify-end items-center">
-              <img
-                src={formState.imageUrl}
-                alt={formState.prompt}
-                className="rounded-lg"
-              />
-              <p className="text-[#727485] text-center text-md mt-3">
-                The magic of Archiks88 AI.
-              </p>
-            </div>
-          )}
-          {formState.results === "error" && (
-            <p className="text-red-200 text-md">{formState.message}</p>
-          )}
-        </div> */}
-  <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
-  {formState.results.length > 0 ? (
-    <div className="ml-32 flex flex-col h-full justify-end items-center">
-      <div className="grid grid-cols-2 gap-4">
-        {formState.results.map((result, index) => (
-          <div key={index} className="relative">
-            <img
-              src={result.url}
-              alt={result.prompt}
-              className="rounded-lg w-full h-64 object-cover"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2">
-              {result.prompt}
-            </div>
-          </div>
-        ))}
-      </div>
-      <p className="text-[#727485] text-center text-md mt-3">
-        Generated {formState.results.length} images
-      </p>
-    </div>
-  ) : (
-    <div className="flex flex-col items-center">
-      <img src={nowork} alt="" />
-      <p className="text-[#c5c7d5] text-sm">
-        {formState.message || 'Release your creative potential...'}
-      </p>
-    </div>
-  )}
-</div>
+        </div>
         <main
           className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
           onScroll={handleScroll}
@@ -424,22 +222,22 @@ const ImageAI = () => {
                   />
                 </div>
               </div>
-                <div className="mt-5 block">
-                  <label className="pr-3 mb-2 text-[#999bac] ">
-                    Generating Count:
-                    <span className="text-white"> {formState.count}</span>
-                  </label>
-                  <Slider
-                    value={formState.count}
-                    onChange={(e, newValue) =>
-                      setFormState((prev) => ({ ...prev, count: newValue }))
-                    }
-                    step={1}
-                    marks
-                    min={1}
-                    max={4}
-                  />
-                </div>
+              <div className="mt-5 block">
+                <label className="pr-3 mb-2 text-[#999bac] ">
+                  Generating Count:
+                  <span className="text-white"> {formState.count}</span>
+                </label>
+                <Slider
+                  value={formState.count}
+                  onChange={(e, newValue) =>
+                    setFormState((prev) => ({ ...prev, count: newValue }))
+                  }
+                  step={1}
+                  marks
+                  min={1}
+                  max={4}
+                />
+              </div>
             </Card>
           </section>
         </main>
@@ -463,7 +261,7 @@ const ImageAI = () => {
                         : "bg-[#333a45] text-[#727485] "
                     } font-[550] text-lg`}
               >
-                {isPending ? "Generating..." : "Generate"}
+                {loading ? "Generating..." : "Generate"}
               </button>
             </div>
           </div>
