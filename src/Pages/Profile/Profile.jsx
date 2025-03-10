@@ -24,6 +24,7 @@ const Profile = () => {
   const { 
     profile, 
     isProfileLoading, 
+    fetchProfile,
     updateProfile, 
     downloadImage 
   } = useNavigation();
@@ -72,7 +73,7 @@ const Profile = () => {
     closeModal();
     
     // Call the context function to update profile
-    const result = await updateProfile(tempProfile);
+    const result = await updateProfile(tempProfile) && await fetchProfile();
     
     if (!result.success) {
       console.error("Failed to update profile:", result.error);

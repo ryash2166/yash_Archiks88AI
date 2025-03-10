@@ -19,7 +19,7 @@ const Login = ({ isVisible, onClose }) => {
     login: contextLogin, 
     signup: contextSignup, 
     requestPasswordReset, 
-    // fetchProfile
+    fetchProfile
   } = useNavigation();
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const Login = ({ isVisible, onClose }) => {
       } else if (isSignUp) {
         result = await contextSignup(email, password, confirmPassword);
         if (result.success) {
-          // await fetchProfile();
+          await fetchProfile();
           // window.location.href = '/profile'; // Redirect to profile
           onClose();
         } else {
@@ -67,7 +67,7 @@ const Login = ({ isVisible, onClose }) => {
       } else {
         result = await contextLogin(email, password);
         if (result.success) {
-          // await fetchProfile();
+          await fetchProfile();
           // window.location.href = '/profile'; // Redirect to profile
           onClose();
         } else {

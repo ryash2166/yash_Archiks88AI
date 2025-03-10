@@ -91,7 +91,7 @@ export const NavigationProvider = ({ children }) => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        // await fetchProfile();
+        await fetchProfile();
         setIsAuthenticated(true);
         return { success: true };
       }
@@ -123,7 +123,7 @@ export const NavigationProvider = ({ children }) => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        // await fetchProfile();
+        await fetchProfile();
         setIsAuthenticated(true);
         return { success: true };
       }
@@ -178,6 +178,8 @@ export const NavigationProvider = ({ children }) => {
 
   // Fetch profile data
   useEffect(() => {
+    fetchProfile();
+  },[])
     const fetchProfile = async () => {
       try {
         setIsProfileLoading(true);
@@ -217,8 +219,6 @@ export const NavigationProvider = ({ children }) => {
         setIsProfileLoading(false);
       }
     };
-    fetchProfile();
-  }, []);
 
   // Update profile
   const updateProfile = async (updatedProfile) => {
@@ -290,7 +290,7 @@ export const NavigationProvider = ({ children }) => {
       setGeneratedImages((prev) => [...prev, ...output]);
 
       // Refresh profile to get updated images
-      // await fetchProfile();
+      await fetchProfile();
 
       return { success: true, data: output };
     } catch (error) {
@@ -341,7 +341,7 @@ export const NavigationProvider = ({ children }) => {
       ]);
 
       // Refresh profile to get updated images
-      // await fetchProfile();
+      await fetchProfile();
 
       return { success: true, data: urlsArray };
     } catch (error) {
@@ -414,7 +414,7 @@ export const NavigationProvider = ({ children }) => {
         profile,
         setProfile,
         isProfileLoading,
-        // fetchProfile,
+        fetchProfile,
         updateProfile,
         downloadImage,
 
