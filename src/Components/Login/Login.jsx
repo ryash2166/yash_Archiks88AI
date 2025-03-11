@@ -1,99 +1,168 @@
 import React, { useState, useEffect } from "react";
 import { MdClose } from "react-icons/md";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import login from "../../assets/login.png";
+import loginImg from "../../assets/login.png";
 import { useNavigation } from "../../Context/NavigationContext";
 
 const Login = ({ isVisible, onClose }) => {
+  const [formState, setFormState] = useState("login"); // login, signup, forgot, reset
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  
-  const { 
-    login: contextLogin, 
-    signup: contextSignup, 
-    requestPasswordReset, 
-    fetchProfile
-  } = useNavigation();
+  const [successMessage, setSuccessMessage] = useState("");
 
+  const { login, signup, requestPasswordReset, resetPassword } =
+    useNavigation();
+
+  // Email validation regex
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  // Password validation regex (min 8 chars, 1 upper, 1 lower, 1 number, 1 special)
+  const validatePassword = (password) => {
+    const re =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return re.test(password);
+  };
+
+  // Reset form when modal is closed
   useEffect(() => {
     if (!isVisible) {
-      setIsSignUp(false);
-      setIsForgotPassword(false);
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setError("");
+      resetForm();
     }
   }, [isVisible]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+  // Reset all form fields and errors
+  const resetForm = () => {
+    setFormState("login");
+    setEmail("");
+    setPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+    setErrors({});
+    setSuccessMessage("");
+  };
 
-    if (isSignUp && password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
+  // Validate form fields based on the current form state
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (!validateEmail(email)) {
+      newErrors.email = "Invalid email format";
     }
 
-    setIsLoading(true);
+    if (formState === "login" && !password) {
+      newErrors.password = "Password is required";
+    }
 
+    if (formState === "signup") {
+      if (!password) {
+        newErrors.password = "Password is required";
+      } else if (!validatePassword(password)) {
+        newErrors.password =
+          "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character";
+      }
+      if (password !== confirmPassword) {
+        newErrors.confirmPassword = "Passwords do not match";
+      }
+    }
+
+    if (formState === "reset") {
+      if (!newPassword) {
+        newErrors.newPassword = "New password is required";
+      } else if (!validatePassword(newPassword)) {
+        newErrors.newPassword = "Invalid password format";
+      }
+      if (newPassword !== confirmPassword) {
+        newErrors.confirmPassword = "Passwords do not match";
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+    setErrors({});
+    setSuccessMessage("");
+    
     try {
       let result;
-      
-      if (isForgotPassword) {
-        result = await requestPasswordReset(email);
-        if (result.success) {
-          alert("Password reset link has been sent to your email.");
-          onClose();
-        } else {
-          setError(result.error || "Failed to send reset email");
-        }
-      } else if (isSignUp) {
-        result = await contextSignup(email, password, confirmPassword);
-        if (result.success) {
-          await fetchProfile();
-          // window.location.href = '/profile'; // Redirect to profile
-          onClose();
-        } else {
-          setError(result.error || "Signup failed");
-        }
-      } else {
-        result = await contextLogin(email, password);
-        if (result.success) {
-          await fetchProfile();
-          // window.location.href = '/profile'; // Redirect to profile
-          onClose();
-        } else {
-          setError(result.error || "Login failed");
-        }
+      switch (formState) {
+        case "login":
+          result = await login(email, password);
+          if (result.success) {
+            onClose();
+          }
+          break;
+        case "signup":
+          result = await signup(email, password, confirmPassword);
+          if (result.success) {
+            onClose();
+          }
+          break;
+        case "forgot":
+          result = await requestPasswordReset(email);
+          if (result.success) {
+            setFormState("reset"); // Move to reset password form
+            setSuccessMessage("Email verified. Please set your new password.");
+          }
+          break;
+        case "reset":
+          result = await resetPassword(email, newPassword, confirmPassword);
+          if (result.success) {
+            setSuccessMessage("Password reset successful!");
+            // Instead of closing, redirect to login after 2 seconds
+            setTimeout(() => {
+              setFormState("login");
+              setSuccessMessage("");
+              // Clear the password fields
+              setPassword("");
+              setNewPassword("");
+              setConfirmPassword("");
+            }, 2000);
+          }
+          break;
+      }
+
+      if (result && !result.success) {
+        setErrors({ general: result.error });
       }
     } catch (error) {
-      setError(error.message || "An unexpected error occurred");
+      // setErrors({ general: error.message || "An unexpected error occurred" });
+      setErrors({ 
+        general: error.message.includes("different from old") 
+          ? "New password must be different from your current password"
+          : error.message || "An unexpected error occurred" 
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   if (!isVisible) return null;
-  
-  const isFormValid = email && (!isForgotPassword ? password : true);
-  
+
   return (
     <div
-      id="popup-container"
       className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-md flex items-center justify-center z-30"
-      onClick={(e) => e.target.id === "popup-container" && onClose()}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="bg-login mx-4 w-full max-w-[720px] max-h-[456px] h-full rounded-lg shadow-lg relative flex overflow-hidden">
+      <div className="bg-login mx-4 w-full max-w-[720px] rounded-lg shadow-lg relative flex overflow-hidden">
         <img
-          src={login}
+          src={loginImg}
           alt=""
           width={279}
           height={456}
@@ -105,137 +174,199 @@ const Login = ({ isVisible, onClose }) => {
         >
           <MdClose />
         </button>
-        <div className="w-full max-h-[456px] text-[#727485] text-sm h-full py-9 px-6 md:px-9 flex flex-col">
+        <div className="w-full max-h-[456px] h-full py-9 px-6 md:px-9 flex flex-col">
           <h1 className="text-lg md:text-[22px] text-white leading-8 font-semibold">
-            {isForgotPassword
-              ? "Password recovery"
-              : isSignUp
-              ? "Create an account"
-              : "Welcome to Archiks88 AI"}
+            {formState === "forgot"
+              ? "Password Recovery"
+              : formState === "reset"
+              ? "Reset Password"
+              : formState === "signup"
+              ? "Create Account"
+              : "Welcome"}
           </h1>
-          <p className="mt-2">
-            {isForgotPassword
-              ? "Enter your email and we'll email you a password recovery code"
-              : isSignUp
-              ? "Already have an account? "
-              : "Don't have an account? "}
-            {!isForgotPassword && (
-              <button
-                onClick={() => setIsSignUp((prev) => !prev)}
-                className="text-[#72e528]"
-              >
-                {isSignUp ? "Sign In" : "Sign up for free"}
-              </button>
-            )}
-          </p>
-          
-          {error && (
-            <div className="mt-2 text-red-500 text-sm">
-              {error}
-            </div>
+
+          {errors.general && (
+            <div className="mt-2 text-red-500 text-sm">{errors.general}</div>
           )}
           
-          <div className="mt-8">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 text-white bg-[#0d1116] rounded-xl focus:border-[1px] focus:outline-none border-[#445b5c] text-sm leading-6"
-              placeholder="Enter Email Address"
-            />
-          </div>
-          {!isForgotPassword && (
-            <>
-              <div className="mt-4">
+          {successMessage && (
+            <div className="mt-2 text-green-500 text-sm">{successMessage}</div>
+          )}
+
+          <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+            <div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={`w-full px-4 py-3 text-white bg-[#0d1116] rounded-xl border ${
+                  errors.email ? "border-red-500" : "border-[#445b5c]"
+                }`}
+                placeholder="Enter your email"
+                disabled={formState === "reset"}
+              />
+              {errors.email && (
+                <span className="text-red-500 text-xs">{errors.email}</span>
+              )}
+            </div>
+
+            {!["forgot", "reset"].includes(formState) && (
+              <div>
                 <div className="relative">
                   <input
-                    type={isPasswordVisible ? "text" : "password"}
+                    type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 pr-[52px] text-white bg-[#0d1116] rounded-xl focus:border-[1px] focus:outline-none border-[#445b5c] text-sm leading-6"
+                    className={`w-full px-4 py-3 pr-12 text-white bg-[#0d1116] rounded-xl border ${
+                      errors.password ? "border-red-500" : "border-[#445b5c]"
+                    }`}
                     placeholder={
-                      isSignUp ? "Password (at least 8 characters)" : "Password"
+                      formState === "signup"
+                        ? "Password (min 8 chars with mix)"
+                        : "Password"
                     }
-                    maxLength={64}
                   />
-                  <div
-                    onClick={() => setIsPasswordVisible((prev) => !prev)}
-                    className="absolute top-[calc(50%-10px)] text-[#727485] ml-[calc(100%-36px)] cursor-pointer"
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#727485]"
                   >
-                    {isPasswordVisible ? (
-                      <IoMdEye className="w-5 h-5" />
-                    ) : (
-                      <IoMdEyeOff className="w-5 h-5" />
-                    )}
-                  </div>
+                    {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+                  </button>
                 </div>
-                {isSignUp && (
-                  <div className="mt-4">
-                    <div className="relative">
-                      <input
-                        type={isConfirmPasswordVisible ? "text" : "password"}
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="w-full px-4 py-3 pr-[52px] text-white bg-[#0d1116] rounded-xl focus:border-[1px] border-[#445b5c] focus:outline-none border-0 text-sm leading-6"
-                        placeholder="Confirm Password"
-                        maxLength={64}
-                      />
-                      <div
-                        onClick={() => setIsConfirmPasswordVisible((prev) => !prev)}
-                        className="absolute top-[calc(50%-10px)] text-[#727485] ml-[calc(100%-36px)] cursor-pointer"
-                      >
-                        {isConfirmPasswordVisible ? (
-                          <IoMdEye className="w-5 h-5" />
-                        ) : (
-                          <IoMdEyeOff className="w-5 h-5" />
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                {errors.password && (
+                  <span className="text-red-500 text-xs">
+                    {errors.password}
+                  </span>
                 )}
               </div>
-            </>
-          )}
-          <div className="mt-auto text-center">
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              disabled={!isFormValid || isLoading}
-              className={`w-[250px] h-auto m-0 py-[9px] leading-6 text-sm rounded-full px-4 transition ${
-                isFormValid && !isLoading
-                  ? "bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] text-black"
-                  : "bg-[#333a45] text-[#727485] cursor-not-allowed"
-              }`}
-            >
-              {isLoading ? "Loading..." : (
-                isForgotPassword
-                  ? "Reset Password"
-                  : isSignUp
-                  ? "Next"
-                  : "Sign In"
-              )}
-            </button>
-          </div>
-          {!isSignUp && !isForgotPassword && (
-            <div className="mt-5 text-[#999bac] text-center">
+            )}
+
+            {formState === "reset" && (
+              <div>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className={`w-full px-4 py-3 pr-12 text-white bg-[#0d1116] rounded-xl border ${
+                      errors.newPassword ? "border-red-500" : "border-[#445b5c]"
+                    }`}
+                    placeholder="New Password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#727485]"
+                  >
+                    {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+                  </button>
+                </div>
+                {errors.newPassword && (
+                  <span className="text-red-500 text-xs">
+                    {errors.newPassword}
+                  </span>
+                )}
+              </div>
+            )}
+
+            {["signup", "reset"].includes(formState) && (
+              <div>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className={`w-full px-4 py-3 pr-12 text-white bg-[#0d1116] rounded-xl border ${
+                      errors.confirmPassword
+                        ? "border-red-500"
+                        : "border-[#445b5c]"
+                    }`}
+                    placeholder="Confirm Password"
+                  />
+                </div>
+                {errors.confirmPassword && (
+                  <span className="text-red-500 text-xs">
+                    {errors.confirmPassword}
+                  </span>
+                )}
+              </div>
+            )}
+
+            <div className="flex flex-col gap-2">
               <button
-                className="mx-[6px] cursor-pointer text-inherit hover:text-[#72e528]"
-                onClick={() => setIsForgotPassword(true)}
+                type="submit"
+                disabled={isLoading}
+                className={`w-full py-2 rounded-full transition ${
+                  isLoading
+                    ? "bg-gray-600 cursor-not-allowed"
+                    : "bg-gradient-to-r from-green-400 to-blue-500"
+                }`}
               >
-                Forgot Password
+                {isLoading
+                  ? "Processing..."
+                  : {
+                      login: "Sign In",
+                      signup: "Create Account",
+                      forgot: "Continue",
+                      reset: "Reset Password",
+                    }[formState]}
               </button>
+
+              <div className="text-center text-sm text-gray-400">
+                {formState === "login" && (
+                  <>
+                    Don't have an account?{" "}
+                    <button
+                      type="button"
+                      onClick={() => setFormState("signup")}
+                      className="text-green-400 hover:underline"
+                    >
+                      Sign Up
+                    </button>{" "}
+                    •{" "}
+                    <button
+                      type="button"
+                      onClick={() => setFormState("forgot")}
+                      className="text-green-400 hover:underline"
+                    >
+                      Forgot Password?
+                    </button>
+                  </>
+                )}
+
+                {formState === "signup" && (
+                  <button
+                    type="button"
+                    onClick={() => setFormState("login")}
+                    className="text-green-400 hover:underline"
+                  >
+                    Back to Login
+                  </button>
+                )}
+
+                {formState === "forgot" && (
+                  <button
+                    type="button"
+                    onClick={() => setFormState("login")}
+                    className="text-green-400 hover:underline"
+                  >
+                    Back to Login
+                  </button>
+                )}
+                
+                {formState === "reset" && (
+                  <button
+                    type="button"
+                    onClick={() => setFormState("login")}
+                    className="text-green-400 hover:underline"
+                  >
+                    Back to Login
+                  </button>
+                )}
+              </div>
             </div>
-          )}
-          {isForgotPassword && (
-            <div className="mt-5 text-[#999bac] text-center">
-              <button
-                className="mx-[6px] cursor-pointer text-inherit hover:text-[#72e528]"
-                onClick={() => setIsForgotPassword(false)}
-              >
-                Back to Login
-              </button>
-            </div>
-          )}
+          </form>
         </div>
       </div>
     </div>

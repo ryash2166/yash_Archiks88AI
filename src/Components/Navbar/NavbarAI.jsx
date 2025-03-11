@@ -9,13 +9,8 @@ import { useNavigation } from "../../Context/NavigationContext";
 
 const NavbarAI = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const { 
-    setActiveTab, 
-    profile, 
-    isAuthenticated,
-    authLoading,
-    logout
-  } = useNavigation();
+  const { setActiveTab, profile, isAuthenticated, authLoading, logout } =
+    useNavigation();
 
   const togglePopup = () => setShowLoginPopup(!showLoginPopup);
 
@@ -35,8 +30,12 @@ const NavbarAI = () => {
       <header className="h-[68px] w-full px-1 sm:px-5">
         <div className="flex h-full justify-between items-center">
           <div className="flex items-center h-full ">
-            <MobileMenu/>
-            <Link to="/" className="flex h-full max-sm:ml-[2px] items-center" onClick={handleLogoClick}>
+            <MobileMenu />
+            <Link
+              to="/"
+              className="flex h-full max-sm:ml-[2px] items-center"
+              onClick={handleLogoClick}
+            >
               <img src={logo} alt="Logo" className="" />
             </Link>
           </div>
@@ -77,7 +76,10 @@ const NavbarAI = () => {
       </header>
 
       {/* Import and Use Login Popup */}
-      <Login isVisible={showLoginPopup} onClose={() => setShowLoginPopup(false)} />
+      <Login
+        isVisible={showLoginPopup}
+        onClose={() => setShowLoginPopup(false)}
+      />
     </div>
   );
 };

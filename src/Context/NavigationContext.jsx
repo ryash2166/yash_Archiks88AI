@@ -1,3 +1,479 @@
+// import React, { createContext, useState, useContext, useEffect } from "react";
+// import personPlaceholder from "../assets/person.png"; // Adjust path as needed
+
+// const NavigationContext = createContext();
+
+// export const NavigationProvider = ({ children }) => {
+//   const [activeTab, setActiveTab] = useState("Home");
+//   const [generatedImages, setGeneratedImages] = useState([]); // Store AI-generated images
+//   const [generatedVideos, setGeneratedVideos] = useState([]); // Store AI-generated videos
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(null);
+//   const [selectedRatio, setSelectedRatio] = useState("1:1");
+
+//   // Auth state
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+//   const [authLoading, setAuthLoading] = useState(true);
+
+//   // Profile state
+//   const [profile, setProfile] = useState({
+//     name: "Person.Name",
+//     bio: "Create my bio: eg.'Found me! How about giving my work a like?'",
+//     avatar: personPlaceholder,
+//     credits: 0,
+//     images: [],
+//   });
+//   const [isProfileLoading, setIsProfileLoading] = useState(true);
+
+//   const url = "http://localhost:3000";
+
+//   // Check authentication status on initial load
+//   useEffect(() => {
+//     checkAuthStatus();
+//   }, []);
+
+//   // Check if user is authenticated
+//   const checkAuthStatus = async () => {
+//     setAuthLoading(true);
+//     const token = localStorage.getItem("token");
+
+//     if (!token) {
+//       setIsAuthenticated(false);
+//       setAuthLoading(false);
+//       return false;
+//     }
+
+//     try {
+//       const res = await fetch(`${url}/api/profile`, {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+
+//       if (res.ok) {
+//         const data = await res.json();
+//         setProfile(data);
+//         setIsAuthenticated(true);
+//         setAuthLoading(false);
+//         return true;
+//       } else {
+//         // Token is invalid or expired
+//         localStorage.removeItem("token");
+//         setIsAuthenticated(false);
+//         setAuthLoading(false);
+//         return false;
+//       }
+//     } catch (error) {
+//       console.error("Auth check error:", error);
+//       setIsAuthenticated(false);
+//       setAuthLoading(false);
+//       return false;
+//     }
+//   };
+
+//   // Login function
+//   const login = async (email, password) => {
+//     try {
+//       setAuthLoading(true);
+//       const response = await fetch(`${url}/auth/login`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ email, password }),
+//       });
+
+//       const data = await response.json();
+
+//       if (!response.ok) {
+//         throw new Error(data.error || "Login failed");
+//       }
+
+//       if (data.token) {
+//         localStorage.setItem("token", data.token);
+//         await fetchProfile();
+//         setIsAuthenticated(true);
+//         return { success: true };
+//       }
+
+//       return { success: false, error: "No token received" };
+//     } catch (error) {
+//       console.error("Login error:", error);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setAuthLoading(false);
+//     }
+//   };
+
+//   // Signup function
+//   const signup = async (email, password, confirmPassword) => {
+//     try {
+//       setAuthLoading(true);
+//       const response = await fetch(`${url}/auth/signup`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ email, password, confirmPassword }),
+//       });
+
+//       const data = await response.json();
+
+//       if (!response.ok) {
+//         throw new Error(data.error || "Signup failed");
+//       }
+
+//       if (data.token) {
+//         localStorage.setItem("token", data.token);
+//         await fetchProfile();
+//         setIsAuthenticated(true);
+//         return { success: true };
+//       }
+
+//       return { success: false, error: "No token received" };
+//     } catch (error) {
+//       console.error("Signup error:", error);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setAuthLoading(false);
+//     }
+//   };
+
+//   // Logout function
+//   const logout = () => {
+//     localStorage.removeItem("token");
+//     setIsAuthenticated(false);
+//     setProfile({
+//       name: "Person.Name",
+//       bio: "Create my bio: eg.'Found me! How about giving my work a like?'",
+//       avatar: personPlaceholder,
+//       credits: 0,
+//       images: [],
+//     });
+//     return { success: true };
+//   };
+
+//   // Request password reset
+//   const requestPasswordReset = async (email) => {
+//     try {
+//       setAuthLoading(true);
+//       const response = await fetch(`${url}/auth/check-email`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ email }),
+//       });
+
+//       const data = await response.json();
+
+//       if (!response.ok) {
+//         throw new Error(data.error || "Email not found");
+//       }
+
+//       // If email exists, show the reset password form
+//       return { success: true, message: "Email exists" };
+//     } catch (error) {
+//       console.error("Password reset error:", error);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setAuthLoading(false);
+//     }
+//   };
+
+//   // Reset password
+//   const resetPassword = async (email, newPassword, confirmPassword) => {
+//     try {
+//       setAuthLoading(true);
+//       const response = await fetch(`${url}/auth/reset-password`, {
+//         method: "PUT",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ email, password: newPassword, confirmPassword }),
+//       });
+  
+//       const data = await response.json();
+  
+//       if (!response.ok) {
+//         throw new Error(data.error || "Password reset failed");
+//       }
+  
+//       return { success: true };
+//     } catch (error) {
+//       console.error("Password reset error:", error);
+//       // Handle specific error message
+//       if (error.message.includes("different from old")) {
+//         return { 
+//           success: false, 
+//           error: "New password must be different from your old password" 
+//         };
+//       }
+//       return { success: false, error: error.message };
+//     } finally {
+//       setAuthLoading(false);
+//     }
+//   };
+
+//   // Fetch profile data
+//   useEffect(() => {
+//     fetchProfile();
+//   }, []);
+
+//   const fetchProfile = async () => {
+//     try {
+//       setIsProfileLoading(true);
+//       const token = localStorage.getItem("token");
+
+//       if (!token) {
+//         setIsAuthenticated(false);
+//         setIsProfileLoading(false);
+//         return { success: false, error: "No token found" };
+//       }
+
+//       const res = await fetch(`${url}/api/profile`, {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+
+//       if (res.ok) {
+//         const data = await res.json();
+//         setProfile(data);
+//         setIsAuthenticated(true);
+//         return { success: true, data };
+//       } else {
+//         console.error("Failed to fetch profile");
+//         setError("Failed to fetch profile");
+//         setIsAuthenticated(false);
+//         return { success: false, error: "Failed to fetch profile" };
+//       }
+//     } catch (error) {
+//       console.error("Error fetching profile:", error);
+//       setError(`Error fetching profile: ${error.message}`);
+//       setIsAuthenticated(false);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setIsProfileLoading(false);
+//     }
+//   };
+
+//   // Update profile
+//   const updateProfile = async (updatedProfile) => {
+//     try {
+//       setLoading(true);
+//       const token = localStorage.getItem("token");
+//       const res = await fetch(`${url}/api/profile`, {
+//         method: "PUT",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({
+//           name: updatedProfile.name || "User",
+//           bio: updatedProfile.bio || "",
+//           avatar: updatedProfile.avatar || personPlaceholder,
+//         }),
+//       });
+//       if (res.ok) {
+//         const updatedData = await res.json();
+//         setProfile(updatedData);
+//         return { success: true, data: updatedData };
+//       } else {
+//         const errorData = await res.json();
+//         setError(errorData.message || "Failed to update profile");
+//         return { success: false, error: errorData.message };
+//       }
+//     } catch (error) {
+//       console.error("Error updating profile:", error);
+//       setError(`Error updating profile: ${error.message}`);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   // Handle image download
+//   const downloadImage = (imageUrl, fileName) => {
+//     const link = document.createElement("a");
+//     link.href = imageUrl;
+//     link.download = fileName;
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+//   };
+
+//   /** GENERATE AI IMAGE FUNCTION - Original method */
+//   const generateAIImage = async (prompt) => {
+//     try {
+//       setLoading(true);
+//       const token = localStorage.getItem("token");
+
+//       if (!token) {
+//         return { success: false, error: "Authentication required" };
+//       }
+
+//       const response = await fetch(`${url}/api/generate`, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({ prompt }),
+//       });
+
+//       if (!response.ok) throw new Error("Generation failed");
+
+//       const output = await response.json();
+//       setGeneratedImages((prev) => [...prev, ...output]);
+
+//       // Refresh profile to get updated images
+//       await fetchProfile();
+
+//       return { success: true, data: output };
+//     } catch (error) {
+//       setError(error.message);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   /** SEND IMAGE REQUEST - From ImageAI component */
+//   const sendImageRequest = async (prompt, options) => {
+//     const token = localStorage.getItem("token");
+
+//     if (!token) {
+//       return { success: false, error: "Authentication required" };
+//     }
+
+//     try {
+//       setLoading(true);
+//       const response = await fetch(`${url}/api/generate-image`, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({
+//           prompt,
+//           options: {
+//             ...options,
+//             count: options.count || 1,
+//           },
+//         }),
+//       });
+
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         throw new Error(errorData.error || "Image generation failed");
+//       }
+
+//       const data = await response.json();
+//       const urlsArray = Array.isArray(data.imageUrls) ? data.imageUrls : [];
+
+//       // Update generated images state
+//       setGeneratedImages((prev) => [
+//         ...prev,
+//         ...urlsArray.map((url) => ({ url, prompt })),
+//       ]);
+
+//       // Refresh profile to get updated images
+//       await fetchProfile();
+
+//       return { success: true, data: urlsArray };
+//     } catch (error) {
+//       console.error("API Error:", error);
+//       setError(error.message);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   /** GENERATE AI VIDEO FUNCTION */
+//   const generateAIVideo = async (prompt) => {
+//     try {
+//       setLoading(true);
+//       const token = localStorage.getItem("token");
+
+//       if (!token) {
+//         return { success: false, error: "Authentication required" };
+//       }
+
+//       // Placeholder implementation until you uncomment the above
+//       console.log("Video generation requested with prompt:", prompt);
+//       setError("Video generation implementation is commented out");
+//       return { success: false, error: "Video generation not implemented" };
+//     } catch (error) {
+//       setError(`Error generating video: ${error.message}`);
+//       console.error("Error generating video:", error);
+//       return { success: false, error: error.message };
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const clearError = () => setError(null);
+
+//   const clearGeneratedContent = () => {
+//     setGeneratedImages([]);
+//     setGeneratedVideos([]);
+//   };
+
+//   return (
+//     <NavigationContext.Provider
+//       value={{
+//         // Navigation
+//         activeTab,
+//         setActiveTab,
+
+//         // Authentication
+//         isAuthenticated,
+//         authLoading,
+//         login,
+//         signup,
+//         logout,
+//         requestPasswordReset,
+//         resetPassword,
+//         checkAuthStatus,
+
+//         // Content generation
+//         generatedImages,
+//         setGeneratedImages,
+//         generatedVideos,
+//         loading,
+//         error,
+//         generateAIImage,
+//         generateAIVideo,
+//         clearError,
+//         clearGeneratedContent,
+
+//         // Profile related values and functions
+//         profile,
+//         setProfile,
+//         isProfileLoading,
+//         fetchProfile,
+//         updateProfile,
+//         downloadImage,
+
+//         // Added from ImageAI
+//         sendImageRequest,
+//         selectedRatio,
+//         setSelectedRatio,
+//       }}
+//     >
+//       {children}
+//     </NavigationContext.Provider>
+//   );
+// };
+
+// export const useNavigation = () => {
+//   const context = useContext(NavigationContext);
+//   if (!context) {
+//     throw new Error("useNavigation must be used within a NavigationProvider");
+//   }
+//   return context;
+// };
+
+
+
 import React, { createContext, useState, useContext, useEffect } from "react";
 import personPlaceholder from "../assets/person.png"; // Adjust path as needed
 
@@ -24,6 +500,9 @@ export const NavigationProvider = ({ children }) => {
     images: [],
   });
   const [isProfileLoading, setIsProfileLoading] = useState(true);
+  const [isImagesLoading, setIsImagesLoading] = useState(false);
+  const [imagesPage, setImagesPage] = useState(1);
+  const [hasMoreImages, setHasMoreImages] = useState(true);
 
   const url = "http://localhost:3000";
 
@@ -44,7 +523,7 @@ export const NavigationProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch(`${url}/api/profile`, {
+      const res = await fetch(`${url}/api/profile/basic`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +533,7 @@ export const NavigationProvider = ({ children }) => {
 
       if (res.ok) {
         const data = await res.json();
-        setProfile(data);
+        setProfile(prev => ({ ...prev, ...data, images: prev.images }));
         setIsAuthenticated(true);
         setAuthLoading(false);
         return true;
@@ -91,7 +570,7 @@ export const NavigationProvider = ({ children }) => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        await fetchProfile();
+        await fetchBasicProfile();
         setIsAuthenticated(true);
         return { success: true };
       }
@@ -123,7 +602,7 @@ export const NavigationProvider = ({ children }) => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        await fetchProfile();
+        await fetchBasicProfile();
         setIsAuthenticated(true);
         return { success: true };
       }
@@ -155,7 +634,7 @@ export const NavigationProvider = ({ children }) => {
   const requestPasswordReset = async (email) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(`${url}/auth/reset-password`, {
+      const response = await fetch(`${url}/auth/check-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -164,10 +643,11 @@ export const NavigationProvider = ({ children }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Password reset request failed");
+        throw new Error(data.error || "Email not found");
       }
 
-      return { success: true, message: data.message || "Reset email sent" };
+      // If email exists, show the reset password form
+      return { success: true, message: "Email exists" };
     } catch (error) {
       console.error("Password reset error:", error);
       return { success: false, error: error.message };
@@ -176,49 +656,179 @@ export const NavigationProvider = ({ children }) => {
     }
   };
 
-  // Fetch profile data
+  // Reset password
+  const resetPassword = async (email, newPassword, confirmPassword) => {
+    try {
+      setAuthLoading(true);
+      const response = await fetch(`${url}/auth/reset-password`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password: newPassword, confirmPassword }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Password reset failed");
+      }
+  
+      return { success: true };
+    } catch (error) {
+      console.error("Password reset error:", error);
+      // Handle specific error message
+      if (error.message.includes("different from old")) {
+        return { 
+          success: false, 
+          error: "New password must be different from your old password" 
+        };
+      }
+      return { success: false, error: error.message };
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  // Fetch basic profile data - for navbar and initial app load
+  const fetchBasicProfile = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setIsAuthenticated(false);
+        return { success: false, error: "No token found" };
+      }
+
+      const res = await fetch(`${url}/api/profile/basic`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setProfile(prev => ({ ...prev, ...data }));
+        setIsAuthenticated(true);
+        return { success: true, data };
+      } else {
+        console.error("Failed to fetch basic profile");
+        setError("Failed to fetch basic profile");
+        setIsAuthenticated(false);
+        return { success: false, error: "Failed to fetch basic profile" };
+      }
+    } catch (error) {
+      console.error("Error fetching basic profile:", error);
+      setError(`Error fetching basic profile: ${error.message}`);
+      setIsAuthenticated(false);
+      return { success: false, error: error.message };
+    }
+  };
+
+  // Fetch paginated images
+  const fetchProfileImages = async (page = 1, reset = false) => {
+    try {
+      setIsImagesLoading(true);
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        return { success: false, error: "No token found" };
+      }
+
+      const res = await fetch(`${url}/api/profile/images?page=${page}&limit=12`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        
+        if (reset) {
+          setProfile(prev => ({ ...prev, images: data.images }));
+        } else {
+          setProfile(prev => ({ 
+            ...prev, 
+            images: [...prev.images, ...data.images] 
+          }));
+        }
+        
+        setImagesPage(data.currentPage);
+        setHasMoreImages(data.hasMore);
+        return { success: true, data };
+      } else {
+        console.error("Failed to fetch profile images");
+        setError("Failed to fetch profile images");
+        return { success: false, error: "Failed to fetch profile images" };
+      }
+    } catch (error) {
+      console.error("Error fetching profile images:", error);
+      setError(`Error fetching profile images: ${error.message}`);
+      return { success: false, error: error.message };
+    } finally {
+      setIsImagesLoading(false);
+    }
+  };
+
+  // Load more images (for infinite scroll)
+  const loadMoreImages = async () => {
+    if (!hasMoreImages || isImagesLoading) return;
+    await fetchProfileImages(imagesPage + 1);
+  };
+
+  // Reset and fetch first page of images
+  const resetAndFetchImages = async () => {
+    setImagesPage(1);
+    await fetchProfileImages(1, true);
+  };
+
   useEffect(() => {
     fetchProfile();
-  },[])
-    const fetchProfile = async () => {
-      try {
-        setIsProfileLoading(true);
-        const token = localStorage.getItem("token");
+  }, []);
+  // Fetch full profile data - used when needed (Profile page initial load)
+  const fetchProfile = async () => {
+    try {
+      setIsProfileLoading(true);
+      const token = localStorage.getItem("token");
 
-        if (!token) {
-          setIsAuthenticated(false);
-          setIsProfileLoading(false);
-          return { success: false, error: "No token found" };
-        }
-
-        const res = await fetch(`${url}/api/profile`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (res.ok) {
-          const data = await res.json();
-          setProfile(data);
-          setIsAuthenticated(true);
-          return { success: true, data };
-        } else {
-          console.error("Failed to fetch profile");
-          setError("Failed to fetch profile");
-          setIsAuthenticated(false);
-          return { success: false, error: "Failed to fetch profile" };
-        }
-      } catch (error) {
-        console.error("Error fetching profile:", error);
-        setError(`Error fetching profile: ${error.message}`);
+      if (!token) {
         setIsAuthenticated(false);
-        return { success: false, error: error.message };
-      } finally {
         setIsProfileLoading(false);
+        return { success: false, error: "No token found" };
       }
-    };
+
+      const res = await fetch(`${url}/api/profile`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setProfile(data);
+        setImagesPage(1);
+        setHasMoreImages(data.images && data.images.length >= 12);
+        setIsAuthenticated(true);
+        return { success: true, data };
+      } else {
+        console.error("Failed to fetch profile");
+        setError("Failed to fetch profile");
+        setIsAuthenticated(false);
+        return { success: false, error: "Failed to fetch profile" };
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+      setError(`Error fetching profile: ${error.message}`);
+      setIsAuthenticated(false);
+      return { success: false, error: error.message };
+    } finally {
+      setIsProfileLoading(false);
+    }
+  };
 
   // Update profile
   const updateProfile = async (updatedProfile) => {
@@ -239,12 +849,18 @@ export const NavigationProvider = ({ children }) => {
       });
       if (res.ok) {
         const updatedData = await res.json();
-        setProfile(updatedData);
-        return { success: true, data: updatedData, };
+        setProfile(prev => ({
+          ...prev,
+          name: updatedData.name,
+          bio: updatedData.bio,
+          avatar: updatedData.avatar,
+          credits: updatedData.credits
+        }));
+        return { success: true, data: updatedData };
       } else {
         const errorData = await res.json();
-        setError(errorData.message || "Failed to update profile");
-        return { success: false, error: errorData.message };
+        setError(errorData.error || "Failed to update profile");
+        return { success: false, error: errorData.error };
       }
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -265,7 +881,7 @@ export const NavigationProvider = ({ children }) => {
     document.body.removeChild(link);
   };
 
-  /** GENERATE AI IMAGE FUNCTION - Original method */
+  // Generate AI Image
   const generateAIImage = async (prompt) => {
     try {
       setLoading(true);
@@ -289,9 +905,9 @@ export const NavigationProvider = ({ children }) => {
       const output = await response.json();
       setGeneratedImages((prev) => [...prev, ...output]);
 
-      // Refresh profile to get updated images
-      await fetchProfile();
-
+      // Just update basic profile to get updated credits
+      await fetchBasicProfile();
+      
       return { success: true, data: output };
     } catch (error) {
       setError(error.message);
@@ -301,7 +917,7 @@ export const NavigationProvider = ({ children }) => {
     }
   };
 
-  /** SEND IMAGE REQUEST - From ImageAI component */
+  // Send Image Request
   const sendImageRequest = async (prompt, options) => {
     const token = localStorage.getItem("token");
 
@@ -340,8 +956,8 @@ export const NavigationProvider = ({ children }) => {
         ...urlsArray.map((url) => ({ url, prompt })),
       ]);
 
-      // Refresh profile to get updated images
-      await fetchProfile();
+      // Just update basic profile to get updated credits
+      await fetchBasicProfile();
 
       return { success: true, data: urlsArray };
     } catch (error) {
@@ -353,7 +969,7 @@ export const NavigationProvider = ({ children }) => {
     }
   };
 
-  /** GENERATE AI VIDEO FUNCTION */
+  // Generate AI Video
   const generateAIVideo = async (prompt) => {
     try {
       setLoading(true);
@@ -397,6 +1013,7 @@ export const NavigationProvider = ({ children }) => {
         signup,
         logout,
         requestPasswordReset,
+        resetPassword,
         checkAuthStatus,
 
         // Content generation
@@ -414,7 +1031,13 @@ export const NavigationProvider = ({ children }) => {
         profile,
         setProfile,
         isProfileLoading,
+        isImagesLoading,
+        fetchBasicProfile,
         fetchProfile,
+        fetchProfileImages,
+        loadMoreImages,
+        resetAndFetchImages,
+        hasMoreImages,
         updateProfile,
         downloadImage,
 
