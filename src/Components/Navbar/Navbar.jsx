@@ -8,9 +8,9 @@
 
 // const Navbar = () => {
 //   const [showLoginPopup, setShowLoginPopup] = useState(false);
-//   const { 
-//     setActiveTab, 
-//     profile, 
+//   const {
+//     setActiveTab,
+//     profile,
 //     isAuthenticated,
 //     authLoading,
 //     logout
@@ -90,7 +90,6 @@
 
 // export default Navbar;
 
-
 // import React, { useState, useRef, useEffect } from "react";
 // import { Link } from "react-router";
 // import logo from "../../assets/logo.svg";
@@ -106,9 +105,9 @@
 //   const [showLoginPopup, setShowLoginPopup] = useState(false);
 //   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 //   const profileDropdownRef = useRef(null);
-//   const { 
-//     setActiveTab, 
-//     profile, 
+//   const {
+//     setActiveTab,
+//     profile,
 //     isAuthenticated,
 //     authLoading,
 //     logout
@@ -116,7 +115,7 @@
 
 //   useEffect(() => {
 //     const handleClickOutside = (event) => {
-//       if (profileDropdownRef.current && 
+//       if (profileDropdownRef.current &&
 //           !profileDropdownRef.current.contains(event.target)) {
 //         setShowProfileDropdown(false);
 //       }
@@ -157,14 +156,14 @@
 
 //           <div className="flex items-center h-full">
 //             {!authLoading && isAuthenticated && profile ? (
-//               <div 
+//               <div
 //                 className="relative flex items-center space-x-4 h-full"
 //                 ref={profileDropdownRef}
 //                 onMouseEnter={() => setShowProfileDropdown(true)}
 //                 onMouseLeave={() => setShowProfileDropdown(false)}
 //               >
 //                 {/* Profile Section */}
-//                 <div 
+//                 <div
 //                   className="flex items-center space-x-2 h-full cursor-pointer"
 //                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
 //                 >
@@ -183,7 +182,7 @@
 
 //                 {/* Profile Dropdown */}
 //                 {showProfileDropdown && (
-//                   <div 
+//                   <div
 //                     className="absolute top-full right-0 mt-2 w-48 bg-[#1a1f27] rounded-lg shadow-lg border border-[#2d333b]"
 //                     onClick={() => setShowProfileDropdown(false)}
 //                   >
@@ -228,7 +227,6 @@
 
 // export default Navbar;
 
-
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom"; // Fixed import (should be "react-router-dom")
 import logo from "../../assets/logo.svg";
@@ -244,13 +242,8 @@ const Navbar = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const profileDropdownRef = useRef(null);
-  const { 
-    setActiveTab, 
-    profile, 
-    isAuthenticated,
-    authLoading,
-    logout
-  } = useNavigation();
+  const { setActiveTab, profile, isAuthenticated, authLoading, logout } =
+    useNavigation();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -287,17 +280,17 @@ const Navbar = () => {
         <div className="flex h-full justify-between items-center px-2">
           <div className="flex items-center">
             <div className="md:hidden">
-            <MobileMenu />
+              <MobileMenu />
             </div>
-          <div className="flex items-center h-full">
-            <Link
-              to="/"
-              className="flex h-full max-sm:ml-[2px] items-center"
-              onClick={handleLogoClick}
-            >
-              <img src={logo} alt="Logo" className="max-sm:px-4" />
-            </Link>
-          </div>
+            <div className="flex items-center h-full">
+              <Link
+                to="/"
+                className="flex h-full max-sm:ml-[2px] items-center"
+                onClick={handleLogoClick}
+              >
+                <img src={logo} alt="Logo" className="max-sm:px-4" />
+              </Link>
+            </div>
           </div>
 
           <div className="flex items-center h-full">
@@ -307,10 +300,10 @@ const Navbar = () => {
                 ref={profileDropdownRef}
               >
                 {/* Profile Section */}
-                <div
-                  className="flex items-center gap-3 h-full "
-                >
-                  <p className="font-semibold text-white hidden md:block">Welcome Back, {profile.name || "User"}</p>
+                <div className="flex items-center gap-3 h-full ">
+                  <p className="font-semibold text-white hidden md:block">
+                    Welcome Back, {profile.name || "User"}
+                  </p>
                   <div className="text-white text-base hidden md:block">
                     <p className="text-sm text-gray-400 flex items-center">
                       <FaCoins className="mr-1 text-yellow-500" />
@@ -318,13 +311,16 @@ const Navbar = () => {
                     </p>
                   </div>
                   <img
-                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                     src={profile.avatar || personPlaceholder}
                     alt="User Avatar"
                     className="w-12 h-12 hidden sm:block rounded-full object-cover cursor-pointer"
                   />
-                   
-                   <FaUser onClick={() => setShowProfileDropdown(!showProfileDropdown)} className="max-sm:block hidden w-7 h-7 text-gray-200"/>
+
+                  <FaUser
+                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                    className="max-sm:block hidden w-7 h-7 text-gray-200"
+                  />
                 </div>
 
                 {/* Profile Dropdown */}
@@ -334,10 +330,10 @@ const Navbar = () => {
                     onClick={(e) => e.stopPropagation()} // Prevent dropdown from closing on click
                   >
                     <div className="py-2 px-4">
-                    <p className="text-sm md:hidden py-2 px-4 text-gray-400 flex items-center">
-                      <FaCoins className="mr-1 text-yellow-500" />
-                      Credits: {profile.credits || 0}
-                    </p>
+                      <p className="text-sm md:hidden py-2 px-4 text-gray-400 flex items-center">
+                        <FaCoins className="mr-1 text-yellow-500" />
+                        Credits: {profile.credits || 0}
+                      </p>
                       <Link
                         to="/profile"
                         className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-[#272d33] hover:text-white"
