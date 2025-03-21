@@ -4,8 +4,8 @@ import personPlaceholder from "../../assets/person.png";
 import { MdClose } from "react-icons/md";
 import Button from "../../Components/Common/Button";
 import { FiDownload, FiTrash2 } from "react-icons/fi";
-import { useNavigation } from "../../Context/NavigationContext";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import useProfile from "../../hooks/useProfile";
 
 // Create a wrapper component
 const ResponsiveMasonryWrapper = ({
@@ -27,104 +27,20 @@ const Profile = () => {
   const {
     profile,
     isProfileLoading,
-    fetchProfile,
-    updateProfile,
-    downloadImage,
-    deleteImage,
-  } = useNavigation();
-
-  const [tempProfile, setTempProfile] = useState(profile);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [displayedImages, setDisplayedImages] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const imagesPerPage = 12;
-
-  // Add this useEffect to handle pagination
-  useEffect(() => {
-    if (profile?.images) {
-      const startIndex = 0;
-      const endIndex = currentPage * imagesPerPage;
-      setDisplayedImages(profile.images.slice(startIndex, endIndex));
-    }
-  }, [profile.images, currentPage]);
-
-  // Add this function to handle loading more images
-  const loadMoreImages = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-
-  // Open modal for editing
-  const openModal = () => {
-    console.log("Edit Profile button clicked");
-    setTempProfile(profile); // reset tempProfile to current profile data
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setTempProfile((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Update avatar when a new file is selected
-  const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.size > 500 * 1024) {
-        // For example, limit to 500KB
-        alert("Image is too large. Please choose an image under 500KB.");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = () => {
-        console.log("New avatar data URL:", reader.result);
-        setTempProfile((prev) => ({ ...prev, avatar: reader.result }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const saveProfile = async (e) => {
-    e.preventDefault();
-
-    // Close modal and update profile using context function
-    closeModal();
-
-    // Call the context function to update profile
-    const result = (await updateProfile(tempProfile)) && (await fetchProfile());
-
-    if (!result.success) {
-      console.error("Failed to update profile:", result.error);
-    }
-  };
-
-  const clearBio = () => {
-    setTempProfile((prev) => ({ ...prev, bio: "" }));
-  };
-
-  const handleModalClick = (e) => {
-    if (e.target.id === "modal-overlay") {
-      closeModal();
-    }
-  };
-
-  // Handle download using context function
-  const handleDownload = (imageUrl, fileName) => {
-    downloadImage(imageUrl, fileName);
-  };
-
-  const handleDelete = async (imageId) => {
-    if (window.confirm("Are you sure you want to delete this image?")) {
-      const result = await deleteImage(imageId);
-      if (!result.success) {
-        console.error("Failed to delete image:", result.error);
-      }
-    }
-  };
-
+    tempProfile,
+    isModalOpen,
+    displayedImages,
+    openModal,
+    closeModal,
+    loadMoreImages,
+    handleInputChange,
+    handleAvatarChange,
+    saveProfile,
+    clearBio,
+    handleModalClick,
+    handleDownload,
+    handleDelete,
+  } = useProfile();
   if (isProfileLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#0d1116] text-white">

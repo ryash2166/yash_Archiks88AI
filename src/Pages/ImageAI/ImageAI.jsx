@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Slider from "@mui/material/Slider";
 import sun from "../../assets/sun.svg";
 import refresh from "../../assets/refresh.svg";
@@ -8,6 +8,7 @@ import AspectRatioSelector from "../../Components/AspectRatio/AspectRatioSelecto
 // import AssetsPanel from "../../Components/Common/AssetsPanel";
 import nowork from "../../assets/nowork.svg";
 import { useNavigation } from "../../Context/NavigationContext";
+import useImageAI from "../../hooks/useImageAI";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
@@ -32,55 +33,21 @@ const Card = ({ children, className = "", disabled = false }) => (
 );
 
 const ImageAI = () => {
-  const [mainTab, setMainTab] = useState("Text to Image");
-  const [opacity, setOpacity] = useState(1);
-
   const {
-    sendImageRequest,
-    generatedImages,
-    loading,
+    mainTab,
+    setMainTab,
+    opacity,
+    handleScroll,
+    formState,
+    setFormState,
+    handleSubmit,
+    results,
     error,
     selectedRatio,
     setSelectedRatio,
-  } = useNavigation();
+  } = useImageAI();
 
-  const handleScroll = (e) => {
-    const scrollTop = e.target.scrollTop;
-    const maxScroll = 75;
-    const newOpacity = Math.max(1 - scrollTop / maxScroll, 0);
-    setOpacity(newOpacity);
-  };
-
-  // Local form state
-  const [formState, setFormState] = useState({
-    prompt: "",
-    count: 1,
-  });
-
-  // Get results from context
-  const results = generatedImages.map((img) => ({
-    url: typeof img === "string" ? img : img.url,
-    prompt: typeof img === "string" ? formState.prompt : img.prompt,
-  }));
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      await sendImageRequest(formState.prompt, {
-        aspect_ratio: selectedRatio,
-        count: formState.count,
-      });
-
-      // Clear prompt after successful generation
-      setFormState((prev) => ({
-        ...prev,
-        prompt: "",
-      }));
-    } catch (error) {
-      console.error("Generation failed:", error);
-    }
-  };
+  const { loading } = useNavigation();
 
   return (
     <div className="bg-[#0d1116]">
@@ -242,36 +209,36 @@ const ImageAI = () => {
           </section>
 
           <section>
-          <div className="absolute w-full flex justify-center items-center overflow-hidden lg:hidden">
-          {results.length > 0 ? (
-            <div className="flex flex-col mb-20 h-full justify-center items-center">
-              <div className="grid grid-cols-auto gap-4">
-                {results.map((result, index) => (
-                  <div key={index} className="relative">
-                    <img
-                      src={result.url}
-                      alt={result.prompt || "Generated image"}
-                      className="rounded-lg w-full h-64 object-cover"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2">
-                      {result.prompt || "Generated image"}
-                    </div>
+            <div className="absolute w-full flex justify-center items-center overflow-hidden lg:hidden">
+              {results.length > 0 ? (
+                <div className="flex flex-col mb-20 h-full justify-center items-center">
+                  <div className="grid grid-cols-auto gap-4">
+                    {results.map((result, index) => (
+                      <div key={index} className="relative">
+                        <img
+                          src={result.url}
+                          alt={result.prompt || "Generated image"}
+                          className="rounded-lg w-full h-64 object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2">
+                          {result.prompt || "Generated image"}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <p className="text-[#727485] text-center text-md mt-3">
-                Generated {results.length} images
-              </p>
+                  <p className="text-[#727485] text-center text-md mt-3">
+                    Generated {results.length} images
+                  </p>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center">
+                  <img src={nowork} alt="" />
+                  <p className="text-[#c5c7d5] text-sm">
+                    {error || "Release your creative potential..."}
+                  </p>
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="flex flex-col items-center">
-              <img src={nowork} alt="" />
-              <p className="text-[#c5c7d5] text-sm">
-                {error || "Release your creative potential..."}
-              </p>
-            </div>
-          )}
-        </div>
           </section>
         </main>
         {/* <AssetsPanel /> */}

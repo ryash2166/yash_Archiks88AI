@@ -1,157 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { MdClose } from "react-icons/md";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import loginImg from "../../assets/login.png";
-import { useNavigation } from "../../Context/NavigationContext";
+import useAuthForm from "../../hooks/useAuthForm";
 
 const Login = ({ isVisible, onClose }) => {
-  const [formState, setFormState] = useState("login"); // login, signup, forgot, reset
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-
-  const { login, signup, requestPasswordReset, resetPassword } =
-    useNavigation();
-
-  // Email validation regex
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  };
-
-  // Password validation regex (min 8 chars, 1 upper, 1 lower, 1 number, 1 special)
-  const validatePassword = (password) => {
-    const re =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return re.test(password);
-  };
-
-  // Reset form when modal is closed
-  useEffect(() => {
-    if (!isVisible) {
-      resetForm();
-    }
-  }, [isVisible]);
-
-  // Reset all form fields and errors
-  const resetForm = () => {
-    setFormState("login");
-    setEmail("");
-    setPassword("");
-    setNewPassword("");
-    setConfirmPassword("");
-    setErrors({});
-    setSuccessMessage("");
-  };
-
-  // Validate form fields based on the current form state
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!email) {
-      newErrors.email = "Email is required";
-    } else if (!validateEmail(email)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    if (formState === "login" && !password) {
-      newErrors.password = "Password is required";
-    }
-
-    if (formState === "signup") {
-      if (!password) {
-        newErrors.password = "Password is required";
-      } else if (!validatePassword(password)) {
-        newErrors.password =
-          "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character";
-      }
-      if (password !== confirmPassword) {
-        newErrors.confirmPassword = "Passwords do not match";
-      }
-    }
-
-    if (formState === "reset") {
-      if (!newPassword) {
-        newErrors.newPassword = "New password is required";
-      } else if (!validatePassword(newPassword)) {
-        newErrors.newPassword = "Invalid password format";
-      }
-      if (newPassword !== confirmPassword) {
-        newErrors.confirmPassword = "Passwords do not match";
-      }
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-
-    setIsLoading(true);
-    setErrors({});
-    setSuccessMessage("");
-    
-    try {
-      let result;
-      switch (formState) {
-        case "login":
-          result = await login(email, password);
-          if (result.success) {
-            onClose();
-          }
-          break;
-        case "signup":
-          result = await signup(email, password, confirmPassword);
-          if (result.success) {
-            onClose();
-          }
-          break;
-        case "forgot":
-          result = await requestPasswordReset(email);
-          if (result.success) {
-            setFormState("reset"); // Move to reset password form
-            setSuccessMessage("Email verified. Please set your new password.");
-          }
-          break;
-        case "reset":
-          result = await resetPassword(email, newPassword, confirmPassword);
-          if (result.success) {
-            setSuccessMessage("Password reset successful!");
-            // Instead of closing, redirect to login after 2 seconds
-            setTimeout(() => {
-              setFormState("login");
-              setSuccessMessage("");
-              // Clear the password fields
-              setPassword("");
-              setNewPassword("");
-              setConfirmPassword("");
-            }, 2000);
-          }
-          break;
-      }
-
-      if (result && !result.success) {
-        setErrors({ general: result.error });
-      }
-    } catch (error) {
-      // setErrors({ general: error.message || "An unexpected error occurred" });
-      setErrors({ 
-        general: error.message.includes("different from old") 
-          ? "New password must be different from your current password"
-          : error.message || "An unexpected error occurred" 
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const {
+    formState,
+    setFormState,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    newPassword,
+    setNewPassword,
+    confirmPassword,
+    setConfirmPassword,
+    showPassword,
+    setShowPassword,
+    errors,
+    isLoading,
+    successMessage,
+    handleSubmit,
+  } = useAuthForm(onClose);
 
   if (!isVisible) return null;
 

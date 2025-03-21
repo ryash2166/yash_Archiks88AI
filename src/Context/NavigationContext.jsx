@@ -17,8 +17,8 @@ export const NavigationProvider = ({ children }) => {
 
   // Profile state
   const [profile, setProfile] = useState({
-    name: "Person.Name",
-    bio: "Create my bio: eg.'Found me! How about giving my work a like?'",
+    name: "User",
+    bio: "Welcome to our platform! How about giving my work a like?",
     avatar: personPlaceholder,
     credits: 0,
     images: [],
@@ -186,21 +186,21 @@ export const NavigationProvider = ({ children }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: newPassword, confirmPassword }),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data.error || "Password reset failed");
       }
-  
+
       return { success: true };
     } catch (error) {
       console.error("Password reset error:", error);
       // Handle specific error message
       if (error.message.includes("different from old")) {
-        return { 
-          success: false, 
-          error: "New password must be different from your old password" 
+        return {
+          success: false,
+          error: "New password must be different from your old password",
         };
       }
       return { success: false, error: error.message };
@@ -303,11 +303,11 @@ export const NavigationProvider = ({ children }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      
+
       if (!token) {
         return { success: false, error: "Authentication required" };
       }
-      
+
       const response = await fetch(`${url}/api/images/${imageId}`, {
         method: "DELETE",
         headers: {
@@ -315,15 +315,15 @@ export const NavigationProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to delete image");
       }
-      
+
       // Refresh profile to get updated images
       await fetchProfile();
-      
+
       return { success: true };
     } catch (error) {
       console.error("Error deleting image:", error);
