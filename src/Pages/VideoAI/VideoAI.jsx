@@ -42,7 +42,7 @@ const VideoAI = () => {
   const [opacity, setOpacity] = useState(1);
   // const [inputText, setInputText] = useState("");
   const { generateAIVideo, generatedVideos } = useNavigation();
-  const [prompt, setPrompt] = useState('');
+  const [prompt, setPrompt] = useState("");
 
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
@@ -57,7 +57,7 @@ const VideoAI = () => {
 
   const handleGenerateVideo = () => {
     generateAIVideo(prompt);
-    setPrompt('');
+    setPrompt("");
   };
 
   return (
@@ -75,7 +75,7 @@ const VideoAI = () => {
       <p className="absolute md:left-3 top-[88px] md:top-[130px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
         Creative Space
       </p>
-      <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
+      <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
         <div className="flex flex-col items-center">
           <img src={nowork} alt="" width={120} height={120} />
           <p className="text-[#c5c7d5] text-sm">
@@ -641,7 +641,10 @@ const VideoAI = () => {
         />
         <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-1 px-4 md:px-12 z-[3]">
           <div className="inline-block md:ml-[10px]">
-            <button onClick={handleGenerateVideo} className="bg-[#333a45] text-[#727485] px-4 py-[6px] rounded-full w-[calc(100vw-32px)]  md:w-[344px]  h-12">
+            <button
+              onClick={handleGenerateVideo}
+              className="bg-[#333a45] text-[#727485] px-4 py-[6px] rounded-full w-[calc(100vw-32px)]  md:w-[344px]  h-12"
+            >
               Generate
             </button>
           </div>

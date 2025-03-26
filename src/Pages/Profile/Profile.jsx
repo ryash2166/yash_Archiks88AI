@@ -4,24 +4,10 @@ import personPlaceholder from "../../assets/person.png";
 import { MdClose } from "react-icons/md";
 import Button from "../../Components/Common/Button";
 import { FiDownload, FiTrash2 } from "react-icons/fi";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import ResponsiveMasonryWrapper from "../../Components/Wrapper/ResponsiveMasonryWrapper";
+import Masonry from "react-responsive-masonry";
 import useProfile from "../../hooks/useProfile";
-
-// Create a wrapper component
-const ResponsiveMasonryWrapper = ({
-  children,
-  columnsCountBreakPoints,
-  ...rest
-}) => {
-  // Here you can handle the columnsCountBreakPoints prop however needed
-  return (
-    <div {...rest}>
-      <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints}>
-        {children}
-      </ResponsiveMasonry>
-    </div>
-  );
-};
+import ProfileSkeleton from "../../Components/Skeleton/profileSkeleton";
 
 const Profile = () => {
   const {
@@ -41,15 +27,10 @@ const Profile = () => {
     handleDownload,
     handleDelete,
   } = useProfile();
+
+
   if (isProfileLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-[#0d1116] text-white">
-        <div className="flex flex-col items-center">
-          <div className="w-16 h-16 border-t-4 border-b-4 border-[#9ffd38] rounded-full animate-spin mb-4"></div>
-          <p className="text-lg font-medium">Loading your profile...</p>
-        </div>
-      </div>
-    );
+    return <ProfileSkeleton />;
   }
 
   return (
@@ -85,53 +66,25 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        <div className="max-md:mt-24 mb-24 mx-8">
+        <div className="max-md:mt-24 mb-24 mx-5">
           {!profile?.images && <ProfileTabs />}
           <ResponsiveMasonryWrapper
             className="mt-3"
-            columnsCountBreakPoints={{ 576: 1, 767: 2, 1024: 4 }}
+            columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 4 }}
           >
             {profile?.images && profile.images.length > 0 && (
               <div className="sticky top-0 bg-[#0d1116] z-10 text-white p-6 w-full shadow-xl text-3xl max-md:text-xl font-semibold">
                 Your Creativity
               </div>
             )}
-            {/* <Masonry className="!m-auto " gutter="10px">
-              {profile.images && profile.images.length > 0 ? (
-                profile.images.map((img, index) => (
-                  <div key={index} className="relative inline-block group">
-                    <img
-                      key={img._id}
-                      src={img.imageUrl}
-                      alt={img.prompt}
-                      className=" cursor-pointer rounded-[18px] "
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
-                      <div className="flex gap-4">
-                      <FiDownload
-                        className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        onClick={() =>
-                          handleDownload(img.imageUrl, `${img._id}.png`)
-                        }
-                      />
-                      <FiTrash2
-                        className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-red-500"
-                        onClick={() => handleDelete(img._id)}
-                      />
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p>No images generated yet.</p>
-              )}
-            </Masonry> */}
-            <Masonry className="!m-auto" gutter="10px">
+            <Masonry className="!m-auto">
               {displayedImages && displayedImages.length > 0 ? (
-                displayedImages.map((img, index) => (
-                  <div key={index} className="relative inline-block group">
+                displayedImages.map((img) => (
+                  <div
+                    key={img._id}
+                    className="relative inline-block group mb-2 md:mr-2"
+                  >
                     <img
-                      key={img._id}
                       src={img.imageUrl}
                       alt={img.prompt}
                       className="cursor-pointer rounded-[18px]"

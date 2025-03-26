@@ -32,7 +32,7 @@ const MainVideo = () => {
         className="max-h-[360px] pointer-events-none w-auto"
         autoPlay
         muted
-        style={{ display: "block" }} 
+        style={{ display: "block" }}
         onPlay={() => setHasInteracted(true)}
       />
 

@@ -32,6 +32,28 @@ const Card = ({ children, className = "", disabled = false }) => (
   </div>
 );
 
+// Skeleton Loader Component
+const SkeletonLoader = ({ count = 4, selectedRatio }) => (
+  <div className="grid grid-cols-1 gap-4 w-full h-[300px]">
+    {Array.from({ length: count }).map((_, index) => (
+      <div key={index} className="relative">
+        <div
+          className={`rounded-lg bg-gray-400/20 animate-pulse w-full h-full ${
+            selectedRatio === "1:1"
+              ? "aspect-square"
+              : selectedRatio === "16:9"
+              ? "aspect-video"
+              : selectedRatio === "4:3"
+              ? "aspect-[4/3]"
+              : "aspect-square"
+          }`}
+        />
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gray-400/25 w-full animate-pulse rounded-b-lg" />
+      </div>
+    ))}
+  </div>
+);
+
 const ImageAI = () => {
   const {
     mainTab,
@@ -60,13 +82,23 @@ const ImageAI = () => {
           disablePictureInPicture
           disableRemotePlayback
           playsInline
-          className="sm:absolute sm:-top-[5px] md:left-[200px] sm:max-w-[380px] pointer-events-none hidden md:!block"
+          className="sm:absolute sm:-top-[5px] md:left-[200px] sm:max-w-[380px] pointer-events-none hidden lg:!block"
         />
-        <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
+        <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden lg:!block">
           Creative Space
         </p>
-        <div className="pb-[118px] pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
-          {results.length > 0 ? (
+        <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
+          {loading ? (
+            <div className="xl:ml-32 flex flex-col h-full justify-center items-center">
+              <SkeletonLoader
+                count={formState.count}
+                selectedRatio={selectedRatio}
+              />
+              <p className="text-[#727485] text-center text-md mt-3">
+                Generating {formState.count} images...
+              </p>
+            </div>
+          ) : results.length > 0 ? (
             <div className="ml-32 flex flex-col h-full justify-center items-center">
               <div className="grid grid-cols-auto gap-4">
                 {results.map((result, index) => (
@@ -74,10 +106,18 @@ const ImageAI = () => {
                     <img
                       src={result.url}
                       alt={result.prompt || "Generated image"}
-                      className="rounded-lg w-full h-64 object-cover"
+                      className={`rounded-lg w-96  object-cover ${
+                        selectedRatio === "1:1"
+                          ? "aspect-square"
+                          : selectedRatio === "16:9"
+                          ? "aspect-video"
+                          : selectedRatio === "4:3"
+                          ? "aspect-[4/3]"
+                          : "aspect-square"
+                      }`}
                     />
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2">
-                      {result.prompt || "Generated image"}
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-sm truncate">
+                      Your Prompt: {result.prompt || "Generated image"}
                     </div>
                   </div>
                 ))}
@@ -96,7 +136,7 @@ const ImageAI = () => {
           )}
         </div>
         <main
-          className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
+          className="w-full lg:max-w-[450px] absolute md:float-left overflow-y-scroll lg:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
           onScroll={handleScroll}
         >
           <nav
@@ -127,7 +167,7 @@ const ImageAI = () => {
               <SectionHeader icon={sun} title="Start / End Frame and Prompt" />
               <div className="text-sm text-[#727485] mt-4">
                 <div className="bg-[#0d1116] rounded-[12px] h-[158px] relative">
-                  <div className="mx-5 mt-[13px] absolute">
+                  <div className="mx-5 mt-7 lg:mt-[13px] absolute">
                     {!formState.prompt && (
                       <p className="text-[#727485] leading-7">
                         Please describe your creative ideas for the video, or
@@ -148,7 +188,7 @@ const ImageAI = () => {
                     onChange={(e) =>
                       setFormState({ ...formState, prompt: e.target.value })
                     }
-                    className=" absolute ml-5 top-[30px] text-ellipsis bg-transparent outline-none overflow-y-hidden resize-none text-white"
+                    className=" absolute ml-5 max-lg:w-5/6  bg-transparent top-[30px] text-ellipsis outline-none overflow-y-hidden resize-none text-white"
                   />
                   {formState.prompt && (
                     <button
@@ -161,7 +201,7 @@ const ImageAI = () => {
                 </div>
               </div>
               <div className="flex w-full  items-center justify-between rounded-b-[12px] p-2">
-                <div>
+                <div className="hidden">
                   <span className="text-[#999bac] text-sm mr-1">Hints:</span>
                   <div className="inline-flex bg-[#ffffff0f] text-sm items-center rounded-lg mr-1 text-[#f5f8fa] p-2">
                     Chinese style CG
@@ -170,7 +210,7 @@ const ImageAI = () => {
                     Blue melancholy
                   </div>
                 </div>
-                <div className="inline-flex items-center">
+                <div className="inline-flex hidden items-center">
                   <button className="text-white">
                     <img src={refresh} alt="" />
                   </button>
@@ -178,7 +218,7 @@ const ImageAI = () => {
               </div>
             </Card>
 
-            <Card className="mb-[85px] md:mb-32">
+            <Card className="mb-[15px] lg:mb-32">
               <SectionHeader icon={setting} title="Settings" />
               <div className="mb-5 text-[#999bac] flex justify-start items-start">
                 <div className="text-sm leading-8">
@@ -209,19 +249,37 @@ const ImageAI = () => {
           </section>
 
           <section>
-            <div className="absolute w-full flex justify-center items-center overflow-hidden lg:hidden">
-              {results.length > 0 ? (
-                <div className="flex flex-col mb-20 h-full justify-center items-center">
+            <div className="w-full flex justify-center items-center overflow-hidden lg:hidden">
+              {loading ? (
+                <div className="flex flex-col mb-24 justify-center items-center">
+                  <SkeletonLoader
+                    count={formState.count}
+                    selectedRatio={selectedRatio}
+                  />
+                  <p className="text-[#727485] text-center text-md mt-3">
+                    Generating {formState.count} images...
+                  </p>
+                </div>
+              ) : results.length > 0 ? (
+                <div className="flex flex-col mb-32 w-full justify-center items-center">
                   <div className="grid grid-cols-auto gap-4">
                     {results.map((result, index) => (
                       <div key={index} className="relative">
                         <img
                           src={result.url}
                           alt={result.prompt || "Generated image"}
-                          className="rounded-lg w-full h-64 object-cover"
+                          className={`rounded-lg object-cover  ${
+                            selectedRatio === "1:1"
+                              ? "aspect-square"
+                              : selectedRatio === "16:9"
+                              ? "aspect-video"
+                              : selectedRatio === "4:3"
+                              ? "aspect-[4/3]"
+                              : "aspect-square"
+                          }`}
                         />
-                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2">
-                          {result.prompt || "Generated image"}
+                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-sm truncate">
+                          Your Prompt: {result.prompt || "Generated image"}
                         </div>
                       </div>
                     ))}
@@ -244,17 +302,17 @@ const ImageAI = () => {
         {/* <AssetsPanel /> */}
         <footer className="flex items-center justify-center md:block">
           <div
-            className="fixed bottom-0 left-0 w-full h-[118px] md:block hidden pt-1 md:px-12 z-[3]"
+            className="fixed bottom-0 left-0 w-full h-32 md:block hidden pt-1 lg:px-12 z-[3]"
             style={{
-              background: "linear-gradient(0deg,#0d1116 40%,#0d111600)",
+              background: "linear-gradient(0deg,#0d1116 50%,#0d111600)",
             }}
-          />
-          <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-1 px-4 md:px-12 z-[3]">
-            <div className="inline-block md:ml-[10px]">
+          ></div>
+          <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-3 px-4 lg:px-12 z-[3]">
+            <div className="inline-block lg:ml-[10px]">
               <button
                 type="submit"
                 disabled={formState.prompt ? false : true}
-                className={`px-4 py-[6px] rounded-full w-[calc(100vw-32px)] md:w-[344px] h-12
+                className={`px-4 py-[6px] mb-2 rounded-full w-[calc(100vw-32px)] lg:w-[344px] h-12
                     ${
                       formState.prompt
                         ? "bg-[#6c6cf5] hover:!bg-[#5252e5] text-white"

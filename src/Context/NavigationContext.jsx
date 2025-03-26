@@ -5,6 +5,7 @@ const NavigationContext = createContext();
 
 export const NavigationProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState("Home");
+  const [mediaItems, setMediaItems] = useState([]); // Store media items
   const [generatedImages, setGeneratedImages] = useState([]); // Store AI-generated images
   const [generatedVideos, setGeneratedVideos] = useState([]); // Store AI-generated videos
   const [loading, setLoading] = useState(false);
@@ -206,6 +207,38 @@ export const NavigationProvider = ({ children }) => {
       return { success: false, error: error.message };
     } finally {
       setAuthLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMedia();
+  }, []);
+
+  const fetchMedia = async () => {
+    try {
+      // const token = localStorage.getItem("token");
+      // if (!token) throw new Error("Authentication required");
+
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(`${url}/api/explore/media`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) throw new Error("Failed to fetch media");
+
+      const data = await response.json();
+      setMediaItems(data);
+      setLoading(false);
+    } catch (err) {
+      console.error("Media fetch error:", err);
+      setError(err.message);
+      setLoading(false);
     }
   };
 
@@ -455,6 +488,7 @@ export const NavigationProvider = ({ children }) => {
   return (
     <NavigationContext.Provider
       value={{
+        url,
         // Navigation
         activeTab,
         setActiveTab,
@@ -479,6 +513,13 @@ export const NavigationProvider = ({ children }) => {
         generateAIVideo,
         clearError,
         clearGeneratedContent,
+
+        // Media related values and functions
+        mediaItems,
+        fetchMedia,
+        setMediaItems,
+        setError,
+        setLoading,
 
         // Profile related values and functions
         profile,

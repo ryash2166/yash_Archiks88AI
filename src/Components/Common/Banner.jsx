@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import arrow from "../../assets/arrow.svg";
+import ArrowIcon from "../../icons/arrow";
 import { Link } from "react-router";
 
 const Banner = ({
@@ -98,9 +98,7 @@ const Banner = ({
 
       {/* SVG Icon */}
       {showSVG && (
-        <img
-          src={arrow}
-          alt="Arrow"
+        <ArrowIcon
           className={`float-right mt-2 mr-6 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform duration-300 ${
             !isDisabled ? "" : ""
           }`}

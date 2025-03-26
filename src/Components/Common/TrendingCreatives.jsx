@@ -1,5 +1,5 @@
 import AutoCarousel from "./AutoCarousel";
-import play from "../../assets/play.svg";
+import PlayIcon from "../../icons/play";
 import { FaRegHeart } from "react-icons/fa";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { TrendingCreativesData } from "../../Data/AllData";
@@ -53,9 +53,7 @@ const TrendingCreatives = () => {
                   className="object-fill"
                 ></video>
               </div>
-              <img
-                src={play}
-                alt=""
+              <PlayIcon
                 className="w-8 h-8 top-3 right-3 absolute"
               />
               <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-md flex flex-row items-end p-[16px]">
