@@ -24,7 +24,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/react-datepicker": "^6.2.0",
     "antd": "^5.22.7",
-    "axios": "^1.7.9",
+    "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "flowbite": "^2.5.2",
     "flowbite-react": "^0.10.2",

@@ -1,0 +1,56 @@
+import React from "react";
+
+const PlayIcon = (props) => {
+  return (
+    <svg
+      width="33"
+      height="32"
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <rect
+        x="0.399902"
+        width="32"
+        height="32"
+        rx="16"
+        fill="black"
+        fill-opacity="0.25"
+      />
+      <rect
+        x="0.899902"
+        y="0.5"
+        width="31"
+        height="31"
+        rx="15.5"
+        stroke="white"
+        stroke-opacity="0.5"
+      />
+      <mask
+        id="mask0_5286_26718"
+        style="mask-type:alpha;"
+        maskUnits="userSpaceOnUse"
+        x="8"
+        y="8"
+        width="17"
+        height="17"
+      >
+        <path
+          d="M8.3999 8.22229H24.3999V24.2223H8.3999V8.22229Z"
+          fill="white"
+        />
+      </mask>
+      <g mask="url(#mask0_5286_26718)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M21.2306 17.3339L14.0225 22.0829C13.4075 22.488 12.5806 22.318 12.1755 21.703C12.032 21.4853 11.9556 21.2303 11.9556 20.9695V11.4749C11.9556 10.7386 12.5525 10.1416 13.2889 10.1416C13.5495 10.1416 13.8044 10.218 14.0221 10.3613L21.2302 15.1069C21.8453 15.5118 22.0156 16.3387 21.6107 16.9537C21.5111 17.1049 21.3818 17.2343 21.2306 17.3339Z"
+          fill="white"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export default PlayIcon;

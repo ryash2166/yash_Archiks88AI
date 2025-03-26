@@ -8,13 +8,15 @@ import twitter from "../../assets/twitter.svg";
 const Footer = () => {
   return (
     <div className="pt-10 pb-9 px-6 lg:ml-[260px] lg:pr-[42px] border-t-[1px] border-[#333]">
-      <div className="text-white flex flex-wrap justify-between gap-3">
+      <div className="text-white flex flex-col md:flex-row flex-wrap md:justify-between gap-3">
         <div className="mb-6 lg:mb-0 w-full lg:w-auto flex items-start justify-center ">
           <img src={logo} alt="Logo" className="" />
         </div>
 
-        <div className="mb-6 ">
-          <p className="text-[15px] font-medium leading-6 mb-4">About</p>
+        <div className="mb-6">
+          <p className="text-[15px] font-medium leading-6 mb-4">
+            About
+          </p>
           <div className="space-y-3">
             <span className="flex items-center gap-2">
               Terms of Service <FaAngleRight className="h-4 w-4" />
@@ -39,7 +41,7 @@ const Footer = () => {
           <span>Archiks88@kuaishou.com</span>
         </div>
 
-        <div className="block lg:flex justify-center lg:justify-end w-full lg:w-auto lg:space-x-6">
+        <div className="flex lg:hidden xl:flex justify-center lg:justify-end w-full md:w-auto space-x-6">
           <div className="flex flex-col items-center max-lg:mb-4">
             <img src={discord} alt="" width={65} height={65} className="mb-1" />
             <p className="text-center">Discord</p>

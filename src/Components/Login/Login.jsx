@@ -53,7 +53,7 @@ const Login = ({ isVisible, onClose }) => {
               ? "Reset Password"
               : formState === "signup"
               ? "Create Account"
-              : "Welcome"}
+              : "Welcome to ArchikS88AI"}
           </h1>
 
           {errors.general && (

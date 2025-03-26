@@ -27,15 +27,15 @@ const NavbarAI = () => {
   return (
     <div className="bg-[#0d1116] sticky top-0 z-20">
       <header className="h-[68px] w-full px-1 sm:px-5">
-        <div className="flex h-full justify-between items-center">
-          <div className="flex items-center h-full ">
+        <div className="flex h-full justify-between items-center px-2 gap-2.5">
+          <div className="flex items-center h-full">
             <MobileMenu />
             <Link
               to="/"
               className="flex h-full max-sm:ml-[2px] items-center"
               onClick={handleLogoClick}
             >
-              <img src={logo} alt="Logo" className="max-sm:px-4" />
+              <img src={logo} alt="Logo" />
             </Link>
           </div>
           <div className="flex items-center h-full">
@@ -64,7 +64,7 @@ const NavbarAI = () => {
 
                   <FaUser
                     onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                    className="max-sm:block hidden w-7 h-7 text-gray-200"
+                    className="max-sm:block hidden w-5 h-5 text-gray-200"
                   />
                 </div>
 
