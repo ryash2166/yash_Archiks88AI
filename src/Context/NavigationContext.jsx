@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import personPlaceholder from "../assets/person.png"; // Adjust path as needed
+import { apiList } from "../api/apiList";
 
 const NavigationContext = createContext();
 
@@ -26,8 +27,6 @@ export const NavigationProvider = ({ children }) => {
   });
   const [isProfileLoading, setIsProfileLoading] = useState(true);
 
-  const url = import.meta.env.VITE_BACKEND_URL;
-
   // Check authentication status on initial load
   useEffect(() => {
     checkAuthStatus();
@@ -45,7 +44,7 @@ export const NavigationProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch(`${url}/api/profile`, {
+      const res = await fetch(apiList.checkAuthStatus, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +77,7 @@ export const NavigationProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(`${url}/auth/login`, {
+      const response = await fetch(apiList.login, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -110,7 +109,7 @@ export const NavigationProvider = ({ children }) => {
   const signup = async (email, password, confirmPassword) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(`${url}/auth/signup`, {
+      const response = await fetch(apiList.signup, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, confirmPassword }),
@@ -156,7 +155,7 @@ export const NavigationProvider = ({ children }) => {
   const requestPasswordReset = async (email) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(`${url}/auth/check-email`, {
+      const response = await fetch(apiList.requestPasswordReset, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -182,7 +181,7 @@ export const NavigationProvider = ({ children }) => {
   const resetPassword = async (email, newPassword, confirmPassword) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(`${url}/auth/reset-password`, {
+      const response = await fetch(apiList.resetPassword, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: newPassword, confirmPassword }),
@@ -222,7 +221,7 @@ export const NavigationProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${url}/api/explore/media`, {
+      const response = await fetch(apiList.media, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -258,7 +257,7 @@ export const NavigationProvider = ({ children }) => {
         return { success: false, error: "No token found" };
       }
 
-      const res = await fetch(`${url}/api/profile`, {
+      const res = await fetch(apiList.fetchProfile, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -292,7 +291,7 @@ export const NavigationProvider = ({ children }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const res = await fetch(`${url}/api/profile`, {
+      const res = await fetch(apiList.updateProfile, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -341,7 +340,7 @@ export const NavigationProvider = ({ children }) => {
         return { success: false, error: "Authentication required" };
       }
 
-      const response = await fetch(`${url}/api/images/${imageId}`, {
+      const response = await fetch(apiList.deleteImage(imageId), {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -377,7 +376,7 @@ export const NavigationProvider = ({ children }) => {
         return { success: false, error: "Authentication required" };
       }
 
-      const response = await fetch(`${url}/api/generate`, {
+      const response = await fetch(apiList.generateAIImage, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -413,7 +412,7 @@ export const NavigationProvider = ({ children }) => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${url}/api/generate-image`, {
+      const response = await fetch(apiList.sendImageRequest, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -488,7 +487,6 @@ export const NavigationProvider = ({ children }) => {
   return (
     <NavigationContext.Provider
       value={{
-        url,
         // Navigation
         activeTab,
         setActiveTab,
