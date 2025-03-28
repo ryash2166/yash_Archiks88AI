@@ -64,14 +64,14 @@ const Profile = () => {
               Edit Profile
             </button>
           </div> */}
-          <div className="relative p-[3px] mx-5 rounded-[18px] bg-gradient-to-r to-[rgb(135,83,249)] from-[rgba(6,227,171,0.7)] ">
-            <div className="bg-[#0f141a] rounded-[16px] h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-[200px]">
+          <div className="relative p-[3px] mx-5 rounded-2xl bg-gradient-to-r to-[rgb(135,83,249)] from-[rgba(6,227,171,0.7)] ">
+            <div className="bg-login rounded-3xl h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-[200px]">
               <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
-                <div className="md:mr-6 w-[100px] h-[100px]">
+                <div className="md:mr-6 w-28 h-28">
                   <img
                     src={profile.avatar || personPlaceholder}
                     alt="User Avatar"
-                    className="object-cover w-full h-full rounded-full"
+                    className="object-cover object-center w-full h-full rounded-full"
                   />
                 </div>
                 <div className="flex flex-col gap-2 max-md:pt-2 max-md:items-center justify-center text-white">
@@ -87,7 +87,7 @@ const Profile = () => {
                 </div>
               </div>
               <button
-                className="hover:bg-[#5252e5] bg-transparent border border-[#5252e5] h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-[#5252e5] hover:text-white font-medium min-w-[106px]"
+                className="hover:bg-[#5252e5] bg-[#6c6cf5] border border-[#5252e5] h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-white font-medium min-w-[106px]"
                 onClick={openModal}
               >
                 Edit Profile
@@ -160,16 +160,18 @@ const Profile = () => {
           className="fixed inset-0 backdrop-blur-[6px] flex justify-center items-center z-50"
           onClick={handleModalClick}
         >
-          <div className="bg-login p-6 rounded-lg w-full mx-3 max-w-[464px] relative">
+          <div className="bg-login p-6 rounded-lg w-full mx-4 max-w-[464px]">
+            <div className="flex justify-between items-center mb-6">
+            <h1 className="text-[22px] leading-8  text-white font-semibold">
+              Edit Profile
+            </h1>
             <button
-              className="absolute top-6 right-3 text-2xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300 transition-colors"
+              className="text-2xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300 transition-colors"
               onClick={closeModal}
             >
               <MdClose />
             </button>
-            <h1 className="text-[22px] leading-8 mb-6 text-white font-semibold">
-              Edit Profile
-            </h1>
+            </div>
             <form onSubmit={saveProfile}>
               <div className="mb-4 flex flex-col items-center">
                 <label

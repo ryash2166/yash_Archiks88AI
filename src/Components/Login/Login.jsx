@@ -31,21 +31,16 @@ const Login = ({ isVisible, onClose }) => {
       className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-md flex items-center justify-center z-30"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="bg-login mx-4 w-full max-w-[720px] rounded-lg shadow-lg relative flex overflow-hidden">
-        <img
+      <div className="bg-login mx-4 w-full max-w-[520px] rounded-lg shadow-lg relative flex overflow-hidden">
+        {/* <img
           src={loginImg}
           alt=""
           width={279}
           height={456}
           className="hidden md:block object-cover"
-        />
-        <button
-          className="absolute top-10 md:top-9 right-5 text-3xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300"
-          onClick={onClose}
-        >
-          <MdClose />
-        </button>
+        /> */}
         <div className="w-full max-h-[456px] h-full py-9 px-6 md:px-9 flex flex-col">
+          <div className="flex items-center justify-between">
           <h1 className="text-lg md:text-[22px] text-white leading-8 font-semibold">
             {formState === "forgot"
               ? "Password Recovery"
@@ -55,6 +50,13 @@ const Login = ({ isVisible, onClose }) => {
               ? "Create Account"
               : "Welcome to ArchikS88AI"}
           </h1>
+          <button
+          className="text-3xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300"
+          onClick={onClose}
+        >
+          <MdClose />
+        </button>
+          </div>
 
           {errors.general && (
             <div className="mt-2 text-red-500 text-sm">{errors.general}</div>

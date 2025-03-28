@@ -19,8 +19,8 @@ const ArrowIcon = (props) => {
         stroke="url(#paint0_linear_950_14379)"
       ></rect>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M19.4106 13.0337C19.0852 12.7082 19.0852 12.1806 19.4106 11.8552C19.7361 11.5297 20.2637 11.5297 20.5892 11.8552L26.1447 17.4107C26.4702 17.7362 26.4702 18.2638 26.1447 18.5892L20.5892 24.1448C20.2637 24.4702 19.7361 24.4702 19.4106 24.1448C19.0852 23.8193 19.0852 23.2917 19.4106 22.9663L23.5436 18.8333H11.111C10.6508 18.8333 10.2777 18.4602 10.2777 18C10.2777 17.5397 10.6508 17.1666 11.111 17.1666H23.5436L19.4106 13.0337Z"
         fill="url(#paint1_linear_950_14379)"
       ></path>
@@ -33,8 +33,8 @@ const ArrowIcon = (props) => {
           y2="36"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#23FAEC"></stop>
-          <stop offset="0" stop-color="#00AAFF"></stop>
+          <stop offset="0" stopColor="#23FAEC"></stop>
+          <stop offset="0" stopColor="#00AAFF"></stop>
         </linearGradient>
         <linearGradient
           id="paint1_linear_950_14379"
@@ -44,8 +44,8 @@ const ArrowIcon = (props) => {
           y2="27.2988"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#23FAEC"></stop>
-          <stop offset="0" stop-color="#00AAFF"></stop>
+          <stop offset="0" stopColor="#23FAEC"></stop>
+          <stop offset="0" stopColor="#00AAFF"></stop>
         </linearGradient>
       </defs>
     </svg>
