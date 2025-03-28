@@ -70,9 +70,9 @@ const VideoAI = () => {
         disablePictureInPicture
         disableRemotePlayback
         playsInline
-        className="sm:absolute sm:-top-[5px] md:left-[150px] sm:max-w-[450px] pointer-events-none hidden md:!block"
+        className="sm:absolute sm:-top-[5px] md:left-[150px] sm:max-w-[450px] pointer-events-none hidden lg:!block"
       />
-      <p className="absolute md:left-3 top-[88px] md:top-[130px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#5252e5] to-[#0af] hidden md:!block">
+      <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#5252e5] to-[#0af] hidden lg:!block">
         Creative Space
       </p>
       <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
@@ -85,7 +85,7 @@ const VideoAI = () => {
         </div>
       </div>
       <main
-        className="w-full md:max-w-[450px] absolute md:float-left overflow-y-scroll md:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
+        className="w-full lg:max-w-[450px] absolute lg:float-left overflow-y-scroll lg:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
         onScroll={handleScroll}
       >
         <nav
@@ -111,7 +111,7 @@ const VideoAI = () => {
           )}
         </nav>
 
-        <section className="lg:max-w-[404px] relative mt-6">
+        <section className="lg:max-w-[460px] relative mt-6">
           {/* <Card>
             <SectionHeader icon={promt} title="Start / End Frame and Prompt" />
             <div className="text-sm text-[#727485] mt-4">
@@ -312,7 +312,7 @@ const VideoAI = () => {
             </div>
             <div className="text-sm text-[#727485] mt-4">
               <div className="bg-[#0d1116] rounded-[12px] h-[210px] relative">
-                <div className="mx-5 mt-[13px] absolute">
+                <div className="mx-5 mt-7 lg:mt-[13px] absolute">
                   {!prompt && (
                     <p className="text-[#727485] leading-7">
                       Please describe your creative ideas for the video, or view
@@ -321,11 +321,13 @@ const VideoAI = () => {
                     </p>
                   )}
                 </div>
-                <input
+                <textarea
                   type="text"
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  className=" absolute w-full ml-5 top-[30px] text-ellipsis bg-transparent outline-none z-10 text-white"
+                  rows={5}
+                  cols={38}
+                  className=" absolute ml-5 max-lg:w-5/6  bg-transparent top-[30px] text-ellipsis outline-none overflow-y-hidden resize-none text-white"
                 />
                 {prompt && (
                   <button
