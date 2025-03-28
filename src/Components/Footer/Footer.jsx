@@ -13,30 +13,28 @@ const Footer = () => {
           <img src={logo} alt="Logo" className="" />
         </div>
 
-        <div className="mb-6">
-          <p className="text-[15px] font-medium leading-6 mb-4">
-            About
-          </p>
+        <div className="mb-6 max-md:flex flex-col items-center">
+          <p className="text-[15px] font-medium leading-6 mb-4">About</p>
           <div className="space-y-3">
-            <span className="flex items-center gap-2">
+            <span className="flex items-center max-md:justify-center gap-2">
               Terms of Service <FaAngleRight className="h-4 w-4" />
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex items-center max-md:justify-center gap-2">
               Privacy Policy <FaAngleRight className="h-4 w-4" />
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex items-center max-md:justify-center gap-2">
               Terms of Paid Service <FaAngleRight className="h-4 w-4" />
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex items-center max-md:justify-center gap-2">
               Credits Policy <FaAngleRight className="h-4 w-4" />
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex items-center max-md:justify-center gap-2">
               Community Guidelines <FaAngleRight className="h-4 w-4" />
             </span>
           </div>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-6 max-md:flex flex-col items-center">
           <p className="text-[15px] font-medium leading-6 mb-4">Contact Us</p>
           <span>Archiks88@kuaishou.com</span>
         </div>

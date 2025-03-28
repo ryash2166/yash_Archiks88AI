@@ -340,7 +340,7 @@ export const NavigationProvider = ({ children }) => {
         return { success: false, error: "Authentication required" };
       }
 
-      const response = await fetch(apiList.deleteImage(imageId), {
+      const response = await fetch(`${apiList.deleteImage}${imageId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

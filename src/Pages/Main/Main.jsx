@@ -15,8 +15,8 @@ const Main = () => {
     <div className="relative h-lvh w-full overflow-auto overflow-x-hidden">
       <main className="lg:pl-[260px] pt-0 m-0 bg-[#0d1116]">
         <MainVideo />
-        <div className="relative max-lg:static">
-          <h1 className="absolute mt-[-320px] ml-5 lg:ml-0 max-lg:static max-lg:mx-5 max-lg:mt-0">
+        <div className="relative max-xl:static">
+          <h1 className="absolute mt-[-320px] ml-5 lg:ml-0 max-xl:static max-lg:mx-5 max-xl:mt-0">
             <img
               src={title}
               alt="Archiks88 AI: A New Era of Creative Production"
@@ -25,7 +25,7 @@ const Main = () => {
           </h1>
         </div>
         <div className="">
-          <div className="w-[calc(100%-40px)] -mt-[120px] mx-5 mb-0 max-lg:flex-col flex flex-wrap max-lg:mt-10">
+          <div className="w-[calc(100%-40px)] -mt-[120px] mx-5 mb-0 max-lg:flex-col flex flex-wrap max-xl:mt-10">
             <Banner
               title="AI Images"
               className="mr-6 lg:mr-4 mb-4 lg:mb-0"
