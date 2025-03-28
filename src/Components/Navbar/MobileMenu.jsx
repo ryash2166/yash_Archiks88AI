@@ -3,11 +3,10 @@ import {
   FaArrowLeftLong,
   FaFolderClosed,
   FaImage,
-  FaShield,
   FaVideo,
 } from "react-icons/fa6";
 import { PiLightbulbFilamentBold } from "react-icons/pi";
-import { TbChartCandle, TbGift } from "react-icons/tb";
+import { TbGift } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import MenuIcon from "../../icons/menu";
 import { useNavigation } from "../../Context/NavigationContext"; // Import this
