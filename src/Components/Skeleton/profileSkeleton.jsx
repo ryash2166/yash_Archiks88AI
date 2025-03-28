@@ -11,9 +11,13 @@ const ProfileSkeleton = () => {
             <div className="flex items-center justify-center md:justify-between p-8">
               <div className="flex md:flex-row flex-col items-center gap-4">
                 <div className="h-32 w-32 bg-slate-400/25 rounded-full"></div>
-                <div className="h-24 w-40 bg-slate-400/25 rounded-xl"></div>
+                <div className="space-y-2">
+                  <div className="h-5 w-40 bg-slate-400/25 rounded-xl"></div>
+                  <div className="h-5 w-96 bg-slate-400/25 rounded-xl"></div>
+                  <div className="h-5 w-40 bg-slate-400/25 rounded-xl"></div>
+                </div>
               </div>
-              <div className="w-20 h-12 hidden md:block bg-slate-400/25 rounded-xl"></div>
+              <div className="w-32 h-10 hidden md:block bg-slate-400/25 rounded-xl"></div>
             </div>
           </div>
           <div className="space-y-2">

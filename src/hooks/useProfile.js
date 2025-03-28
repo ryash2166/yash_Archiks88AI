@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import { useNavigation } from "../Context/NavigationContext";
 
 const useProfile = () => {
-  const { profile, isProfileLoading, fetchProfile, updateProfile, downloadImage, deleteImage } = useNavigation();
+  const {
+    profile,
+    isProfileLoading,
+    fetchProfile,
+    updateProfile,
+    downloadImage,
+    deleteImage,
+  } = useNavigation();
   const [tempProfile, setTempProfile] = useState(profile);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [displayedImages, setDisplayedImages] = useState([]);
@@ -71,7 +78,8 @@ const useProfile = () => {
   const handleDelete = async (imageId) => {
     if (window.confirm("Are you sure you want to delete this image?")) {
       const result = await deleteImage(imageId);
-      if (!result.success) console.error("Failed to delete image:", result.error);
+      if (!result.success)
+        console.error("Failed to delete image:", result.error);
     }
   };
 
@@ -91,7 +99,7 @@ const useProfile = () => {
     clearBio,
     handleModalClick,
     handleDownload,
-    handleDelete
+    handleDelete,
   };
 };
 
