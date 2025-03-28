@@ -72,7 +72,7 @@ const VideoAI = () => {
         playsInline
         className="sm:absolute sm:-top-[5px] md:left-[150px] sm:max-w-[450px] pointer-events-none hidden md:!block"
       />
-      <p className="absolute md:left-3 top-[88px] md:top-[130px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden md:!block">
+      <p className="absolute md:left-3 top-[88px] md:top-[130px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#5252e5] to-[#0af] hidden md:!block">
         Creative Space
       </p>
       <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
@@ -100,7 +100,7 @@ const VideoAI = () => {
                 key={tab}
                 className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
                   mainTab === tab
-                    ? "bg-[#191d21] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] border-b-2 border-teal-400 !ml-0"
+                    ? "text-[#5252e5] border-b-2 border-[#6c6cf5] !ml-0"
                     : "text-white hover:text-[#c5c7d5] !ml-0"
                 }`}
                 onClick={() => setMainTab(tab)}
@@ -309,24 +309,6 @@ const VideoAI = () => {
           <Card>
             <div className="flex items-center justify-between">
               <SectionHeader icon={sun} title="Prompt" />
-              <div className="flex items-center text-sm leading-6 cursor-pointer text-white hover:text-[#82fac2] ease-linear duration-200">
-                <svg
-                  data-v-bef361bb=""
-                  fill="currentColor"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="m3.64062 8.35897c0-3.50359 2.85539-6.35897 6.35898-6.35897 3.5036 0 6.359 2.85538 6.359 6.35897-.0027 1.10593-.2921 2.19223-.84 3.15293-.548.9606-1.3356 1.7628-2.2862 2.3281-.0984.0574-.1559.1395-.1559.2297v.8534c0 .7877-.6482 1.4359-1.4359 1.4359h-3.28203c-.78769 0-1.43589-.6482-1.43589-1.4359v-.8534c0-.082-.05744-.1723-.1559-.2297-1.92821-1.1405-3.12616-3.241-3.12616-5.48103zm8.20518 5.70253c0-.5169.2953-1.0092.763-1.2882 1.5508-.9189 2.519-2.6092 2.519-4.41433 0-2.83076-2.2974-5.1282-5.1282-5.1282-2.83077 0-5.12821 2.29744-5.12821 5.1282.00105.89107.23382 1.76653.67544 2.54043.44163.774 1.07693 1.4197 1.84354 1.8739.4759.2708.76308.7713.76308 1.2882v.8534c0 .1148.09025.2051.20512.2051h3.28203c.1149 0 .2052-.0903.2052-.2051zm-3.33953 2.7077h3.28203c.3364 0 .6154.279.6154.6154s-.279.6154-.6154.6154h-3.28203c-.33641 0-.61539-.279-.61539-.6154s.27898-.6154.61539-.6154zm1.38666-8.60715 1.59997-.40205c.1235-.0308.2535-.02293.3724.02257.1188.04549.2209.12641.2922.23179.1477.22154.1395.50872-.0164.71385l-2.4615 3.28209c-.09793.1305-.24371.2168-.40528.2399s-.32569-.0189-.45626-.1169c-.13057-.0979-.21689-.2437-.23997-.4052-.02308-.1616.01897-.3257.11689-.4563l1.41952-1.89539-1.60003.40205c-.25436.06565-.51692-.04102-.66462-.25435-.14769-.22154-.13948-.50872.01641-.71385l2.46154-3.28205c.0979-.13057.2437-.21689.4053-.23997.08-.01143.1615-.00699.2397.01307.0783.02005.1519.05533.2165.10382.1306.09793.2169.24371.24.40528s-.019.32569-.1169.45626z"
-                    fill="currentColor"
-                    fillRule="evenodd"
-                  ></path>
-                </svg>
-                <span>Get Inspiration</span>
-              </div>
             </div>
             <div className="text-sm text-[#727485] mt-4">
               <div className="bg-[#0d1116] rounded-[12px] h-[210px] relative">
@@ -334,7 +316,7 @@ const VideoAI = () => {
                   {!prompt && (
                     <p className="text-[#727485] leading-7">
                       Please describe your creative ideas for the video, or view
-                      <span className="text-[#82fac2]"> Help Center</span> for a
+                      <span className="text-[#6c6cf5]"> Help Center</span> for a
                       quick start.
                     </p>
                   )}

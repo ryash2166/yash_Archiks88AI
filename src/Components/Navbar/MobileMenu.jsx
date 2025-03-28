@@ -8,12 +8,14 @@ import {
 } from "react-icons/fa6";
 import { PiLightbulbFilamentBold } from "react-icons/pi";
 import { TbChartCandle, TbGift } from "react-icons/tb";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import MenuIcon from "../../icons/menu";
+import { useNavigation } from "../../Context/NavigationContext"; // Import this
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const { setActiveTab } = useNavigation(); // Add this line
 
   // Toggle menu function
   const toggleMenu = () => {
@@ -34,17 +36,23 @@ const MobileMenu = () => {
     };
   }, []);
 
+  // Function to handle tab selection and close menu
+  const handleTabSelect = (tabName) => {
+    setActiveTab(tabName);
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative" ref={menuRef}>
       <button
-        className="focus:outline-none w-10 mr-1 text-white hover:text-[#72e528] border-r-[1px] border-[rgb(36,40,44)] overflow-hidden"
+        className="focus:outline-none w-10 mr-1 text-white hover:text-[#6c6cf5] border-r-[1px] border-[rgb(36,40,44)] overflow-hidden"
         type="button"
         onClick={toggleMenu}
         onMouseEnter={() => setIsOpen(true)}
       >
         <MenuIcon
           ariaExpanded={isOpen}
-          className="h-10 focus:text-[#72e528] focus:outline-none  text-white ml-2 cursor-pointer transition-colors"
+          className="h-10 focus:text-[#6c6cf5] focus:outline-none ml-2 cursor-pointer transition-colors"
         />
       </button>
 
@@ -54,7 +62,7 @@ const MobileMenu = () => {
           onMouseLeave={() => setIsOpen(false)}
         >
           <ul className="py-2 text-sm bg-transparent border-none outline-none rounded text-[#c5c7d5] dark:text-gray-200">
-            <Link to="/">
+            <Link to="/" onClick={() => handleTabSelect("Home")}>
               <li className="text-[#eee] flex items-center gap-2 hover:text-white hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <FaArrowLeftLong className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">
@@ -62,52 +70,37 @@ const MobileMenu = () => {
                 </span>
               </li>
             </Link>
-            <Link to="/explore">
+            <Link to="/explore" onClick={() => handleTabSelect("Explore")}>
               <li className="text-[#eee] flex items-center gap-2 hover:text-white hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <PiLightbulbFilamentBold className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">Explore</span>
               </li>
             </Link>
-            <Link to="/events">
+            <Link to="/events" onClick={() => handleTabSelect("Events")}>
               <li className="text-[#eee] flex items-center gap-2 hover:text-white hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <TbGift className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">Events</span>
               </li>
             </Link>
             <li className="gap-2 my-2 mx-[16px] border-t-[2px] border-[#242b35]  pl-[30px]"></li>
-            <Link to="/ImageAI">
+            <Link to="/ImageAI" onClick={() => handleTabSelect("ImageAI")}>
               <li className="text-[#eee] flex items-center gap-2 hover:text-white hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <FaImage className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">AI Images</span>
               </li>
             </Link>
-            <Link to="/VideoAI">
+            <Link to="/VideoAI" onClick={() => handleTabSelect("VideoAI")}>
               <li className="text-[#eee] flex items-center gap-2 hover:text-white hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <FaVideo className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">AI Videos</span>
               </li>
             </Link>
-            <li className="text-[#aaa] cursor-not-allowed py-2  my-[2px] pl-[30px] -ml-3">
-              <p className="flex items-center gap-2">
-                <TbChartCandle className="text-[18px]" />
-                <span className="text-[16px] leading-6 p-1 ">
-                  AI Custom Model
-                </span>
-              </p>
-            </li>
-            <li className="gap-2 my-2 mx-[16px] border-t-[2px] border-[#242b35]  pl-[30px]"></li>
-            <Link to="/profile" className="">
+            <Link to="/profile" onClick={() => handleTabSelect("My Creatives")}>
               <li className="text-[#eee] hover:text-white flex items-center gap-2 hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <FaFolderClosed className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">My Creatives</span>
               </li>
             </Link>
-            <li className="text-[#aaa] py-2  my-[2px] pl-[30px] -ml-3 cursor-not-allowed">
-              <p className="flex items-center gap-2">
-                <FaShield className="text-[18px]" />
-                <span className="text-[16px] leading-6 p-1 ">My Model</span>
-              </p>
-            </li>
           </ul>
         </div>
       )}

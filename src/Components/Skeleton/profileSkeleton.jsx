@@ -14,7 +14,7 @@ const ProfileSkeleton = () => {
                 <div className="space-y-2">
                   <div className="h-5 w-40 bg-slate-400/25 rounded-xl"></div>
                   <div className="h-5 w-96 bg-slate-400/25 rounded-xl"></div>
-                  <div className="h-5 w-40 bg-slate-400/25 rounded-xl"></div>
+                  <div className="h-5 w-36 bg-slate-400/25 rounded-xl"></div>
                 </div>
               </div>
               <div className="w-32 h-10 hidden md:block bg-slate-400/25 rounded-xl"></div>

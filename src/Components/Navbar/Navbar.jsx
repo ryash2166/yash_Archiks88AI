@@ -20,9 +20,12 @@ const Navbar = () => {
     isAuthenticated,
     authLoading,
     handleLogoClick,
+    handleMyCreativesClick,
     handleLogout,
     togglePopup,
   } = useNavbar();
+
+
 
   return (
     <div className="bg-[#0d1116] sticky top-0 z-20">
@@ -86,6 +89,7 @@ const Navbar = () => {
                       </p>
                       <Link
                         to="/profile"
+                        onClick={handleMyCreativesClick}
                         className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-[#272d33] hover:text-white"
                       >
                         <FaFolderClosed className="mr-3" />

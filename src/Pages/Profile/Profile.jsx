@@ -28,16 +28,15 @@ const Profile = () => {
     handleDelete,
   } = useProfile();
 
-
   if (isProfileLoading) {
     return <ProfileSkeleton />;
   }
 
   return (
     <div className="relative h-lvh w-full overflow-auto">
-      <div className="lg:pl-[260px] pt-0 m-0 bg-[#0d1116]">
+      <div className="lg:pl-[260px] pt-0 m-0 mt-3 bg-[#0d1116]">
         <div className="w-full h-[200px] mb-7 ">
-          <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-[18px] h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3  ">
+          {/* <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-[18px] h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3  ">
             <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
               <div className="md:mr-6 w-[100px] h-[100px]">
                 <img
@@ -59,11 +58,41 @@ const Profile = () => {
               </div>
             </div>
             <button
-              className="hover:bg-[#1c262b] border-[1px] border-[#999bac] h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-[6px] text-white w-[106px]"
+              className="hover:bg-[#5252e5] bg-transparent border border-[#5252e5] h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-[#5252e5] hover:text-white font-medium min-w-[106px]"
               onClick={openModal}
             >
               Edit Profile
             </button>
+          </div> */}
+          <div className="relative p-[3px] mx-5 rounded-[18px] bg-gradient-to-r to-[rgb(135,83,249)] from-[rgba(6,227,171,0.7)] ">
+            <div className="bg-[#0f141a] rounded-[16px] h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-[200px]">
+              <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
+                <div className="md:mr-6 w-[100px] h-[100px]">
+                  <img
+                    src={profile.avatar || personPlaceholder}
+                    alt="User Avatar"
+                    className="object-cover w-full h-full rounded-full"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 max-md:pt-2 max-md:items-center justify-center text-white">
+                  <div className="leading-[26px] text-lg whitespace-nowrap text-ellipsis">
+                    {profile.name || "User"}
+                  </div>
+                  <div className="leading-6 text-sm hidden md:block">
+                    {profile.bio || "Welcome to Archks88 AI"}
+                  </div>
+                  <div className="leading-6 text-sm">
+                    Credits: {profile.credits}
+                  </div>
+                </div>
+              </div>
+              <button
+                className="hover:bg-[#5252e5] bg-transparent border border-[#5252e5] h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-[#5252e5] hover:text-white font-medium min-w-[106px]"
+                onClick={openModal}
+              >
+                Edit Profile
+              </button>
+            </div>
           </div>
         </div>
         <div className="max-md:mt-24 mb-24 mx-5">
@@ -73,7 +102,7 @@ const Profile = () => {
             columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 4 }}
           >
             {profile?.images && profile.images.length > 0 && (
-              <div className="sticky top-0 bg-[#0d1116] z-10 text-white p-6 w-full shadow-xl text-3xl max-md:text-xl font-semibold">
+              <div className="sticky top-0 bg-[#0d1116] z-10 text-white md:p-6 pb-3 w-full shadow-xl text-2xl max-md:text-lg font-semibold">
                 Your Creativity
               </div>
             )}
@@ -92,7 +121,7 @@ const Profile = () => {
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
                       <div className="flex gap-4">
                         <FiDownload
-                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-blue-600"
+                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-[#5252e5]"
                           onClick={() =>
                             handleDownload(img.imageUrl, `${img._id}.png`)
                           }
@@ -116,7 +145,7 @@ const Profile = () => {
               <div className="flex justify-center mt-8">
                 <button
                   onClick={loadMoreImages}
-                  className="px-8 py-3 bg-[#1c262b] text-white rounded-full hover:bg-[#2a363d] transition-colors border border-[#445b5c] flex items-center"
+                  className="px-8 py-3 font-semibold bg-[#6c6cf5] text-white rounded-full hover:bg-[#5252e5] transition-colors border border-[#5252e5] flex items-center"
                 >
                   Load More
                 </button>
@@ -133,7 +162,7 @@ const Profile = () => {
         >
           <div className="bg-login p-6 rounded-lg w-full mx-3 max-w-[464px] relative">
             <button
-              className="absolute top-6 right-3 text-2xl md:text-[30px] font-bold text-gray-300"
+              className="absolute top-6 right-3 text-2xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300 transition-colors"
               onClick={closeModal}
             >
               <MdClose />
@@ -158,7 +187,7 @@ const Profile = () => {
                     viewBox="0 0 18 18"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 block absolute bottom-[30px] left-[calc(50%-10px)] text-white"
+                    className="w-5 h-5 block absolute bottom-[30px] left-[calc(50%-10px)] text-white cursor-pointer transition duration-200 group-hover:text-[#5252e5]"
                   >
                     <path
                       d="M15.9998 13.8333V13.6667C15.9998 13.2985 15.7013 13 15.3331 13H8.95306C8.79839 13 8.64854 13.0538 8.52916 13.1521L7.60996 13.9094C7.36861 14.1082 7.50921 14.5 7.82191 14.5H15.3331C15.7013 14.5 15.9998 14.2015 15.9998 13.8333Z"
@@ -191,7 +220,7 @@ const Profile = () => {
                   onChange={handleInputChange}
                   placeholder="Enter your name"
                   maxLength={20}
-                  className="w-full px-4 py-3 text-white bg-[#0d1116] rounded-xl focus:border-[1px] focus:outline-none border-[#445b5c] text-sm leading-6"
+                  className="w-full px-4 py-3 text-white bg-[#0d1116] rounded-xl focus:border focus:outline-none border-[#5252e5] text-sm leading-6"
                 />
                 <div className="text-right text-sm text-gray-500 absolute bottom-3 right-4">
                   {tempProfile.name ? tempProfile.name.length : 0}/20
@@ -204,7 +233,7 @@ const Profile = () => {
                   value={tempProfile.bio || ""}
                   onChange={handleInputChange}
                   placeholder="Enter your bio"
-                  className="w-full text-white bg-[#0d1116] rounded-lg px-[16px] pt-3 pb-8 focus:border-[1px] focus:outline-none border-[#445b5c] text-sm leading-6 resize-none"
+                  className="w-full text-white bg-[#0d1116] rounded-lg px-[16px] pt-3 pb-8 focus:border focus:outline-none border-[#5252e5] text-sm leading-6 resize-none"
                   maxLength={200}
                   rows="5"
                 ></textarea>
@@ -215,7 +244,7 @@ const Profile = () => {
                   <div className="border-l-[1px] border-[#4e5062] h-4 mt-[1px] mr-[0.5em]"></div>
                   <button
                     type="button"
-                    className="text-sm text-white transition duration-200 hover:text-[#9ffd38]"
+                    className="text-sm text-white transition duration-200 hover:text-[#5252e5]"
                     onClick={clearBio}
                   >
                     <svg
@@ -250,17 +279,17 @@ const Profile = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-end gap-2">
                 <button
                   type="button"
-                  className="px-6 py-[6px] text-sm bg-transparent text-white rounded-full border-[1px] border-[#999bac] hover:bg-[#1c262b]"
+                  className="px-6 py-[6px] text-sm bg-transparent text-[#6c6cf5] hover:underline"
                   onClick={closeModal}
                 >
                   Cancel
                 </button>
                 <Button
                   type="submit"
-                  className="py-[6px] px-6 text-black bg-[linear-gradient(89.86deg,#a7ff1a,#82fac2,#47d4ff)] hover:!bg-[linear-gradient(89.86deg,#81d100,#56d69a,#1aaad6)]"
+                  className="py-[6px] px-6 text-black bg-[#6c6cf5] cursor-pointer hover:bg-[#5252e5]"
                   title="Save"
                 />
               </div>

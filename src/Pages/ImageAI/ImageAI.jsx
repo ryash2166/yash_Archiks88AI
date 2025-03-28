@@ -84,7 +84,7 @@ const ImageAI = () => {
           playsInline
           className="sm:absolute sm:-top-[5px] md:left-[200px] sm:max-w-[380px] pointer-events-none hidden lg:!block"
         />
-        <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#fff] to-[#0af] hidden lg:!block">
+        <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#5252e5] to-[#0af] hidden lg:!block">
           Creative Space
         </p>
         <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
@@ -151,7 +151,7 @@ const ImageAI = () => {
                   key={tab}
                   className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
                     mainTab === tab
-                      ? "bg-[#191d21] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] border-b-2 border-teal-400 !ml-0"
+                      ? "text-[#6c6cf5]  border-b-2 border-[#5252e5] !ml-0"
                       : "text-white hover:text-[#c5c7d5] !ml-0"
                   }`}
                   onClick={() => setMainTab(tab)}
@@ -172,7 +172,7 @@ const ImageAI = () => {
                       <p className="text-[#727485] leading-7">
                         Please describe your creative ideas for the video, or
                         view
-                        <span className="text-[#82fac2]"> Help Center</span> for
+                        <span className="text-[#6c6cf5]"> Help Center</span> for
                         a quick start.
                       </p>
                     )}

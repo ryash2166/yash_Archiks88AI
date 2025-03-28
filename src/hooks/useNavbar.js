@@ -9,6 +9,9 @@ const useNavbar = () => {
   const { setActiveTab, profile, isAuthenticated, authLoading, logout } =
     useNavigation();
 
+
+    
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -31,6 +34,10 @@ const useNavbar = () => {
     setActiveTab("Home");
   };
 
+  const handleMyCreativesClick = () => {
+    setActiveTab("My Creatives");
+  };
+
   const handleLogout = () => {
     const result = logout();
     if (result.success) {
@@ -48,6 +55,7 @@ const useNavbar = () => {
     isAuthenticated,
     authLoading,
     handleLogoClick,
+    handleMyCreativesClick,
     handleLogout,
     togglePopup,
   };

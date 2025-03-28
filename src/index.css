@@ -29,13 +29,13 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(89.38deg, #a8ff1a 0.12%, #60edff 106.24%);
+  background: linear-gradient(89.38deg, #5252e5 0.12%, #6c6cf5 106.24%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .side-tag {
-  background: linear-gradient(89.38deg, #a8ff1a 0.12%, #60edff 106.24%);
+  background: linear-gradient(89.38deg, #5252e5 0.12%, #6c6cf5 106.24%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -93,72 +93,98 @@ body {
   background-repeat: no-repeat;
 }
 
-.bg-login{
-  background-image: linear-gradient(252.37deg,#1b262b .55%,#171b21,#191d23 90.08%),linear-gradient(68.56deg,#1e2930 29.44%,#1d1d1d 59.6%,#262a2f 82.91%,#2e4141 101.21%)!important;
+.bg-login {
+  background-image: linear-gradient(
+      252.37deg,
+      #1b262b 0.55%,
+      #171b21,
+      #191d23 90.08%
+    ),
+    linear-gradient(
+      68.56deg,
+      #1e2930 29.44%,
+      #1d1d1d 59.6%,
+      #262a2f 82.91%,
+      #2e4141 101.21%
+    ) !important;
   background-clip: border-box, padding-box !important;
   background-origin: border-box, padding-box !important;
-  border-radius:  12px;
+  border-radius: 12px;
   border: 1px solid #1e3139;
 }
 
-.bg-video{
-  background: linear-gradient(195.91deg,#2b444799,#171c24 50.49%,#182129 84.14%)
+.bg-video {
+  background: linear-gradient(
+    195.91deg,
+    #141f2099,
+    #171c24 50.49%,
+    #182129 84.14%
+  );
 }
 
-.css-r64h58-MuiSlider-rail{
-  background: #60edff !important;
+.css-r64h58-MuiSlider-rail {
+  background: #6c6cf5 !important;
   height: 4px !important;
   opacity: 1 !important;
 }
 
-.css-xvk2i-MuiSlider-track{
-  background: #a8ff1a !important;
+.css-xvk2i-MuiSlider-track {
+  background: #5252e5 !important;
   height: 4px !important;
   opacity: 1 !important;
   border: 0px !important;
 }
 
-.css-1xcmt9q-MuiSlider-thumb{
-  background: linear-gradient(89.38deg,#a8ff1a .12%,#60edff 106.24%) !important;
+.css-1xcmt9q-MuiSlider-thumb {
+  background: linear-gradient(
+    89.38deg,
+    #5252e5 0.12%,
+    #6c6cf5 106.24%
+  ) !important;
   border: 1px solid #fff !important;
   height: 14px !important;
   width: 14px !important;
 }
 
-.css-1xcmt9q-MuiSlider-thumb.Mui-active:hover{
+.css-1xcmt9q-MuiSlider-thumb.Mui-active:hover {
   box-shadow: none !important;
 }
 
-.css-1asissc-MuiSlider-valueLabel{
+.css-1asissc-MuiSlider-valueLabel {
   background: #0d111671 !important;
-  border-radius: 6px  !important;
+  border-radius: 6px !important;
 }
 
-.css-lq5hqx-MuiSlider-mark{
+.css-lq5hqx-MuiSlider-mark {
   border-radius: 50% !important;
-  background: white !important; 
+  background: white !important;
   width: 8px !important;
   height: 8px !important;
 }
 
-.Mui-disabled .css-16kozi8-MuiSlider-mark{
+.Mui-disabled .css-16kozi8-MuiSlider-mark {
   background: #333a45 !important;
 }
 
-.Mui-disabled .css-lq5hqx-MuiSlider-mark{
+.Mui-disabled .css-lq5hqx-MuiSlider-mark {
   background: #4e5062d9 !important;
 }
-.Mui-disabled .css-xvk2i-MuiSlider-track{
+.Mui-disabled .css-xvk2i-MuiSlider-track {
   background: #4e5062d9 !important;
 }
-.Mui-disabled .css-r64h58-MuiSlider-rail{
+.Mui-disabled .css-r64h58-MuiSlider-rail {
   background: #333a45 !important;
 }
-.Mui-disabled .css-1xcmt9q-MuiSlider-thumb{
+.Mui-disabled .css-1xcmt9q-MuiSlider-thumb {
   background: #4e5062d9 !important;
   border: none !important;
 }
 
-.bg-mobilemenu{
-  background: linear-gradient(254.03deg, #1b2829bb -4.51%,#171b21bb 46.42%,#191d23bb 91.45%);
+.bg-mobilemenu {
+  background: linear-gradient(
+    254.03deg,
+    #1b2829bb -4.51%,
+    #171b21bb 46.42%,
+    #191d23bb 91.45%
+  );
 }
