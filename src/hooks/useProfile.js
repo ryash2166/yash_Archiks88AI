@@ -18,9 +18,17 @@ const useProfile = () => {
 
   useEffect(() => {
     if (profile?.images) {
+      // Sort images by creation date (newest first)
+      const sortedImages = [...profile.images].sort((a, b) => {
+        // Assuming each image has a createdAt timestamp
+        // If no timestamp, fallback to sorting by _id (which often contains timestamp)
+        const dateA = new Date(a.createdAt || a._id);
+        const dateB = new Date(b.createdAt || b._id);
+        return dateB - dateA;
+      });
       const startIndex = 0;
       const endIndex = currentPage * imagesPerPage;
-      setDisplayedImages(profile.images.slice(startIndex, endIndex));
+      setDisplayedImages(sortedImages.slice(startIndex, endIndex));
     }
   }, [profile.images, currentPage]);
 
