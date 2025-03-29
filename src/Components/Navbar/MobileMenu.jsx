@@ -44,7 +44,7 @@ const MobileMenu = () => {
   return (
     <div className="relative" ref={menuRef}>
       <button
-        className="focus:outline-none w-10 mr-1 text-white hover:text-[#6c6cf5] border-r-[1px] border-[rgb(36,40,44)] overflow-hidden"
+        className="focus:outline-none sm:w-10 max-sm:pr-2 sm:mr-1 text-white hover:text-[#6c6cf5] border-r-[1px] border-[rgb(36,40,44)] overflow-hidden"
         type="button"
         onClick={toggleMenu}
         onMouseEnter={() => setIsOpen(true)}
