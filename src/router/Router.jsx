@@ -7,11 +7,12 @@ import NavbarAI from "../Components/Navbar/NavbarAI";
 const Router = () => {
   const location = useLocation();
 
-  const shouldShowSidebar = !["/ImageAI", "/VideoAI"].includes(location.pathname);
+  const shouldShowSidebar = !["/", "/ImageAI", "/VideoAI"].includes(location.pathname);
+  const shouldShowNavbar = !["/ImageAI", "/VideoAI"].includes(location.pathname);
 
   return (
     <>
-      {shouldShowSidebar ? <Navbar /> : <NavbarAI /> }
+      {shouldShowNavbar ? <Navbar /> : <NavbarAI /> }
 
       {shouldShowSidebar && <Sidebar />}
       <Outlet />

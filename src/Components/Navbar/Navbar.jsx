@@ -25,8 +25,6 @@ const Navbar = () => {
     togglePopup,
   } = useNavbar();
 
-
-
   return (
     <div className="bg-[#0d1116] sticky top-0 z-20">
       <header className="h-[68px] w-full px-1 sm:px-5">

@@ -61,7 +61,7 @@ const MobileMenu = () => {
           onMouseLeave={() => setIsOpen(false)}
         >
           <ul className="py-2 text-sm bg-transparent border-none outline-none rounded text-[#c5c7d5] dark:text-gray-200">
-            <Link to="/" onClick={() => handleTabSelect("Home")}>
+            <Link to="/dashboard" onClick={() => handleTabSelect("Home")}>
               <li className="text-[#eee] flex items-center gap-2 hover:text-white hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <FaArrowLeftLong className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">

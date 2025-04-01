@@ -1,15 +1,15 @@
 import React from "react";
-import Banner from "../../Components/Common/Banner";
-import SectionTitle from "../../Components/Common/SectionTitle";
-import MainVideo from "../../Components/Common/MainVideo";
-import { TrendingCardData } from "../../Data/AllData";
-import AutoCarousel from "../../Components/Common/AutoCarousel";
-import TrendingCard from "../../Components/Common/TrendingCard";
-import TrendingCreatives from "../../Components/Common/TrendingCreatives";
-import Footer from "../../Components/Footer/Footer";
-import Button from "../../Components/Common/Button";
+import Banner from "../Components/Common/Banner";
+import SectionTitle from "../Components/Common/SectionTitle";
+import MainVideo from "../Components/Common/MainVideo";
+import { TrendingCardData } from "../Data/AllData";
+import AutoCarousel from "../Components/Common/AutoCarousel";
+import TrendingCard from "../Components/Common/TrendingCard";
+import TrendingCreatives from "../Components/Common/TrendingCreatives";
+import Footer from "../Components/Footer/Footer";
+import Button from "../Components/Common/Button";
 
-const Main = () => {
+const Dashboard = () => {
   return (
     <div className="relative h-lvh w-full overflow-auto overflow-x-hidden">
       <main className="lg:pl-[260px] pt-0 m-0 bg-[#0d1116]">
@@ -83,4 +83,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Dashboard;

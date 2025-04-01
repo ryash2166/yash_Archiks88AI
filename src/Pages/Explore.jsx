@@ -1,9 +1,9 @@
 import React from "react";
 import Masonry from "react-responsive-masonry";
-import ResponsiveMasonryWrapper from "../../Components/Wrapper/ResponsiveMasonryWrapper";
+import ResponsiveMasonryWrapper from "../Components/Wrapper/ResponsiveMasonryWrapper";
 import { FaExclamationTriangle, FaImage } from "react-icons/fa";
-import ExploreSkeleton from "../../Components/Skeleton/exploreSkeleton";
-import { useNavigation } from "../../Context/NavigationContext";
+import { useNavigation } from "../Context/NavigationContext";
+import { ExploreSkeleton } from "../Components/Skeleton/SkeletonLoader";
 
 const Explore = () => {
   const { mediaItems, loading, error } = useNavigation();

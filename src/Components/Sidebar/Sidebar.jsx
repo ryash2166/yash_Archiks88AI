@@ -59,7 +59,7 @@ const Sidebar = () => {
         <div className="grow">
           <ul className="p-0">
             {/* Home */}
-            {renderTabLink("/", "Home", <GoHomeFill />, "Home")}
+            {renderTabLink("/dashboard", "Home", <GoHomeFill />, "Home")}
 
             {/* Explore */}
             {renderTabLink(

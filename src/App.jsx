@@ -1,11 +1,12 @@
 import React from "react";
-import Main from "./Pages/Main/Main";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Router from "./router/Router";
-import Profile from "./Pages/Profile/Profile";
-import Explore from "./Pages/Explore/Explore";
-import ImageAI from "./Pages/ImageAI/ImageAI";
-import VideoAI from "./Pages/VideoAI/VideoAI";
+import Profile from "./Pages/Profile";
+import Explore from "./Pages/Explore";
+import ImageAI from "./Pages/ImageAI";
+import VideoAI from "./Pages/VideoAI";
+import Dashboard from "./Pages/Dashboard";
+import LandingPage from "./Pages/LandingPage";
 import ProtectedRoute from "./router/ProtectedRoute";
 
 const App = () => {
@@ -16,7 +17,15 @@ const App = () => {
       children: [
         {
           path: "/",
-          element: <Main />,
+          element: <LandingPage />,
+        },
+        {
+          path: '/dashboard',
+          element: (
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/profile",

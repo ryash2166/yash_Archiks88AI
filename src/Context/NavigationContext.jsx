@@ -91,8 +91,10 @@ export const NavigationProvider = ({ children }) => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        await fetchProfile();
         setIsAuthenticated(true);
+        setAuthLoading(false);
+        window.location.replace("/");
+        await fetchProfile();
         return { success: true };
       }
 
@@ -123,8 +125,10 @@ export const NavigationProvider = ({ children }) => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        await fetchProfile();
         setIsAuthenticated(true);
+        setAuthLoading(false);
+        window.location.replace("/");
+        await fetchProfile();
         return { success: true };
       }
 
@@ -148,6 +152,7 @@ export const NavigationProvider = ({ children }) => {
       credits: 0,
       images: [],
     });
+    window.location.replace("/");
     return { success: true };
   };
 

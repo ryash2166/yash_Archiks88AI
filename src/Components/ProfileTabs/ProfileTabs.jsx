@@ -58,7 +58,7 @@ const ProfileTabs = () => {
                 <div className="w-full text-center flex flex-col justify-center items-center">
                   <img src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm">No Result Found</p>
-                </div>
+                </div> 
               </div>
             </div>
           );

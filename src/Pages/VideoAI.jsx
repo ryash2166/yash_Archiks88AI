@@ -3,17 +3,17 @@ import Slider from "@mui/material/Slider";
 // import promt from "../../assets/prompt.svg";
 // import upload from "../../assets/upload.svg";
 // import motion from "../../assets/motion.svg";
-import sun from "../../assets/sun.svg";
-import setting from "../../assets/setting.svg";
+import sun from "../assets/sun.svg";
+import setting from "../assets/setting.svg";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import camera from "../../assets/camera.svg";
-import camera2 from "../../assets/camera2.svg";
-import negative from "../../assets/negative.svg";
-// import AssetsPanel from "../../Components/Common/AssetsPanel";
-import nowork from "../../assets/nowork.svg";
-import { useNavigation } from "../../Context/NavigationContext";
+import camera from "../assets/camera.svg";
+import camera2 from "../assets/camera2.svg";
+import negative from "../assets/negative.svg";
+// import AssetsPanel from "../Components/Common/AssetsPanel";
+import nowork from "../assets/nowork.svg";
+import { useNavigation } from "../Context/NavigationContext";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
@@ -72,7 +72,7 @@ const VideoAI = () => {
         playsInline
         className="sm:absolute sm:-top-[5px] md:left-[150px] sm:max-w-[450px] pointer-events-none hidden lg:!block"
       />
-      <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#5252e5] to-[#0af] hidden lg:!block">
+      <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl bg-gradient-to-r from-[rgb(135,83,249)] to-[rgba(6,227,171,0.9)] bg-clip-text text-transparent hidden lg:!block">
         Creative Space
       </p>
       <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">

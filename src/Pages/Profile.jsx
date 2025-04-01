@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ProfileTabs from "../../Components/ProfileTabs/ProfileTabs";
-import personPlaceholder from "../../assets/person.png";
+import ProfileTabs from "../Components/ProfileTabs/ProfileTabs";
+import personPlaceholder from "../assets/person.png";
 import { MdClose } from "react-icons/md";
-import Button from "../../Components/Common/Button";
+import Button from "../Components/Common/Button";
 import { FiDownload, FiTrash2 } from "react-icons/fi";
-import ResponsiveMasonryWrapper from "../../Components/Wrapper/ResponsiveMasonryWrapper";
+import ResponsiveMasonryWrapper from "../Components/Wrapper/ResponsiveMasonryWrapper";
 import Masonry from "react-responsive-masonry";
-import useProfile from "../../hooks/useProfile";
-import ProfileSkeleton from "../../Components/Skeleton/profileSkeleton";
+import useProfile from "../hooks/useProfile";
+import { ProfileSkeleton } from "../Components/Skeleton/SkeletonLoader";
 
 const Profile = () => {
   const {
