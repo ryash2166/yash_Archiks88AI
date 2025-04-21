@@ -27,6 +27,8 @@ export const NavigationProvider = ({ children }) => {
   });
   const [isProfileLoading, setIsProfileLoading] = useState(true);
 
+  const token = localStorage.getItem("token");
+
   // Check authentication status on initial load
   useEffect(() => {
     checkAuthStatus();
@@ -93,7 +95,7 @@ export const NavigationProvider = ({ children }) => {
         localStorage.setItem("token", data.token);
         setIsAuthenticated(true);
         setAuthLoading(false);
-        window.location.replace("/");
+        window.location.replace("/dashboard");
         await fetchProfile();
         return { success: true };
       }
@@ -127,7 +129,7 @@ export const NavigationProvider = ({ children }) => {
         localStorage.setItem("token", data.token);
         setIsAuthenticated(true);
         setAuthLoading(false);
-        window.location.replace("/");
+        window.location.replace("/dashboard");
         await fetchProfile();
         return { success: true };
       }
@@ -152,7 +154,7 @@ export const NavigationProvider = ({ children }) => {
       credits: 0,
       images: [],
     });
-    window.location.replace("/");
+    window.location.replace("/");                                                                                                               
     return { success: true };
   };
 
@@ -495,6 +497,7 @@ export const NavigationProvider = ({ children }) => {
         // Navigation
         activeTab,
         setActiveTab,
+        token,
 
         // Authentication
         isAuthenticated,

@@ -61,7 +61,7 @@ const VideoAI = () => {
   };
 
   return (
-    <div className="bg-[#0d1116]">
+    <div className="bg-primary">
       <video
         src="https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/videos/main-video-DTZJwE9v.mp4"
         autoPlay
@@ -119,7 +119,7 @@ const VideoAI = () => {
                 JPG / PNG files up to 10MB with minimum dimensions of 300px
               </p>
 
-              <div className="bg-[#0d1116] rounded-t-[12px]">
+              <div className="bg-primary rounded-t-[12px]">
                 <div className="relative p-4">
                   <div className="flex items-center justify-center h-[174px]">
                     <div className="text-center">
@@ -152,7 +152,7 @@ const VideoAI = () => {
                 </div>
               </div>
 
-              <div className="border-t-[1px] bg-[#0d1116] border-[#2e3136] flex w-full items-center justify-between rounded-b-[12px] p-2">
+              <div className="border-t-[1px] bg-primary border-[#2e3136] flex w-full items-center justify-between rounded-b-[12px] p-2">
                 Hints
                 <div className="cursor-pointer h-12">
                   <img
@@ -247,8 +247,8 @@ const VideoAI = () => {
                   <span>Get Inspiration</span>
                 </div>
               </div>
-              <div className="bg-[#0d1116] rounded-[12px] h-[158px] relative">
-                <div className="bg-[#0d1116] rounded-[12px] h-[158px] relative">
+              <div className="bg-primary rounded-[12px] h-[158px] relative">
+                <div className="bg-primary rounded-[12px] h-[158px] relative">
                   <div className="mx-5 mt-[13px] absolute">
                     {!inputText && (
                       <p className="text-[#727485] leading-7">
@@ -311,7 +311,7 @@ const VideoAI = () => {
               <SectionHeader icon={sun} title="Prompt" />
             </div>
             <div className="text-sm text-[#727485] mt-4">
-              <div className="bg-[#0d1116] rounded-[12px] h-[210px] relative">
+              <div className="bg-primary rounded-[12px] h-[210px] relative">
                 <div className="mx-5 mt-7 lg:mt-[13px] absolute">
                   {!prompt && (
                     <p className="text-[#727485] leading-7">
@@ -419,7 +419,7 @@ const VideoAI = () => {
               title="Motion Brush"
               subtitle="Control the Movement of Objects"
             />
-            <div className="text-[#3b3c4d] py-3 px-4 rounded-[10px] bg-[#0d1116] flex flex-row-reverse mt-4">
+            <div className="text-[#3b3c4d] py-3 px-4 rounded-[10px] bg-primary flex flex-row-reverse mt-4">
               <svg
                 width="20"
                 height="20"
@@ -552,7 +552,7 @@ const VideoAI = () => {
               1.5
             </div>
             <div className="mt-4">
-              <div className="relative opacity-[30%] h-[220px] w-full rounded-[10px] bg-[#0d1116]">
+              <div className="relative opacity-[30%] h-[220px] w-full rounded-[10px] bg-primary">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#333a45] rounded-xl h-[164px] w-[284px]">
                   <img
                     src={camera2}
@@ -605,7 +605,7 @@ const VideoAI = () => {
               subtitle="Optional"
             />
             <div className="text-[#727485] mt-4 text-sm leading-6">
-              <div className="bg-[#0d1116] rounded-[10px] h-[158px]">
+              <div className="bg-primary rounded-[10px] h-[158px]">
                 <div className="grow-1 pt-3 px-4 pb-0  whitespace-pre-wrap">
                   List the types of content you don't want to see in the video.
                   Examples: animation, blur, distortion, disfigurement, low

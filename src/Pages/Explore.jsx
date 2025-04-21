@@ -25,9 +25,9 @@ const Explore = () => {
               className="w-full h-auto object-cover rounded-lg"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center gap-3">
                 {item.user && (
-                  <div className="flex items-center">
+                  <div className="flex items-center shrink-0">
                     <img
                       src={item.user.avatar}
                       alt={item.user.name}
@@ -75,7 +75,7 @@ const Explore = () => {
 
   return (
     <div className="relative h-lvh w-full overflow-auto overflow-x-hidden">
-      <div className="lg:pl-[260px] pt-0 mb-20 bg-[#0d1116]">
+      <div className="lg:pl-[260px] pt-0 mb-20 bg-primary">
         {/* Tab Header */}
         <div className="mb-8 pt-4 px-2 md:px-4">
           <h1 className="text-2xl font-bold text-white">Explore</h1>

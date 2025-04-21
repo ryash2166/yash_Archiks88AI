@@ -72,7 +72,7 @@ const Login = ({ isVisible, onClose }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full px-4 py-3 text-white bg-[#0d1116] hover:border-[#5252e5] rounded-xl border ${
+                className={`w-full px-4 py-3 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
                   errors.email ? "border-red-500" : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"
                 }`}
                 placeholder="Enter your email"
@@ -90,7 +90,7 @@ const Login = ({ isVisible, onClose }) => {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full px-4 py-3 pr-12 text-white bg-[#0d1116] hover:border-[#5252e5] rounded-xl border ${
+                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
                       errors.password ? "border-red-500" : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"
                     }`}
                     placeholder={
@@ -135,7 +135,7 @@ const Login = ({ isVisible, onClose }) => {
                     type={showPassword ? "text" : "password"}
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className={`w-full px-4 py-3 pr-12 text-white bg-[#0d1116] hover:border-[#5252e5] rounded-xl border ${
+                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
                       errors.newPassword ? "border-red-500" : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"
                     }`}
                     placeholder="New Password"
@@ -163,7 +163,7 @@ const Login = ({ isVisible, onClose }) => {
                     type={showPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={`w-full px-4 py-3 pr-12 text-white bg-[#0d1116] hover:border-[#5252e5] rounded-xl border ${
+                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
                       errors.confirmPassword
                         ? "border-red-500"
                         : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"

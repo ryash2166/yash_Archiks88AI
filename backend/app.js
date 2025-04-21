@@ -7,7 +7,7 @@ import imageRoutes from './routes/imageRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import exploreRoutes from './routes/exploreRoutes.js';
 
-dotenv.config();
+dotenv.config({ path: '.env.local' });
 const app = express();
 app.use(express.json({ limit: '5mb'}));
 

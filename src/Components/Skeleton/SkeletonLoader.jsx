@@ -32,7 +32,7 @@ const ExploreSkeleton = () => {
 const ProfileSkeleton = () => {
     return (
       <div className="relative h-lvh w-full overflow-auto">
-        <div className="lg:pl-[260px] p-7 pt-0 mb-20 bg-[#0d1116]">
+        <div className="lg:pl-[260px] p-7 pt-0 mb-20 bg-primary">
           <div className="animate-pulse w-full">
             <div className="h-auto md:h-[200px] w-full rounded-xl bg-slate-400/20  mb-5">
               <div className="flex items-center justify-center md:justify-between p-8">

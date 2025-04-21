@@ -28,12 +28,12 @@ const TrendingCard = ({
 
   return (
     <div
-      className="relative cursor-pointer rounded-xl w-full h-[204px] inline-block lg:w-[calc((100%-64.1px)/4)] bg-[#111] bg-cover lg:mr-[16px] mb-[16px] overflow-hidden group"
+      className="relative cursor-pointer rounded-xl h-52 inline-block lg:w-[calc((100%-64.1px)/4)] bg-black bg-cover  lg:mb-4 overflow-hidden group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Video Section */}
-      <div className="absolute w-full h-full bg-[#222] ">
+      <div className="absolute w-full h-full bg-black ">
         <video
           ref={videoRef}
           loop
@@ -50,7 +50,7 @@ const TrendingCard = ({
 
       {/* Content Section */}
       <div className="absolute w-full h-full bg-creative to-transparent  flex flex-col justify-end p-4">
-        <h4 className="text-base leading-[22.4px] mb-[2px] text-white overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap text-ellipsis">
+        <h4 className="text-base mb-[2px] text-white overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap text-ellipsis">
           {title}
         </h4>
         <p className="text-sm leading-6 mb-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">

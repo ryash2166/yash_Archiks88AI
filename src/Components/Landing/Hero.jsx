@@ -5,7 +5,7 @@ import { FloatingPaper } from "./FloatingPaper";
 import { RoboAnimation } from "./RoboAnimation";
 import { Link } from "react-router";
 
-function Hero() {
+const Hero = () => {
   return (
     <div className="relative hero-height flex items-center">
       {/* Floating papers background */}
@@ -47,20 +47,18 @@ function Hero() {
           >
             <Link to="/ImageAI">
               <Button
-                size="lg"
-                className="bg-[#6c6cf5] hover:bg-[#5252e5] text-white px-8"
+                className="bg-[#6c6cf5] hover:bg-[#5252e5] text-white px-8 flex items-center gap-2 py-3"
               >
-                <ImageIcon className="mr-2 h-5 w-5" />
+                <ImageIcon className="h-5 w-5" />
                 Image AI
               </Button>
             </Link>
             <Link to="/VideoAI">
               <Button
-                size="lg"
                 variant="outline"
-                className="text-white border-purple-500 hover:bg-purple-500/20"
+                className="text-white border-purple-500 hover:bg-purple-500/20 px-8 flex items-center gap-2 py-3"
               >
-                <VideoIcon className="mr-2 h-5 w-5" />
+                <VideoIcon className="h-5 w-5" />
                 Video AI
               </Button>
             </Link>
@@ -74,7 +72,7 @@ function Hero() {
       </div>
     </div>
   );
-}
+};
 
 function Button({ children, className, variant, size }) {
   const baseClasses = "px-4 py-2 rounded-md font-medium transition-colors";

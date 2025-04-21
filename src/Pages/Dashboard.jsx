@@ -11,8 +11,8 @@ import Button from "../Components/Common/Button";
 
 const Dashboard = () => {
   return (
-    <div className="relative h-lvh w-full overflow-auto overflow-x-hidden">
-      <main className="lg:pl-[260px] pt-0 m-0 bg-[#0d1116]">
+    <div className="relative w-full overflow-auto overflow-x-hidden">
+      <main className="lg:pl-[260px] pt-0 m-0 bg-primary">
         <MainVideo />
         <div className="relative max-xl:static">
           <h1 className="absolute mt-[-320px] ml-5 lg:ml-0 max-xl:static max-lg:mx-5 max-xl:mt-0">
@@ -47,7 +47,7 @@ const Dashboard = () => {
         {/* Trending Shorts Section */}
         <SectionTitle title="Trending Shorts" />
         <div className="mx-5 min-h-[220px]">
-          <div className="flex flex-wrap justify-center lg:justify-start">
+          <div className="flex flex-wrap justify-between max-lg:grid max-lg:grid-cols-2 max-sm:grid-cols-1 max-lg:gap-4">
             {TrendingCardData.map((card) => (
               <TrendingCard
                 key={card.id}

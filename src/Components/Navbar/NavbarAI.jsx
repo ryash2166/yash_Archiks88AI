@@ -8,6 +8,7 @@ import personPlaceholder from "../../assets/person.png";
 import { FaCoins, FaFolderClosed, FaUser } from "react-icons/fa6";
 import { FaSignOutAlt } from "react-icons/fa";
 import useNavbar from "../../hooks/useNavbar";
+import { useNavigation } from "../../Context/NavigationContext";
 
 const NavbarAI = () => {
   const {
@@ -24,14 +25,16 @@ const NavbarAI = () => {
     togglePopup,
   } = useNavbar();
 
+  const { token } = useNavigation();
+
   return (
-    <div className="bg-[#0d1116] sticky top-0 z-20">
+    <div className="bg-primary sticky top-0 z-20">
       <header className="h-[68px] w-full px-1 sm:px-5">
         <div className="flex h-full justify-between items-center px-2 gap-2.5">
           <div className="flex items-center h-full">
             <MobileMenu />
             <Link
-              to="/"
+              to={token ? "/dashboard" : "/"}
               className="flex h-full max-sm:ml-[2px] items-center"
               onClick={handleLogoClick}
             >

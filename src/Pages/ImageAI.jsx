@@ -72,7 +72,7 @@ const ImageAI = () => {
   const { loading } = useNavigation();
 
   return (
-    <div className="bg-[#0d1116]">
+    <div className="bg-primary">
       <form onSubmit={handleSubmit}>
         <video
           src="https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/videos/main-image-DBbp02YB.mp4"
@@ -166,7 +166,7 @@ const ImageAI = () => {
             <Card>
               <SectionHeader icon={sun} title="Start / End Frame and Prompt" />
               <div className="text-sm text-[#727485] mt-4">
-                <div className="bg-[#0d1116] rounded-[12px] h-[158px] relative">
+                <div className="bg-primary rounded-[12px] h-[158px] relative">
                   <div className="mx-5 mt-7 lg:mt-[13px] absolute">
                     {!formState.prompt && (
                       <p className="text-[#727485] leading-7">

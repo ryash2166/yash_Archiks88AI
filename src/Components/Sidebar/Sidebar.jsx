@@ -29,9 +29,7 @@ const Sidebar = () => {
           to={to}
           onClick={() => setActiveTab(tab)}
           className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full duration-100 ease-linear flex items-center cursor-pointer ${
-            isActive
-              ? "text-[#5252e5]"
-              : "text-[#c5c7d5]"
+            isActive ? "text-[#5252e5]" : "text-[#c5c7d5]"
           }`}
         >
           <div

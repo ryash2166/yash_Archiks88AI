@@ -8,7 +8,7 @@ const AssetsPanel = () => {
 
   return (
     <div
-      className={`h-full border-[#2e3136] bg-[#0d1116] border-[1px] rounded-xl pt-[16px] pb-0 px-[15px] absolute right-5 transition-all duration-300 ease-in-out  ${
+      className={`h-full border-[#2e3136] bg-primary border-[1px] rounded-xl pt-[16px] pb-0 px-[15px] absolute right-5 transition-all duration-300 ease-in-out  ${
         isExpanded ? "w-[548px]" : "w-[152px]"
       } `}
     >
@@ -32,7 +32,7 @@ const AssetsPanel = () => {
       {/* Toggle Button */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="absolute w-6 h-[37px] mt-[calc((100vh-200px)/2)] -ml-[27px] border-[1px] border-r-[0px]  border-[#2e3136] bg-[#0d1116] rounded-l-full transform -translate-y-1/2 -translate-x-1/2 pl-[6px] text-[#72e528]"
+        className="absolute w-6 h-[37px] mt-[calc((100vh-200px)/2)] -ml-[27px] border-[1px] border-r-[0px]  border-[#2e3136] bg-primary rounded-l-full transform -translate-y-1/2 -translate-x-1/2 pl-[6px] text-[#72e528]"
       >
         <ExpandIcon
           className={`transform transition-transform ${

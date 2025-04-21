@@ -5,9 +5,9 @@ import discord from "../../assets/discord.svg";
 import youtube from "../../assets/youtube.svg";
 import twitter from "../../assets/twitter.svg";
 
-const Footer = () => {
+const Footer = ({margin = true}) => {
   return (
-    <div className="pt-10 pb-9 px-6 lg:ml-[260px] lg:pr-[42px] border-t-[1px] border-[#333]">
+    <div className={`pt-10 pb-9 px-6  border-t-[1px] border-[#333] relative h-full ${margin ? "lg:ml-[260px] lg:pr-[42px]" : ""}`}>
       <div className="text-white flex flex-col md:flex-row flex-wrap md:justify-between gap-3">
         <div className="mb-6 lg:mb-0 w-full lg:w-auto flex items-start justify-center ">
           <img src={logo} alt="Logo" className="" />
@@ -56,7 +56,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom Section */}
-      <div className="text-xs text-center mt-12 mb-20 text-[#4e495a]">
+      <div className={`text-xs text-center mt-12 ${margin ? "mb-12" : ""} text-[#4e495a]`}>
         <p>Archiks88ai.com 2024 © All rights Reserved</p>
       </div>
     </div>

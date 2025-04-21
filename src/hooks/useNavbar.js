@@ -9,9 +9,6 @@ const useNavbar = () => {
   const { setActiveTab, profile, isAuthenticated, authLoading, logout } =
     useNavigation();
 
-
-    
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
