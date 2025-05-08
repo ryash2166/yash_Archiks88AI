@@ -1,16 +1,17 @@
 import React from "react";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.svg"
 import { FaAngleRight } from "react-icons/fa";
 import discord from "../../assets/discord.svg";
 import youtube from "../../assets/youtube.svg";
 import twitter from "../../assets/twitter.svg";
+import LazyLoadImg from "../Common/LazyLoadImg";
 
 const Footer = ({margin = true}) => {
   return (
     <div className={`pt-10 pb-9 px-6  border-t-[1px] border-[#333] relative h-full ${margin ? "lg:ml-[260px] lg:pr-[42px]" : ""}`}>
       <div className="text-white flex flex-col md:flex-row flex-wrap md:justify-between gap-3">
         <div className="mb-6 lg:mb-0 w-full lg:w-auto flex items-start justify-center ">
-          <img src={logo} alt="Logo" className="" />
+          <LazyLoadImg src={logo} alt="Logo" className="" />
         </div>
 
         <div className="mb-6 max-md:flex flex-col items-center">
@@ -41,15 +42,15 @@ const Footer = ({margin = true}) => {
 
         <div className="flex lg:hidden xl:flex justify-center lg:justify-end w-full md:w-auto space-x-6">
           <div className="flex flex-col items-center max-lg:mb-4">
-            <img src={discord} alt="" width={65} height={65} className="mb-1" />
+            <LazyLoadImg src={discord} alt="" width={65} height={65} className="mb-1" />
             <p className="text-center">Discord</p>
           </div>
           <div className="flex flex-col items-center max-lg:mb-4">
-            <img src={youtube} alt="" width={65} height={65} className="mb-1" />
+            <LazyLoadImg src={youtube} alt="" width={65} height={65} className="mb-1" />
             <p>YouTube</p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={twitter} alt="" width={65} height={65} className="mb-1" />
+            <LazyLoadImg src={twitter} alt="" width={65} height={65} className="mb-1" />
             <p>Twitter</p>
           </div>
         </div>

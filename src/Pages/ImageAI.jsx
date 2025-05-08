@@ -9,10 +9,11 @@ import AspectRatioSelector from "../Components/AspectRatio/AspectRatioSelector";
 import nowork from "../assets/nowork.svg";
 import { useNavigation } from "../Context/NavigationContext";
 import useImageAI from "../hooks/useImageAI";
+import LazyLoadImg from "../Components/Common/LazyLoadImg";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
-    <img src={icon} alt={title} />
+    <LazyLoadImg src={icon} alt={title} />
     <span className="text-[16px]  text-left pl-[6px] text-white">{title}</span>
     {subtitle && (
       <span className="text-sm text-[#999bac] text-left pl-[6px]">
@@ -103,7 +104,7 @@ const ImageAI = () => {
               <div className="grid grid-cols-auto gap-4">
                 {results.map((result, index) => (
                   <div key={index} className="relative">
-                    <img
+                    <LazyLoadImg
                       src={result.url}
                       alt={result.prompt || "Generated image"}
                       className={`rounded-lg w-96 object-cover ${
@@ -128,7 +129,7 @@ const ImageAI = () => {
             </div>
           ) : (
             <div className="flex flex-col items-center">
-              <img src={nowork} alt="" />
+              <LazyLoadImg src={nowork} alt="" />
               <p className="text-[#c5c7d5] text-sm">
                 {error || "Release your creative potential..."}
               </p>
@@ -195,7 +196,7 @@ const ImageAI = () => {
                       onClick={() => setFormState({ ...formState, prompt: "" })}
                       className="absolute right-4 bottom-2 text-white hover:text-white"
                     >
-                      <img src={deleteIcon} alt="" />
+                      <LazyLoadImg src={deleteIcon} alt="" />
                     </button>
                   )}
                 </div>
@@ -210,9 +211,9 @@ const ImageAI = () => {
                     Blue melancholy
                   </div>
                 </div>
-                <div className="inline-flex hidden items-center">
+                <div className="hidden items-center">
                   <button className="text-white">
-                    <img src={refresh} alt="" />
+                    <LazyLoadImg src={refresh} alt="" />
                   </button>
                 </div>
               </div>
@@ -265,7 +266,7 @@ const ImageAI = () => {
                   <div className="grid grid-cols-auto gap-4">
                     {results.map((result, index) => (
                       <div key={index} className="relative">
-                        <img
+                        <LazyLoadImg
                           src={result.url}
                           alt={result.prompt || "Generated image"}
                           className={`rounded-lg object-cover  ${
@@ -290,7 +291,7 @@ const ImageAI = () => {
                 </div>
               ) : (
                 <div className="flex flex-col items-center">
-                  <img src={nowork} alt="" />
+                  <LazyLoadImg src={nowork} alt="" />
                   <p className="text-[#c5c7d5] text-sm">
                     {error || "Release your creative potential..."}
                   </p>

@@ -16,7 +16,7 @@ const PlayIcon = (props) => {
         height="32"
         rx="16"
         fill="black"
-        fill-opacity="0.25"
+        fillOpacity="0.25"
       />
       <rect
         x="0.899902"
@@ -25,11 +25,11 @@ const PlayIcon = (props) => {
         height="31"
         rx="15.5"
         stroke="white"
-        stroke-opacity="0.5"
+        strokeOpacity="0.5"
       />
       <mask
         id="mask0_5286_26718"
-        style="mask-type:alpha;"
+        style={{maskType:"alpha"}}
         maskUnits="userSpaceOnUse"
         x="8"
         y="8"

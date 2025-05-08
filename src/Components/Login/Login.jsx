@@ -32,7 +32,7 @@ const Login = ({ isVisible, onClose }) => {
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="bg-login mx-4 w-full max-w-[520px] rounded-lg shadow-lg relative flex overflow-hidden">
-        {/* <img
+        {/* <LazyLoadImg
           src={loginImg}
           alt=""
           width={279}

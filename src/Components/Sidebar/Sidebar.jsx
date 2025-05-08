@@ -10,6 +10,7 @@ import { FaImage, FaVideo } from "react-icons/fa";
 import { TbChartCandle } from "react-icons/tb";
 import { FaFolderClosed, FaShield } from "react-icons/fa6";
 import { useNavigation } from "../../Context/NavigationContext";
+import LazyLoadImg from "../Common/LazyLoadImg";
 
 const Sidebar = () => {
   const { activeTab, setActiveTab } = useNavigation();
@@ -144,10 +145,10 @@ const Sidebar = () => {
 
         {/* Social Media Icons */}
         <div className="px-3 flex flex-row gap-[16px]">
-          <img src={discord} alt="Discord" width={28} height={28} />
-          <img src={twitter} alt="Twitter" width={28} height={28} />
-          <img src={youtube} alt="YouTube" width={28} height={28} />
-          <img src={insta} alt="Instagram" width={28} height={28} />
+          <LazyLoadImg src={discord} alt="Discord" width={28} height={28} />
+          <LazyLoadImg src={twitter} alt="Twitter" width={28} height={28} />
+          <LazyLoadImg src={youtube} alt="YouTube" width={28} height={28} />
+          <LazyLoadImg src={insta} alt="Instagram" width={28} height={28} />
         </div>
 
         {/* Release Notes */}

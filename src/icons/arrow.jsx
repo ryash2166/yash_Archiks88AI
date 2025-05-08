@@ -29,23 +29,23 @@ const ArrowIcon = (props) => {
           id="paint0_linear_950_14379"
           x1="0.333252"
           y1="0"
-          x2="36.3333"
+          x2="3.3333"
           y2="36"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stopColor="#23FAEC"></stop>
-          <stop offset="0" stopColor="#00AAFF"></stop>
+          <stop offset="0" stopColor="#7e22ce"></stop>
+          <stop offset="1" stopColor="#0369a1"></stop>
         </linearGradient>
         <linearGradient
           id="paint1_linear_950_14379"
           x1="26.3888"
           y1="11.6111"
-          x2="13.9468"
+          x2="1.9468"
           y2="27.2988"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stopColor="#23FAEC"></stop>
-          <stop offset="0" stopColor="#00AAFF"></stop>
+          <stop offset="0" stopColor="#7e22ce"></stop>
+          <stop offset="1" stopColor="#0369a1"></stop>
         </linearGradient>
       </defs>
     </svg>

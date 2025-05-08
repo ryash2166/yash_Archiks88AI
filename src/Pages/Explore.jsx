@@ -4,6 +4,7 @@ import ResponsiveMasonryWrapper from "../Components/Wrapper/ResponsiveMasonryWra
 import { FaExclamationTriangle, FaImage } from "react-icons/fa";
 import { useNavigation } from "../Context/NavigationContext";
 import { ExploreSkeleton } from "../Components/Skeleton/SkeletonLoader";
+import LazyLoadImg from "../Components/Common/LazyLoadImg";
 
 const Explore = () => {
   const { mediaItems, loading, error } = useNavigation();
@@ -19,7 +20,7 @@ const Explore = () => {
             key={item._id}
             className="relative group mb-2 hover:opacity-80 transition-opacity duration-300"
           >
-            <img
+            <LazyLoadImg
               src={item.imageUrl}
               alt={item.prompt || "Generated Image"}
               className="w-full h-auto object-cover rounded-lg"
@@ -28,7 +29,7 @@ const Explore = () => {
               <div className="flex justify-between items-center gap-3">
                 {item.user && (
                   <div className="flex items-center shrink-0">
-                    <img
+                    <LazyLoadImg
                       src={item.user.avatar}
                       alt={item.user.name}
                       className="w-7 h-7 rounded-full mr-2 object-cover"

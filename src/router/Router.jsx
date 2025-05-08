@@ -48,10 +48,10 @@ const Router = () => {
   return (
     <div
       className={`relative w-full ${
-        isLandingPage ? "overflow-auto" : "h-screen overflow-hidden"
+        isLandingPage ? "overflow-" : "h-dvh overflow-hidden"
       }`}
     >
-      {shouldShowNavbar ? <Navbar /> : <NavbarAI />}
+      {shouldShowNavbar ? <Navbar container={isLandingPage} /> : <NavbarAI />}
 
       <div
         className={`${shouldShowSidebar ? "" : ""} ${
@@ -60,7 +60,6 @@ const Router = () => {
       >
         {shouldShowSidebar && <Sidebar />}
 
-        {/* Scrollable content area when not on landing page */}
         <div
           className={`${
             !isLandingPage && !isDashboard ? "h-full overflow-y-auto" : ""

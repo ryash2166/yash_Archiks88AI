@@ -28,7 +28,7 @@ const ProfileTabs = () => {
             <div className="text-center">
               <div className="pt-[80px] mb-5">
                 <div className="w-full text-center flex flex-col justify-center items-center">
-                  <img src={nowork} alt="No_Work" width={120} height={120} />
+                  <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm">
                     Release your creative potential. Experience the magic of
                     Archiks88 AI.
@@ -56,7 +56,7 @@ const ProfileTabs = () => {
             <div className="text-center">
               <div className="pt-[80px] mb-5">
                 <div className="w-full text-center flex flex-col justify-center items-center">
-                  <img src={nowork} alt="No_Work" width={120} height={120} />
+                  <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm">No Result Found</p>
                 </div> 
               </div>
@@ -67,7 +67,7 @@ const ProfileTabs = () => {
             <div className="text-center">
               <div className="pt-[80px] mb-5">
                 <div className="w-full text-center flex flex-col justify-center items-center">
-                  <img src={nowork} alt="No_Work" width={120} height={120} />
+                  <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm">No Result Found</p>
                 </div>
               </div>
@@ -83,7 +83,7 @@ const ProfileTabs = () => {
             <div className="text-center flex justify-center">
               <div className="pt-[80px] mb-5">
                 <div>
-                  <img src={nowork} alt="No_Work" width={120} height={120} />
+                  <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm mb-3">No Works</p>
                 </div>
               </div>
@@ -94,7 +94,7 @@ const ProfileTabs = () => {
             <div className="text-center flex justify-center">
               <div className="pt-[80px] mb-5">
                 <div className="flex flex-col items-center">
-                  <img src={nowork} alt="No_Work" width={120} height={120} />
+                  <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm mb-3">
                     You haven't published any works. Share your masterpiece now.
                   </p>
@@ -112,7 +112,7 @@ const ProfileTabs = () => {
             <div className="text-center flex justify-center">
               <div className="pt-[80px] mb-5">
                 <div className="flex flex-col items-center">
-                  <img src={nowork} alt="No_Work" width={120} height={120} />
+                  <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm mb-3">
                     You haven't liked any works. Show some love to our
                     masterpiece.
@@ -132,7 +132,7 @@ const ProfileTabs = () => {
             <div className="text-center flex justify-center">
               <div className="pt-[80px] mb-5">
                 <div className="flex flex-col items-center">
-                  <img src={nowork} alt="No_Work" width={120} height={120} />
+                  <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
                   <p className="text-[#c5c7d5] text-sm mb-3">
                     You haven't liked any works. Show some love to our
                     masterpiece.

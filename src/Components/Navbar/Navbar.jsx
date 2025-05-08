@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.svg"
 import Button from "../Common/Button";
 import Login from "../Login/Login";
 import personPlaceholder from "../../assets/person.png";
@@ -9,8 +9,9 @@ import { FaSignOutAlt } from "react-icons/fa";
 import MobileMenu from "./MobileMenu";
 import useNavbar from "../../hooks/useNavbar";
 import { useNavigation } from "../../Context/NavigationContext";
+import LazyLoadImg from "../Common/LazyLoadImg";
 
-const Navbar = () => {
+const Navbar = ({ container = false }) => {
   const {
     showLoginPopup,
     setShowLoginPopup,
@@ -27,10 +28,28 @@ const Navbar = () => {
   } = useNavbar();
 
   const { token } = useNavigation();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50); // Adjust scrollY threshold as needed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="bg-primary sticky top-0 z-20">
-      <header className="h-[68px] w-full px-1 sm:px-5">
+    <div
+      className={`sticky top-0 w-full z-20 transition-all duration-500 ${
+        scrolled ? "bg-primary/95 backdrop-blur-sm shadow-md" : "bg-primary"
+      }`}
+    >
+      <header
+        className={`h-[68px] w-full px-1 sm:px-5 ${
+          container ? "container mx-auto" : ""
+        } `}
+      >
         <div className="flex h-full justify-between items-center px-2 gap-2.5">
           <div className="flex items-center">
             <div className="lg:hidden mt-1.5">
@@ -42,7 +61,7 @@ const Navbar = () => {
                 className="flex h-full max-sm:ml-[2px] items-center"
                 onClick={handleLogoClick}
               >
-                <img src={logo} alt="Logo" />
+                <LazyLoadImg src={logo} alt="Logo" />
               </Link>
             </div>
           </div>
@@ -64,7 +83,7 @@ const Navbar = () => {
                       {profile.credits || 0}
                     </p>
                   </div>
-                  <img
+                  <LazyLoadImg
                     onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                     src={profile.avatar || personPlaceholder}
                     alt="User Avatar"
@@ -116,13 +135,13 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </header>
-
-      {/* Login Popup */}
       <Login
         isVisible={showLoginPopup}
         onClose={() => setShowLoginPopup(false)}
       />
+      </header>
+
+      {/* Login Popup */}
     </div>
   );
 };

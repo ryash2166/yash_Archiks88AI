@@ -11,6 +11,7 @@ import { ProfileSkeleton } from "../Components/Skeleton/SkeletonLoader";
 import DeleteModal from "../Components/Modal/DeleteModal";
 import DeleteIcon from "../icons/delete";
 import EditIcon from "../icons/edit";
+import LazyLoadImg from "../Components/Common/LazyLoadImg";
 const Profile = () => {
   const {
     profile,
@@ -40,11 +41,11 @@ const Profile = () => {
   return (
     <div className="relative h-lvh w-full overflow-auto">
       <div className="lg:pl-[260px] pt-0 m-0 mt-3 bg-primary">
-        <div className="w-full h-[200px] mb-7 ">
+        <div className="w-full h-[200px] mb-7">
           {/* <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-[18px] h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3  ">
             <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
               <div className="md:mr-6 w-[100px] h-[100px]">
-                <img
+                <LazyLoadImg
                   src={profile.avatar || personPlaceholder}
                   alt="User Avatar"
                   className="object-cover w-full h-full rounded-full"
@@ -73,7 +74,7 @@ const Profile = () => {
             <div className="bg-login rounded-3xl h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-[200px]">
               <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
                 <div className="md:mr-6 w-28 h-28">
-                  <img
+                  <LazyLoadImg
                     src={profile.avatar || personPlaceholder}
                     alt="User Avatar"
                     className="object-cover object-center w-full h-full rounded-full"
@@ -100,10 +101,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="max-md:mt-24 mb-24 mx-5">
+        <div className="max-md:mt-28 mb-24 mx-5">
           {!profile?.images && <ProfileTabs />}
           <ResponsiveMasonryWrapper
-            className="mt-3"
             columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 4 }}
           >
             {profile?.images && profile.images.length > 0 && (
@@ -118,7 +118,7 @@ const Profile = () => {
                     key={img._id}
                     className="relative inline-block group mb-2 md:mr-2"
                   >
-                    <img
+                    <LazyLoadImg
                       src={img.imageUrl}
                       alt={img.prompt}
                       className="cursor-pointer rounded-[18px]"
@@ -183,7 +183,7 @@ const Profile = () => {
                   htmlFor="avatar-upload"
                   className="cursor-pointer relative group"
                 >
-                  <img
+                  <LazyLoadImg
                     src={tempProfile.avatar || personPlaceholder}
                     alt="User Avatar"
                     className="object-cover inline-flex w-[80px] h-[80px] rounded-full group-hover:opacity-50 transition-opacity"

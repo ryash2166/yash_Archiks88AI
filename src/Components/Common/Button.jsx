@@ -1,12 +1,13 @@
 import React from "react";
 
-const Button = ({ title, className , onClick }) => {
+const Button = ({ title, className , onClick, icon }) => {
   return (
     <button
-      className={`text-white font-medium rounded-full cursor-pointer py-[6px] px-4 m-0 text-sm whitespace-nowrap w-auto leading-6 ${className} `}
+      className={`text-white font-medium rounded-full cursor-pointer py-[6px] px-4 m-0 text-sm whitespace-nowrap w-auto leading-6 transition-all duration-300 ${className} ${icon ? "flex items-center justify-center gap-2.5" : ""} `}
       onClick={onClick}
     >
-      {title}
+      {icon && <div>{icon}</div>}
+      <p className={`${icon && 'mt-1'}`}>{title}</p>
     </button>
   );
 };

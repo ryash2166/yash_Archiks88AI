@@ -14,10 +14,11 @@ import negative from "../assets/negative.svg";
 // import AssetsPanel from "../Components/Common/AssetsPanel";
 import nowork from "../assets/nowork.svg";
 import { useNavigation } from "../Context/NavigationContext";
+import LazyLoadImg from "../Components/Common/LazyLoadImg";
 
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
-    <img src={icon} alt={title} />
+    <LazyLoadImg src={icon} alt={title} />
     <span className="text-[16px]  text-left pl-[6px] text-white">{title}</span>
     {subtitle && (
       <span className="text-sm text-[#999bac] text-left pl-[6px]">
@@ -77,7 +78,7 @@ const VideoAI = () => {
       </p>
       <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
         <div className="flex flex-col items-center">
-          <img src={nowork} alt="" width={120} height={120} />
+          <LazyLoadImg src={nowork} alt="" width={120} height={120} />
           <p className="text-[#c5c7d5] text-sm">
             Release your creative potential. Experience the magic of Archiks88
             AI.
@@ -124,7 +125,7 @@ const VideoAI = () => {
                   <div className="flex items-center justify-center h-[174px]">
                     <div className="text-center">
                       <div className="text-[#36ee45] text-lg flex items-center justify-center">
-                        <img
+                        <LazyLoadImg
                           src={upload}
                           alt="Upload Icon"
                           width={20}
@@ -155,35 +156,35 @@ const VideoAI = () => {
               <div className="border-t-[1px] bg-primary border-[#2e3136] flex w-full items-center justify-between rounded-b-[12px] p-2">
                 Hints
                 <div className="cursor-pointer h-12">
-                  <img
+                  <LazyLoadImg
                     src="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/kling/prompt-library-resources/image-to-video_1.6_en_examples_Real_Woman_400.jpeg?x-oss-process=image%2Fresize%2Cw_48%2Ch_48%2Cm_mfit"
                     alt="video_hints_img"
                     className="rounded-lg object-fill w-12 h-12"
                   />
                 </div>
                 <div className="cursor-pointer h-12">
-                  <img
+                  <LazyLoadImg
                     src="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/kling/prompt-library-resources/image-to-video_1.6_en_examples_Real_Woman_400.jpeg?x-oss-process=image%2Fresize%2Cw_48%2Ch_48%2Cm_mfit"
                     alt="video_hints_img"
                     className="rounded-lg object-fill w-12 h-12"
                   />
                 </div>
                 <div className="cursor-pointer h-12">
-                  <img
+                  <LazyLoadImg
                     src="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/kling/prompt-library-resources/image-to-video_1.6_en_examples_Real_Woman_400.jpeg?x-oss-process=image%2Fresize%2Cw_48%2Ch_48%2Cm_mfit"
                     alt="video_hints_img"
                     className="rounded-lg object-fill w-12 h-12"
                   />
                 </div>
                 <div className="cursor-pointer h-12">
-                  <img
+                  <LazyLoadImg
                     src="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/kling/prompt-library-resources/image-to-video_1.6_en_examples_Real_Woman_400.jpeg?x-oss-process=image%2Fresize%2Cw_48%2Ch_48%2Cm_mfit"
                     alt="video_hints_img"
                     className="rounded-lg object-fill w-12 h-12"
                   />
                 </div>
                 <div className="cursor-pointer h-12">
-                  <img
+                  <LazyLoadImg
                     src="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/kling/prompt-library-resources/image-to-video_1.6_en_examples_Real_Woman_400.jpeg?x-oss-process=image%2Fresize%2Cw_48%2Ch_48%2Cm_mfit"
                     alt="video_hints_img"
                     className="rounded-lg object-fill w-12 h-12"
@@ -554,7 +555,7 @@ const VideoAI = () => {
             <div className="mt-4">
               <div className="relative opacity-[30%] h-[220px] w-full rounded-[10px] bg-primary">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#333a45] rounded-xl h-[164px] w-[284px]">
-                  <img
+                  <LazyLoadImg
                     src={camera2}
                     alt="Movement"
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "

@@ -10,8 +10,8 @@ const YoutubeIcon = ({ size, props }) => {
       fill="none"
       {...props}
     >
-      <circle cx="14" cy="14" r="14" fill="#fff" fill-opacity=".12" />
-      <g clip-path="url(#a)">
+      <circle cx="14" cy="14" r="14" fill="#fff" fillOpacity=".12" />
+      <g clipPath="url(#a)">
         <path
           fill="#fff"
           fillRule="evenodd"
