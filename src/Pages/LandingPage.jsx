@@ -352,7 +352,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div className="flex flex-col lg:flex-row gap-10 ">
-              <div className="flex flex-col gap-3 ">
+              <div className="flex flex-col items-center justify-center gap-3 ">
                 <LazyLoadImg
                   src="https://shortful.ai/_next/static/media/text_to_video_bg.d6a9304a.svg"
                   alt=""
@@ -376,7 +376,7 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 ">
+              <div className="flex flex-col items-center justify-center gap-3 ">
                 <LazyLoadImg
                   src="https://shortful.ai/_next/static/media/image_to_video_bg.e9094cda.svg"
                   alt=""

@@ -73,7 +73,7 @@ const TestimonialSection = () => {
             {testimonials.map((index) => (
               <div
                 key={index.id}
-                className="transition-all duration-300 ease-in-out transform hover:scale-105 w-full"
+                className="transition-all duration-300 ease-in-out transform hover:scale-[1.02] w-full"
               >
                 <TestimonialCard
                   name={index.name}
