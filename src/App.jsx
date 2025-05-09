@@ -8,6 +8,7 @@ import VideoAI from "./Pages/VideoAI";
 import Dashboard from "./Pages/Dashboard";
 import LandingPage from "./Pages/LandingPage";
 import ProtectedRoute from "./router/ProtectedRoute";
+import Pricing from "./Pages/Pricing";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const App = () => {
         {
           path: "/explore",
           element: <Explore />,
+        },
+        {
+          path: "/pricing",
+          element: <Pricing />,
         },
         {
           path: "/ImageAI",
