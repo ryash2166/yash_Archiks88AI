@@ -15,14 +15,14 @@ const Dashboard = () => {
       <main className="lg:pl-[260px] pt-0 m-0 bg-primary">
         <MainVideo />
         <div className="relative max-xl:static">
-          <h1 className="absolute mt-[-320px] ml-5 lg:ml-0 max-xl:static max-lg:mx-5 max-xl:mt-0">
+          <h1 className="absolute mt-[-320px] ml-5 lg:ml-0 max-xl:static max-lg:mx-4 max-xl:mt-0">
             <p className="mt-10 lg:ml-8 max-w-full text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold bg-gradient-to-r from-[rgb(135,83,249)] to-[rgba(6,227,171,0.9)] bg-clip-text text-transparent">
               Next-Generation AI Creative Studio
             </p>
           </h1>
         </div>
         <div className="">
-          <div className="w-[calc(100%-40px)] -mt-[120px] mx-5 mb-0 max-lg:flex-col flex flex-wrap max-xl:mt-10">
+          <div className="w-[calc(100%-40px)] -mt-[120px] mx-4 mb-0 max-lg:flex-col flex flex-wrap max-xl:mt-10">
             <Banner
               title="AI Images"
               className="mr-6 lg:mr-4 mb-4 lg:mb-0"
@@ -46,7 +46,7 @@ const Dashboard = () => {
 
         {/* Trending Shorts Section */}
         <SectionTitle title="Trending Shorts" />
-        <div className="mx-5 min-h-[220px]">
+        <div className="mx-4 min-h-[220px]">
           <div className="flex flex-wrap justify-between max-lg:grid max-lg:grid-cols-2 max-sm:grid-cols-1 max-lg:gap-4">
             {TrendingCardData.map((card) => (
               <TrendingCard
@@ -65,7 +65,7 @@ const Dashboard = () => {
 
         {/* Trending Creatives Section */}
         <SectionTitle title="Trending Creatives" />
-        <div className="mx-[5px] -mt-[15px] mb-20 w-full">
+        <div className="md:mx-4 -mt-[15px] mb-20 w-full">
           <div className="p-[15px] max-md:p-3">
             <div className="md:hidden">
               <AutoCarousel />

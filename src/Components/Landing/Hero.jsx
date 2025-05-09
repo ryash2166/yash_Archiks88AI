@@ -22,7 +22,7 @@ const Hero = () => {
           > 
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-4">
               Create
-              <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-700 to-sky-600">
+              <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-700 to-sky-500">
                 {" "}
                 Viral AI Power Videos
               </span>

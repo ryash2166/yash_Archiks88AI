@@ -31,7 +31,7 @@ import NavbarAI from "../Components/Navbar/NavbarAI";
 const Router = () => {
   const location = useLocation();
 
-  const shouldShowSidebar = !["/", "/ImageAI", "/VideoAI"].includes(
+  const shouldShowSidebar = !["/", "/pricing", "/ImageAI", "/VideoAI"].includes(
     location.pathname
   );
   const shouldShowNavbar = !["/ImageAI", "/VideoAI"].includes(
@@ -39,7 +39,7 @@ const Router = () => {
   );
 
   // Determine if we're on the landing page to apply special classes
-  const isLandingPage = location.pathname === "/";
+  const isLandingPage = location.pathname === "/" || location.pathname === "/pricing";
 
   // Determine if we're on dashboard to apply special classes
   const isDashboard =

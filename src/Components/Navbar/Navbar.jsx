@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/Main.svg"
 import Button from "../Common/Button";
 import Login from "../Login/Login";
 import personPlaceholder from "../../assets/person.png";
@@ -42,15 +42,15 @@ const Navbar = ({ container = false }) => {
   return (
     <div
       className={`sticky top-0 w-full z-20 transition-all duration-500 ${
-        scrolled ? "bg-primary/95 backdrop-blur-sm shadow-md" : "bg-primary"
+        scrolled ? "bg-primary/95" : "bg-primary"
       }`}
     >
       <header
-        className={`h-[68px] w-full px-1 sm:px-5 ${
+        className={`h-[68px] w-full px-4 backdrop-blur-sm shadow-md ${
           container ? "container mx-auto" : ""
         } `}
       >
-        <div className="flex h-full justify-between items-center px-2 gap-2.5">
+        <div className="flex h-full justify-between items-center gap-2.5">
           <div className="flex items-center">
             <div className="lg:hidden mt-1.5">
               <MobileMenu />
@@ -61,7 +61,7 @@ const Navbar = ({ container = false }) => {
                 className="flex h-full max-sm:ml-[2px] items-center"
                 onClick={handleLogoClick}
               >
-                <LazyLoadImg src={logo} alt="Logo" />
+                <img src={logo} alt="Logo" />
               </Link>
             </div>
           </div>
@@ -135,13 +135,12 @@ const Navbar = ({ container = false }) => {
             )}
           </div>
         </div>
+      </header>
+      {/* Login Popup */}
       <Login
         isVisible={showLoginPopup}
         onClose={() => setShowLoginPopup(false)}
       />
-      </header>
-
-      {/* Login Popup */}
     </div>
   );
 };

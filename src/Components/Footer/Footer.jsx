@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/Main.svg"
 import { FaAngleRight } from "react-icons/fa";
 import discord from "../../assets/discord.svg";
 import youtube from "../../assets/youtube.svg";
@@ -11,7 +11,7 @@ const Footer = ({margin = true}) => {
     <div className={`pt-10 pb-9 px-6  border-t-[1px] border-[#333] relative h-full ${margin ? "lg:ml-[260px] lg:pr-[42px]" : ""}`}>
       <div className="text-white flex flex-col md:flex-row flex-wrap md:justify-between gap-3">
         <div className="mb-6 lg:mb-0 w-full lg:w-auto flex items-start justify-center ">
-          <LazyLoadImg src={logo} alt="Logo" className="" />
+          <img src={logo} alt="Logo" className="" />
         </div>
 
         <div className="mb-6 max-md:flex flex-col items-center">

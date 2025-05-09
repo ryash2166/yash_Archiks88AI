@@ -15,7 +15,7 @@ const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const { setActiveTab, token } = useNavigation(); // Add this line
-  
+
   // Toggle menu function
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -57,11 +57,14 @@ const MobileMenu = () => {
 
       {isOpen && (
         <div
-          className="absolute z-10 top-[50px] overflow-auto bg-mobilemenu backdrop-blur-[10px] divide-y divide-gray-100 rounded-lg py-1 border-[1px] border-[#1e3139] mr-0 leading-[20px] text-xs w-[200px]"
+          className="absolute z-10 top-[50px] overflow-auto bg-primary backdrop-blur-[10px] divide-y divide-gray-100 rounded-lg py-1 border-[1px] border-[#1e3139] mr-0 leading-[20px] text-xs w-[200px]"
           onMouseLeave={() => setIsOpen(false)}
         >
           <ul className="py-2 text-sm bg-transparent border-none outline-none rounded text-[#c5c7d5] dark:text-gray-200">
-            <Link to={token ? "/dashboard" : "/"} onClick={() => handleTabSelect("Home")}>
+            <Link
+              to={token ? "/dashboard" : "/"}
+              onClick={() => handleTabSelect("Home")}
+            >
               <li className="text-[#eee] flex items-center gap-2 hover:text-white hover:bg-[#272d33] py-2  my-[2px] pl-[30px] -ml-3">
                 <FaArrowLeftLong className="text-[18px]" />
                 <span className="text-[16px] leading-6 p-1 ">

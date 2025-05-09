@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/Main.svg"
 import Button from "../Common/Button";
 import Login from "../Login/Login";
 import { Link } from "react-router";
@@ -51,7 +51,7 @@ const NavbarAI = () => {
               className="flex h-full max-sm:ml-[2px] items-center"
               onClick={handleLogoClick}
             >
-              <LazyLoadImg src={logo} alt="Logo" />
+              <img src={logo} alt="Logo" />
             </Link>
           </div>
           <div className="flex items-center h-full">

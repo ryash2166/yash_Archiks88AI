@@ -70,14 +70,14 @@ const Profile = () => {
               Edit Profile
             </button>
           </div> */}
-          <div className="relative p-[3px] mx-5 rounded-2xl bg-gradient-to-r to-[rgb(135,83,249)] from-[rgba(6,227,171,0.7)] ">
+          <div className="relative p-[3px] mx-5 rounded-2xl bg-gradient-to-l to-purple-700 from-blue-500 ">
             <div className="bg-login rounded-3xl h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-[200px]">
               <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
                 <div className="md:mr-6 w-28 h-28">
                   <LazyLoadImg
                     src={profile.avatar || personPlaceholder}
                     alt="User Avatar"
-                    className="object-cover object-center w-full h-full rounded-full"
+                    className="object-cover object-center w-28 h-28 rounded-full"
                   />
                 </div>
                 <div className="flex flex-col gap-2 max-md:pt-2 max-md:items-center justify-center text-white">
@@ -147,13 +147,16 @@ const Profile = () => {
           {/* Add this Load More button after the Masonry component */}
           {profile?.images &&
             profile.images.length > displayedImages.length && (
-              <div className="flex justify-center mt-8">
-                <button
-                  onClick={loadMoreImages}
-                  className="px-8 py-3 font-semibold bg-[#6c6cf5] text-white rounded-full hover:bg-[#5252e5] transition-colors border border-[#5252e5] flex items-center"
-                >
-                  Load More
-                </button>
+              <div className="flex items-center justify-center mt-5">
+                <div className="relative inline-block group sm:max-w-80">
+                  <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
+                    <Button
+                      onClick={loadMoreImages}
+                      title="Load More"
+                      className="bg-black text-white sm:!text-base !py-2.5 !px-10  rounded-full w-full h-full transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-purple-900 group-hover:to-sky-700"
+                    />
+                  </div>
+                </div>
               </div>
             )}
         </div>
@@ -235,7 +238,7 @@ const Profile = () => {
                     className="text-sm text-white transition duration-200 hover:text-[#5252e5]"
                     onClick={clearBio}
                   >
-                    <DeleteIcon className='mx-1.5' />
+                    <DeleteIcon className="mx-1.5" />
                   </button>
                 </div>
               </div>

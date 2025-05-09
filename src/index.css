@@ -179,15 +179,6 @@ body {
   border: none !important;
 }
 
-.bg-mobilemenu {
-  background: linear-gradient(
-    254.03deg,
-    #1b2829bb -4.51%,
-    #171b21bb 46.42%,
-    #191d23bb 91.45%
-  );
-}
-
 :root {
   --background: 222.2 84% 4.9%;
   --foreground: 210 40% 98%;
