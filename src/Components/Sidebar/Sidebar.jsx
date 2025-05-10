@@ -11,16 +11,22 @@ import { TbChartCandle } from "react-icons/tb";
 import { FaFolderClosed, FaShield } from "react-icons/fa6";
 import { useNavigation } from "../../Context/NavigationContext";
 import LazyLoadImg from "../Common/LazyLoadImg";
+import { useNavigate } from "react-router-dom";
+import Button from "../Common/Button";
 
 const Sidebar = () => {
   const { activeTab, setActiveTab } = useNavigation();
+  const navigate = useNavigate();
 
+  const handlePrice = () => {
+    navigate("/pricing");
+  };
   // Generalized tab link renderer
   const renderTabLink = (to, tab, icon, label, extraContent = null) => {
     const isActive = activeTab === tab;
     return (
       <div
-        className={`${
+        className={` ${
           isActive
             ? "bg-gray-800 rounded-full"
             : "hover:bg-gray-700 rounded-full"
@@ -53,7 +59,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="max-h-[calc(100vh-68px)] overflow-y-auto h-full max-w-[260px] bg-[#0b1116] absolute float-left z-[2] max-lg:hidden">
+    <aside className="max-h-[calc(100vh-68px)] overflow-y-auto h-full max-w-[260px] bg-primary overflow-auto antialiased bg-grid-white/[0.02] absolute float-left z-[2] max-lg:hidden">
       <div className="h-full pt-[16px] px-3 pb-[32px] flex flex-col gap-[16px]">
         <div className="grow">
           <ul className="p-0">
@@ -141,6 +147,16 @@ const Sidebar = () => {
               <hr className="border-t-[1px] w-[200px] border-[#24282c] !mb-2 !mt-[-19px]" />
             </div>
           </ul>
+          <div className="relative flex">
+            <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
+              <Button
+                onClick={handlePrice}
+                title="Upgrade Now"
+                // icon={<ImageToVideoIcon className="w-6 h-6" />}
+                className="bg-black text-white sm:!text-base !py-2.5 !px-8 rounded-full w-full h-full transition-all duration-300 group-hover:bg-gradient-to-l group-hover:from-purple-900 group-hover:to-sky-700 font-medium"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Social Media Icons */}

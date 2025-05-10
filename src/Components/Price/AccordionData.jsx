@@ -65,8 +65,8 @@ export default function AccordionData() {
   });
 
   return (
-    <div className="pt-16 mb-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div className="mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
         <h2 className="text-3xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm">
           Billing Questions 🎯
         </h2>
@@ -108,7 +108,7 @@ export default function AccordionData() {
           </Accordion>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <h2 className="text-3xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm ">
           Product Questions 🥉
         </h2>

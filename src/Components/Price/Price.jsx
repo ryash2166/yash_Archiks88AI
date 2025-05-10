@@ -28,7 +28,7 @@ const Price = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 text-white ">
-        <div className="flex items-center justify-center text-center flex-col pt-16 mb-4">
+        <div className="flex items-center justify-center text-center flex-col mt-16 mb-4">
           <div className="bg-black-500 rounded-xl text-sm md:text-base w-fit px-5 py-1">
             ARCHIKS88 AI
           </div>
@@ -41,7 +41,7 @@ const Price = () => {
           <Comparison />
           <CustomizedAccordions />
 
-          <div className="pt-16 mb-4">
+          <div className="mb-4">
             <div className="flex items-center justify-center relative">
               <LazyLoadImg
                 src="https://shortful.ai/img/cta-4-bg.png"

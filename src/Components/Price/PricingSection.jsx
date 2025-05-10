@@ -91,7 +91,7 @@ const PricingSection = () => {
     },
   ];
   return (
-    <Tabs className="flex flex-col justify-center items-center gap-10 overflow-hidden">
+    <Tabs className="flex flex-col justify-center items-center gap-10 ">
       <TabList className="flex items-center gap-3 pricing relative border border-[#48454e] bg-[#101415] rounded-xl py-2 px-3 w-fit">
         <Tab
           active
