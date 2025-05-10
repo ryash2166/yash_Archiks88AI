@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }) => {
 
   const handleCloseLogin = () => {
     setShowLogin(false);
-    
+
     // If the user closes the login without authentication, redirect to dashboard
     if (!localStorage.getItem("token")) {
       window.location.href = "/";

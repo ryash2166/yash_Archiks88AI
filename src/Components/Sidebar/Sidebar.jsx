@@ -30,12 +30,12 @@ const Sidebar = () => {
           to={to}
           onClick={() => setActiveTab(tab)}
           className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full duration-100 ease-linear flex items-center cursor-pointer ${
-            isActive ? "text-[#5252e5]" : "text-[#c5c7d5]"
+            isActive ? "text-secondary" : "text-[#c5c7d5]"
           }`}
         >
           <div
             className={`w-[18px] h-[18px] flex items-center align-top ${
-              isActive ? "text-[#5252e5]" : "text-[#c5c7d5]"
+              isActive ? "text-secondary" : "text-[#c5c7d5]"
             }`}
           >
             {React.cloneElement(icon, {
@@ -45,7 +45,7 @@ const Sidebar = () => {
           <span className="align-middle">{label}</span>
           {extraContent}
           {isActive && (
-            <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-[#5252e5] mt-[6px]" />
+            <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-secondary mt-[6px]" />
           )}
         </Link>
       </div>
@@ -88,7 +88,7 @@ const Sidebar = () => {
               <FaVideo />,
               "AI Videos",
               <div className="h-[20px] p-1 bg-[#ffffff14] rounded flex items-center">
-                <span className="text-[10px] font-normal align-middle text-[#6c6cf5]">
+                <span className="text-[10px] font-normal align-middle text-blue">
                   Try Archiks88 1.6
                 </span>
               </div>

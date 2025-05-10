@@ -104,7 +104,7 @@ const PricingSection = () => {
         </Tab>
         <Tab
           disabled
-          className="px-3 py-2 font-semibold inline-flex border-0 text-xs sm:text-sm rounded-xl bg-[#5252e5] cursor-not-allowed"
+          className="px-3 py-2 font-semibold inline-flex border-0 text-xs sm:text-sm rounded-xl bg-secondary cursor-not-allowed"
         >
           Yearly 30% off
         </Tab>

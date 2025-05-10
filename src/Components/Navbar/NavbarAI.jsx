@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import logo from "../../assets/Main.svg"
 import Button from "../Common/Button";
 import Login from "../Login/Login";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
 import personPlaceholder from "../../assets/person.png";
 import { FaCoins, FaFolderClosed, FaUser } from "react-icons/fa6";
@@ -115,7 +115,7 @@ const NavbarAI = () => {
               </div>
             ) : (
               <Button
-                className="bg-[#6c6cf5] hover:!bg-[#5252e5] !px-3 sm:!px-6"
+                className="bg-blue hover:!bg-secondary !px-3 sm:!px-6"
                 title="Sign In"
                 onClick={togglePopup}
               />

@@ -3,7 +3,7 @@ import { SparklesCore } from "../Components/Landing/Sparkles";
 import Hero from "../Components/Landing/Hero";
 import Footer from "../Components/Footer/Footer";
 import Button from "../Components/Common/Button";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import useNavbar from "../hooks/useNavbar";
 import Login from "../Components/Login/Login";
 import ImageToVideoIcon from "../icons/imagetovideo";

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import nowork from "../../assets/nowork.svg";
 import Button from "../Common/Button";
 import { useNavigation } from "../../Context/NavigationContext";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const ProfileTabs = () => {
   const [mainTab, setMainTab] = useState("Assets");

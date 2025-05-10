@@ -128,7 +128,7 @@ const Navbar = ({ container = false }) => {
               </div>
             ) : (
               <Button
-                className="bg-[#6c6cf5] hover:!bg-[#5252e5] !px-3 sm:!px-6"
+                className="bg-blue hover:!bg-secondary !px-3 sm:!px-6"
                 title="Sign In"
                 onClick={togglePopup}
               />

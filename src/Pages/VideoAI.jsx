@@ -101,7 +101,7 @@ const VideoAI = () => {
                 key={tab}
                 className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
                   mainTab === tab
-                    ? "text-[#5252e5] border-b-2 border-[#6c6cf5] !ml-0"
+                    ? "text-secondary border-b-2 border-blue !ml-0"
                     : "text-white hover:text-[#c5c7d5] !ml-0"
                 }`}
                 onClick={() => setMainTab(tab)}
@@ -317,7 +317,7 @@ const VideoAI = () => {
                   {!prompt && (
                     <p className="text-[#727485] leading-7">
                       Please describe your creative ideas for the video, or view
-                      <span className="text-[#6c6cf5]"> Help Center</span> for a
+                      <span className="text-blue"> Help Center</span> for a
                       quick start.
                     </p>
                   )}

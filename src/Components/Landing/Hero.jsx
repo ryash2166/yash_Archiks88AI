@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ImageIcon, VideoIcon } from "lucide-react";
 import { FloatingPaper } from "./FloatingPaper";
 import { RoboAnimation } from "./RoboAnimation";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (

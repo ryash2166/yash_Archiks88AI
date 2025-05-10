@@ -64,7 +64,7 @@ const Profile = () => {
               </div>
             </div>
             <button
-              className="hover:bg-[#5252e5] bg-transparent border border-[#5252e5] h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-[#5252e5] hover:text-white font-medium min-w-[106px]"
+              className="hover:bg-secondary bg-transparent border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-secondary hover:text-white font-medium min-w-[106px]"
               onClick={openModal}
             >
               Edit Profile
@@ -93,7 +93,7 @@ const Profile = () => {
                 </div>
               </div>
               <button
-                className="hover:bg-[#5252e5] bg-[#6c6cf5] border border-[#5252e5] h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-white font-medium min-w-[106px]"
+                className="hover:bg-secondary bg-blue border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-white font-medium min-w-[106px]"
                 onClick={openModal}
               >
                 Edit Profile
@@ -126,7 +126,7 @@ const Profile = () => {
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
                       <div className="flex gap-4">
                         <FiDownload
-                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-[#5252e5]"
+                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-secondary"
                           onClick={() =>
                             handleDownload(img.imageUrl, `${img._id}.png`)
                           }
@@ -191,7 +191,7 @@ const Profile = () => {
                     alt="User Avatar"
                     className="object-cover inline-flex w-[80px] h-[80px] rounded-full group-hover:opacity-50 transition-opacity"
                   />
-                  <EditIcon className="w-5 h-5 block absolute bottom-[30px] left-[calc(50%-10px)] text-white cursor-pointer transition duration-200 group-hover:text-[#5252e5]" />
+                  <EditIcon className="w-5 h-5 block absolute bottom-[30px] left-[calc(50%-10px)] text-white cursor-pointer transition duration-200 group-hover:text-secondary" />
                 </label>
                 <div className="text-sm text-gray-500 mt-2">Change avatar</div>
                 <input
@@ -211,7 +211,7 @@ const Profile = () => {
                   onChange={handleInputChange}
                   placeholder="Enter your name"
                   maxLength={20}
-                  className="w-full px-4 py-3 text-white bg-primary rounded-xl focus:border focus:outline-none border-[#5252e5] text-sm leading-6"
+                  className="w-full px-4 py-3 text-white bg-primary rounded-xl focus:border focus:outline-none border-secondary text-sm leading-6"
                 />
                 <div className="text-right text-sm text-gray-500 absolute bottom-3 right-4">
                   {tempProfile.name ? tempProfile.name.length : 0}/20
@@ -224,7 +224,7 @@ const Profile = () => {
                   value={tempProfile.bio || ""}
                   onChange={handleInputChange}
                   placeholder="Enter your bio"
-                  className="w-full text-white bg-primary rounded-lg px-[16px] pt-3 pb-8 focus:border focus:outline-none border-[#5252e5] text-sm leading-6 resize-none"
+                  className="w-full text-white bg-primary rounded-lg px-[16px] pt-3 pb-8 focus:border focus:outline-none border-secondary text-sm leading-6 resize-none"
                   maxLength={200}
                   rows="5"
                 ></textarea>
@@ -235,7 +235,7 @@ const Profile = () => {
                   <div className="border-l-[1px] border-[#4e5062] h-4 mt-[1px] mr-[0.5em]"></div>
                   <button
                     type="button"
-                    className="text-sm text-white transition duration-200 hover:text-[#5252e5]"
+                    className="text-sm text-white transition duration-200 hover:text-secondary"
                     onClick={clearBio}
                   >
                     <DeleteIcon className="mx-1.5" />
@@ -245,14 +245,14 @@ const Profile = () => {
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
-                  className="px-6 py-[6px] text-sm bg-transparent text-[#6c6cf5] hover:underline"
+                  className="px-6 py-[6px] text-sm bg-transparent text-blue hover:underline"
                   onClick={closeModal}
                 >
                   Cancel
                 </button>
                 <Button
                   type="submit"
-                  className="py-[6px] px-6 text-black bg-[#6c6cf5] cursor-pointer hover:bg-[#5252e5]"
+                  className="py-[6px] px-6 text-black bg-blue cursor-pointer hover:bg-secondary"
                   title="Save"
                 />
               </div>

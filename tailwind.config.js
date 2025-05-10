@@ -1,3 +1,4 @@
+const {heroui} = require('@heroui/theme');
 const { nextui } = require("@nextui-org/theme");
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -6,6 +7,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@nextui-org/theme/dist/components/(date-picker|button|ripple|spinner|calendar|date-input|form|popover).js",
     "./node_modules/flowbite/**/*.js",
+    "./node_modules/@heroui/theme/dist/components/(accordion|divider).js"
   ],
   theme: {
     extend: {
@@ -20,6 +22,10 @@ export default {
       },
       colors: {
         primary: "#0d1116",
+        secondary: "#5252e5",
+        "border-secondary": "#3a3a6a",
+        blue: "#6c6cf5",
+        "blue-dark": "#",
         black: {
           DEFAULT: "#1A1919",
           50: "#E8E8E8",
@@ -83,5 +89,5 @@ export default {
       },
     },
   },
-  plugins: [nextui()],
+  plugins: [nextui(),heroui()],
 };

@@ -152,7 +152,7 @@ const ImageAI = () => {
                   key={tab}
                   className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
                     mainTab === tab
-                      ? "text-[#6c6cf5]  border-b-2 border-[#5252e5] !ml-0"
+                      ? "text-blue  border-b-2 border-secondary !ml-0"
                       : "text-white hover:text-[#c5c7d5] !ml-0"
                   }`}
                   onClick={() => setMainTab(tab)}
@@ -173,7 +173,7 @@ const ImageAI = () => {
                       <p className="text-[#727485] leading-7">
                         Please describe your creative ideas for the video, or
                         view
-                        <span className="text-[#6c6cf5]"> Help Center</span> for
+                        <span className="text-blue"> Help Center</span> for
                         a quick start.
                       </p>
                     )}
@@ -316,7 +316,7 @@ const ImageAI = () => {
                 className={`px-4 py-[6px] mb-2 rounded-full w-[calc(100vw-32px)] lg:w-[344px] h-12
                     ${
                       formState.prompt
-                        ? "bg-[#6c6cf5] hover:!bg-[#5252e5] text-white"
+                        ? "bg-blue hover:!bg-secondary text-white"
                         : "bg-[#333a45] text-[#727485] "
                     } font-[550] text-lg`}
               >

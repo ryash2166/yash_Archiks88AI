@@ -11,22 +11,22 @@ const PricingCard = ({
 }) => {
   return (
     <div
-      className={`relative rounded-3xl p-9 sm:w-[25rem] flex flex-col group border border-[#3a3a6a] transition-all duration-300 ${
+      className={`relative rounded-3xl p-9 sm:w-[25rem] flex flex-col group border border-border-secondary transition-all duration-300 ${
         isActive
-          ? "bg-[#1a1a3a] border border-[#3a3a6a] z-10 bg-grid-white-visible bg-grid"
+          ? "bg-[#1a1a3a] border border-border-secondary z-10 bg-grid-white-visible bg-grid"
           : "bg-primary hover:bg-[#1a1a3a] hover:bg-grid-white-faint hover:bg-grid"
       }`}
     >
       {isRecommended && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-          <div className="bg-[#5252e5] text-white px-4 py-1 rounded-lg text-sm font-medium">
+          <div className="bg-secondary text-white px-4 py-1 rounded-lg text-sm font-medium">
             Recommended
           </div>
         </div>
       )}
 
       <div className="text-center mb-6">
-        <h3 className={`text-2xl font-bold group-hover:text-[#5252e5]  ${isActive ? "text-[#5252e5] hover:" : "text-white"}`}>{title}</h3>
+        <h3 className={`text-2xl font-bold group-hover:text-secondary  ${isActive ? "text-secondary hover:" : "text-white"}`}>{title}</h3>
         <p className="text-gray-400 mt-1">Starts with {yearlyPrice}</p>
       </div>
 
@@ -37,8 +37,8 @@ const PricingCard = ({
 
       {isActive && (
         <div className="flex items-center mb-6">
-          <div className="h-3 w-3 rounded-full bg-[#5252e5]"></div>
-          <div className="h-1 flex-grow bg-gradient-to-r from-[#5252e5] to-transparent"></div>
+          <div className="h-3 w-3 rounded-full bg-secondary"></div>
+          <div className="h-1 flex-grow bg-gradient-to-r from-secondary to-transparent"></div>
         </div>
       )}
 
@@ -46,7 +46,7 @@ const PricingCard = ({
         {features &&
           features.map((feature, index) => (
             <div key={index} className="flex items-start">
-              <div className="mt-0.5 mr-3 text-[#5252e5]">
+              <div className="mt-0.5 mr-3 text-secondary">
                 <Check size={18} />
               </div>
               <span className="text-white text-sm">{feature}</span>
@@ -55,7 +55,7 @@ const PricingCard = ({
       </div>
 
       <div className="mt-auto">
-        <button className="w-full py-2.5 px-6 rounded-xl bg-[#5252e5] gap-2 text-white font-semibold transition-all hover:bg-[#6262f5] flex items-center justify-center">
+        <button className="w-full py-2.5 px-6 rounded-xl bg-secondary gap-2 text-white font-semibold transition-all hover:bg-[#6262f5] flex items-center justify-center">
           Subscribe <MoveRight className="mt-1" />
         </button>
       </div>

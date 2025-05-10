@@ -293,4 +293,17 @@ body {
   border: 0;
 }
 
-  
+
+.data-\[open\=true\]\:-rotate-90[data-open="true"]{
+  transform: translate(0,0) rotate(180deg) !important;
+}
+
+.transition-transform {
+  transition-property: transform !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 250ms !important;
+}
+
+.text-foreground{
+  color: white !important;
+}

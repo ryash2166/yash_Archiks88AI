@@ -72,8 +72,8 @@ const Login = ({ isVisible, onClose }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full px-4 py-3 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
-                  errors.email ? "border-red-500" : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"
+                className={`w-full px-4 py-3 text-white bg-primary hover:border-secondary rounded-xl border ${
+                  errors.email ? "border-red-500" : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
                 }`}
                 placeholder="Enter your email"
                 disabled={formState === "reset"}
@@ -90,8 +90,8 @@ const Login = ({ isVisible, onClose }) => {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
-                      errors.password ? "border-red-500" : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"
+                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
+                      errors.password ? "border-red-500" : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder={
                       formState === "signup"
@@ -119,7 +119,7 @@ const Login = ({ isVisible, onClose }) => {
                     <button
                       type="button"
                       onClick={() => setFormState("forgot")}
-                      className="text-[#6c6cf5] hover:underline text-sm"
+                      className="text-blue hover:underline text-sm"
                     >
                       Forgot Password?
                     </button>
@@ -135,8 +135,8 @@ const Login = ({ isVisible, onClose }) => {
                     type={showPassword ? "text" : "password"}
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
-                      errors.newPassword ? "border-red-500" : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"
+                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
+                      errors.newPassword ? "border-red-500" : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder="New Password"
                   />
@@ -163,10 +163,10 @@ const Login = ({ isVisible, onClose }) => {
                     type={showPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-[#5252e5] rounded-xl border ${
+                    className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
                       errors.confirmPassword
                         ? "border-red-500"
-                        : "border-[#6c6cf5] focus:outline-none focus:ring-0.5 focus:ring-[#5252e5]"
+                        : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder="Confirm Password"
                   />
@@ -183,7 +183,7 @@ const Login = ({ isVisible, onClose }) => {
                     <button
                       type="button"
                       onClick={() => setFormState("forgot")}
-                      className="text-[#6c6cf5] hover:underline text-sm"
+                      className="text-blue hover:underline text-sm"
                     >
                       Forgot Password?
                     </button>
@@ -199,7 +199,7 @@ const Login = ({ isVisible, onClose }) => {
                 className={`w-full py-2 rounded-full transition ${
                   isLoading
                     ? "bg-gray-600 cursor-not-allowed text-white"
-                    : "bg-[#6c6cf5] text-white font-semibold hover:bg-[#5252e5]"
+                    : "bg-blue text-white font-semibold hover:bg-secondary"
                 }`}
               >
                 {isLoading
@@ -219,7 +219,7 @@ const Login = ({ isVisible, onClose }) => {
                     <button
                       type="button"
                       onClick={() => setFormState("signup")}
-                      className="text-[#6c6cf5] hover:underline"
+                      className="text-blue hover:underline"
                     >
                       Sign Up
                     </button>
@@ -230,7 +230,7 @@ const Login = ({ isVisible, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setFormState("login")}
-                    className="text-[#6c6cf5] hover:underline"
+                    className="text-blue hover:underline"
                   >
                     Back to Login
                   </button>
@@ -240,7 +240,7 @@ const Login = ({ isVisible, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setFormState("login")}
-                    className="text-[#6c6cf5] hover:underline"
+                    className="text-blue hover:underline"
                   >
                     Back to Login
                   </button>
@@ -250,7 +250,7 @@ const Login = ({ isVisible, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setFormState("login")}
-                    className="text-[#6c6cf5] hover:underline"
+                    className="text-blue hover:underline"
                   >
                     Back to Login
                   </button>

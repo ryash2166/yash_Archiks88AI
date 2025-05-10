@@ -74,7 +74,7 @@ const Dashboard = () => {
           </div>
           <Button
             title="Explore More"
-            className="mx-auto flex items-center justify-center mt-[2em] px-8 !py-2 bg-[#6c6cf5] hover:!bg-[#5252e5]"
+            className="mx-auto flex items-center justify-center mt-[2em] px-8 !py-2 bg-blue hover:!bg-secondary"
           />
         </div>
       </main>
