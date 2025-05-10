@@ -22,6 +22,7 @@ const NavbarAI = () => {
     isAuthenticated,
     authLoading,
     handleLogoClick,
+    handleMyCreativesClick,
     handleLogout,
     togglePopup,
   } = useNavbar();
@@ -96,6 +97,7 @@ const NavbarAI = () => {
                         Credits: {profile.credits || 0}
                       </p>
                       <Link
+                        onClick={handleMyCreativesClick}
                         to="/profile"
                         className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-[#272d33] hover:text-white"
                       >
