@@ -37,8 +37,8 @@ const MobileMenu = () => {
 
   // Function to handle tab selection and close menu
   const handleTabSelect = (tabName) => {
-    setActiveTab(tabName);
     setIsOpen(false);
+    setActiveTab(tabName);
   };
 
   return (

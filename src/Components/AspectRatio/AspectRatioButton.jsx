@@ -45,8 +45,8 @@ const AspectRatioButton = ({ ratio, isSelected = false, onClick }) => {
         ></div>
       </div>
       <div
-        className={`text-center text-xs group-hover:text-blue duration-200 ${
-          isSelected ? "text-blue" : "text-white"
+        className={`text-center text-xs group-hover:text-blue-light duration-200 ${
+          isSelected ? "text-blue-light" : "text-white"
         }`}
       >
         {ratio}

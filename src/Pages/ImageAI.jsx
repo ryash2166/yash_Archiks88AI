@@ -316,7 +316,7 @@ const ImageAI = () => {
                 className={`px-4 py-[6px] mb-2 rounded-full w-[calc(100vw-32px)] lg:w-[344px] h-12
                     ${
                       formState.prompt
-                        ? "bg-blue hover:!bg-secondary text-white"
+                        ? "bg-blue-light hover:!bg-secondary text-white"
                         : "bg-[#333a45] text-[#727485] "
                     } font-[550] text-lg`}
               >

@@ -24,7 +24,7 @@ export default {
         primary: "#0d1116",
         secondary: "#5252e5",
         "border-secondary": "#3a3a6a",
-        blue: "#6c6cf5",
+        "blue-light": "#6c6cf5",
         "blue-dark": "#",
         black: {
           DEFAULT: "#1A1919",

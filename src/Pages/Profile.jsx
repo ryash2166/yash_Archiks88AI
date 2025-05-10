@@ -93,7 +93,7 @@ const Profile = () => {
                 </div>
               </div>
               <button
-                className="hover:bg-secondary bg-blue border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-white font-medium min-w-[106px]"
+                className="hover:bg-secondary bg-blue-light border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-white font-medium min-w-[106px]"
                 onClick={openModal}
               >
                 Edit Profile
@@ -252,7 +252,7 @@ const Profile = () => {
                 </button>
                 <Button
                   type="submit"
-                  className="py-[6px] px-6 text-black bg-blue cursor-pointer hover:bg-secondary"
+                  className="py-[6px] px-6 text-black bg-blue-light cursor-pointer hover:bg-secondary"
                   title="Save"
                 />
               </div>

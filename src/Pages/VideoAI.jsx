@@ -101,7 +101,7 @@ const VideoAI = () => {
                 key={tab}
                 className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
                   mainTab === tab
-                    ? "text-secondary border-b-2 border-blue !ml-0"
+                    ? "text-secondary border-b-2 border-blue-light !ml-0"
                     : "text-white hover:text-[#c5c7d5] !ml-0"
                 }`}
                 onClick={() => setMainTab(tab)}

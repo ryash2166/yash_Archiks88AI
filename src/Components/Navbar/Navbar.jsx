@@ -130,7 +130,7 @@ const Navbar = ({ container = false }) => {
               <div className="flex items-center gap-4">
               <Link to="/pricing"><p className="text-blue text-base hover:underline">Pricing</p></Link>
               <Button
-                className="bg-blue hover:!bg-secondary !px-3 sm:!px-6"
+                className="bg-blue-light hover:!bg-secondary !px-3 sm:!px-6"
                 title="Sign In"
                 onClick={togglePopup}
               />

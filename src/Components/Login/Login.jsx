@@ -73,7 +73,7 @@ const Login = ({ isVisible, onClose }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={`w-full px-4 py-3 text-white bg-primary hover:border-secondary rounded-xl border ${
-                  errors.email ? "border-red-500" : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
+                  errors.email ? "border-red-500" : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
                 }`}
                 placeholder="Enter your email"
                 disabled={formState === "reset"}
@@ -91,7 +91,7 @@ const Login = ({ isVisible, onClose }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
-                      errors.password ? "border-red-500" : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
+                      errors.password ? "border-red-500" : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder={
                       formState === "signup"
@@ -136,7 +136,7 @@ const Login = ({ isVisible, onClose }) => {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
-                      errors.newPassword ? "border-red-500" : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
+                      errors.newPassword ? "border-red-500" : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder="New Password"
                   />
@@ -166,7 +166,7 @@ const Login = ({ isVisible, onClose }) => {
                     className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
                       errors.confirmPassword
                         ? "border-red-500"
-                        : "border-blue focus:outline-none focus:ring-0.5 focus:ring-secondary"
+                        : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder="Confirm Password"
                   />
@@ -199,7 +199,7 @@ const Login = ({ isVisible, onClose }) => {
                 className={`w-full py-2 rounded-full transition ${
                   isLoading
                     ? "bg-gray-600 cursor-not-allowed text-white"
-                    : "bg-blue text-white font-semibold hover:bg-secondary"
+                    : "bg-blue-light text-white font-semibold hover:bg-secondary"
                 }`}
               >
                 {isLoading

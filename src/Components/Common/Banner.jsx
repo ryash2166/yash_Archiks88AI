@@ -244,7 +244,7 @@ const Banner = ({
       {/* Title */}
       <h2 className="mb-3 relative">
         <span
-          className={`bg-[#191d21] text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-7 text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue transition-all duration-300 ease-in-out ${
+          className={`bg-[#191d21] text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-7 text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue-light transition-all duration-300 ease-in-out ${
             !isDisabled
               ? "group-hover:bg-gradient-to-l duration-300 ease-linear"
               : ""
