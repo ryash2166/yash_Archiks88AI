@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 const TrendingCard = ({
   title,
@@ -33,6 +34,7 @@ const TrendingCard = ({
       onMouseLeave={handleMouseLeave}
     >
       {/* Video Section */}
+      <LazyLoadComponent>
       <div className="absolute w-full h-full bg-black ">
         <video
           ref={videoRef}
@@ -47,6 +49,7 @@ const TrendingCard = ({
           className="block w-full h-full object-cover"
         ></video>
       </div>
+      </LazyLoadComponent>
 
       {/* Content Section */}
       <div className="absolute w-full h-full bg-creative to-transparent  flex flex-col justify-end p-4">

@@ -14,6 +14,7 @@ import AutoCarousel from "../Components/Common/AutoCarousel";
 import TrendingCreatives from "../Components/Common/TrendingCreatives";
 import LazyLoadImg from "../Components/Common/LazyLoadImg";
 import { useNavigation } from "../Context/NavigationContext";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 const LandingPage = () => {
   const videoRefs = useRef([null]);
@@ -203,18 +204,20 @@ const LandingPage = () => {
                   onMouseEnter={() => handleMouseEnter(0)}
                   onMouseLeave={() => handleMouseLeave(0)}
                 >
-                  <video
-                    ref={(el) => (videoRefs.current[0] = el)}
-                    loop
-                    preload="auto"
-                    disablePictureInPicture
-                    playsInline
-                    muted
-                    disableRemotePlayback
-                    poster="https://s21-kling.klingai.com/kimg/EMXN1y8qfwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBplc2UvYWlfcG9ydGFsX3NncF9tMnZfaW1nMnZpZGVvXzEwODBwX3YyMF9zdGQvMjlhOGY1ZjItMDA4YS00YjU5LTgzZWItMzM2MmEzMDNiNDg0X3Jhd192aWRlb19jb3Zlci5qcGc:360x644.webp?x-kcdn-pid=112372"
-                    src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v20_std/6a2669ad-58ae-453a-b412-c28b9edec85f_video.mp4?x-kcdn-pid=112372"
-                    className="aspect-square object-cover rounded-xl w-full h-full"
-                  ></video>
+                  <LazyLoadComponent>
+                    <video
+                      ref={(el) => (videoRefs.current[0] = el)}
+                      loop
+                      preload="auto"
+                      disablePictureInPicture
+                      playsInline
+                      muted
+                      disableRemotePlayback
+                      poster="https://s21-kling.klingai.com/kimg/EMXN1y8qfwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBplc2UvYWlfcG9ydGFsX3NncF9tMnZfaW1nMnZpZGVvXzEwODBwX3YyMF9zdGQvMjlhOGY1ZjItMDA4YS00YjU5LTgzZWItMzM2MmEzMDNiNDg0X3Jhd192aWRlb19jb3Zlci5qcGc:360x644.webp?x-kcdn-pid=112372"
+                      src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v20_std/6a2669ad-58ae-453a-b412-c28b9edec85f_video.mp4?x-kcdn-pid=112372"
+                      className="aspect-square object-cover rounded-xl w-full h-full"
+                    ></video>
+                  </LazyLoadComponent>
                   <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-xl items-end"></div>
                 </div>
                 <div className="flex flex-col gap-2.5">
@@ -223,18 +226,20 @@ const LandingPage = () => {
                     onMouseEnter={() => handleMouseEnter(1)}
                     onMouseLeave={() => handleMouseLeave(1)}
                   >
-                    <video
-                      ref={(el) => (videoRefs.current[1] = el)}
-                      loop
-                      preload="auto"
-                      disablePictureInPicture
-                      playsInline
-                      muted
-                      disableRemotePlayback
-                      src="https://v15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/ai_portal/1733903709/hxK0UobWdx/______.mp4"
-                      poster="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/ai_portal/1733903832/YRBOw7TQoJ/_____________11_.png?x-oss-process=image%2Fresize%2Cw_400%2Ch_200%2Cm_mfit"
-                      className="aspect-video object-top object-cover rounded-xl w-full h-full"
-                    ></video>
+                    <LazyLoadComponent>
+                      <video
+                        ref={(el) => (videoRefs.current[1] = el)}
+                        loop
+                        preload="auto"
+                        disablePictureInPicture
+                        playsInline
+                        muted
+                        disableRemotePlayback
+                        src="https://v15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/ai_portal/1733903709/hxK0UobWdx/______.mp4"
+                        poster="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/ai_portal/1733903832/YRBOw7TQoJ/_____________11_.png?x-oss-process=image%2Fresize%2Cw_400%2Ch_200%2Cm_mfit"
+                        className="aspect-video object-top object-cover rounded-xl w-full h-full"
+                      ></video>
+                    </LazyLoadComponent>
                     <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-xl items-end"></div>
                   </div>
                   <div
@@ -242,18 +247,20 @@ const LandingPage = () => {
                     onMouseEnter={() => handleMouseEnter(2)}
                     onMouseLeave={() => handleMouseLeave(2)}
                   >
-                    <video
-                      ref={(el) => (videoRefs.current[2] = el)}
-                      loop
-                      preload="auto"
-                      disablePictureInPicture
-                      playsInline
-                      disableRemotePlayback
-                      muted
-                      poster="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/special-effect/output/16fdb03c-b7c1-426a-83cc-8b7dbea2ed1b/4930992406432380279/output.jpg?x-oss-process=image%2Fresize%2Cw_400%2Ch_200%2Cm_mfit"
-                      src="https://v15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/special-effect/output/70b03d43-6e55-4f06-a8d3-704386079966/-7120317322272835942/out.mp4"
-                      className="aspect-video object-top object-cover rounded-xl w-full h-full"
-                    ></video>
+                    <LazyLoadComponent>
+                      <video
+                        ref={(el) => (videoRefs.current[2] = el)}
+                        loop
+                        preload="auto"
+                        disablePictureInPicture
+                        playsInline
+                        disableRemotePlayback
+                        muted
+                        poster="https://s15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/special-effect/output/16fdb03c-b7c1-426a-83cc-8b7dbea2ed1b/4930992406432380279/output.jpg?x-oss-process=image%2Fresize%2Cw_400%2Ch_200%2Cm_mfit"
+                        src="https://v15-def.ap4r.com/bs2/upload-ylab-stunt-sgp/special-effect/output/70b03d43-6e55-4f06-a8d3-704386079966/-7120317322272835942/out.mp4"
+                        className="aspect-video object-top object-cover rounded-xl w-full h-full"
+                      ></video>
+                    </LazyLoadComponent>
                     <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-xl items-end"></div>
                   </div>
                 </div>
@@ -262,18 +269,20 @@ const LandingPage = () => {
                   onMouseEnter={() => handleMouseEnter(3)}
                   onMouseLeave={() => handleMouseLeave(3)}
                 >
-                  <video
-                    ref={(el) => (videoRefs.current[3] = el)}
-                    loop
-                    preload="auto"
-                    disablePictureInPicture
-                    playsInline
-                    disableRemotePlayback
-                    muted
-                    poster="https://s21-kling.klingai.com/kimg/EMXN1y8qfwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBplc2UvYWlfcG9ydGFsX3NncF9tMnZfaW1nMnZpZGVvXzEwODBwX3YyMF9zdGQvYWJmOGIxNGItMWU2Yi00YTJhLWEwYTUtNWY0MWE4NGY4Yjc3X3Jhd192aWRlb19jb3Zlci5qcGc:360x540.webp?x-kcdn-pid=112372"
-                    src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v20_std/87298e80-17b1-4319-bbfb-a09ab4117452_video.mp4?x-kcdn-pid=112372"
-                    className="aspect-square object-cover rounded-xl w-full h-full"
-                  ></video>
+                  <LazyLoadComponent>
+                    <video
+                      ref={(el) => (videoRefs.current[3] = el)}
+                      loop
+                      preload="auto"
+                      disablePictureInPicture
+                      playsInline
+                      disableRemotePlayback
+                      muted
+                      poster="https://s21-kling.klingai.com/kimg/EMXN1y8qfwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBplc2UvYWlfcG9ydGFsX3NncF9tMnZfaW1nMnZpZGVvXzEwODBwX3YyMF9zdGQvYWJmOGIxNGItMWU2Yi00YTJhLWEwYTUtNWY0MWE4NGY4Yjc3X3Jhd192aWRlb19jb3Zlci5qcGc:360x540.webp?x-kcdn-pid=112372"
+                      src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v20_std/87298e80-17b1-4319-bbfb-a09ab4117452_video.mp4?x-kcdn-pid=112372"
+                      className="aspect-square object-cover rounded-xl w-full h-full"
+                    ></video>
+                  </LazyLoadComponent>
                   <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-xl items-end"></div>
                 </div>
                 <div className="flex flex-col gap-2.5">
@@ -282,18 +291,20 @@ const LandingPage = () => {
                     onMouseEnter={() => handleMouseEnter(4)}
                     onMouseLeave={() => handleMouseLeave(4)}
                   >
-                    <video
-                      ref={(el) => (videoRefs.current[4] = el)}
-                      loop
-                      preload="auto"
-                      disablePictureInPicture
-                      playsInline
-                      muted
-                      disableRemotePlayback
-                      poster="https://s21-kling.klingai.com/kimg/EMXN1y8qgwEKBnVwbG9hZBIOeWxhYi1zdHVudC1zZ3AaaXNlL2FpX3BvcnRhbF9zZ3BfbTJ2X2ltZzJ2aWRlb18xMDgwcF92MTZfZGlzdGlsbC80OGJlN2U5NC1kNDBkLTQ5NjYtODA4Zi01YzQyZjVkYzNkNDhfcmF3X3ZpZGVvX2NvdmVyLmpwZw:360x236.webp?x-kcdn-pid=112372"
-                      src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v16_distill/23acb91a-59b8-44b0-8932-30cde5b957ae_video.mp4?x-kcdn-pid=112372"
-                      className="aspect-video object-top object-cover rounded-xl w-full h-full"
-                    ></video>
+                    <LazyLoadComponent>
+                      <video
+                        ref={(el) => (videoRefs.current[4] = el)}
+                        loop
+                        preload="auto"
+                        disablePictureInPicture
+                        playsInline
+                        muted
+                        disableRemotePlayback
+                        poster="https://s21-kling.klingai.com/kimg/EMXN1y8qgwEKBnVwbG9hZBIOeWxhYi1zdHVudC1zZ3AaaXNlL2FpX3BvcnRhbF9zZ3BfbTJ2X2ltZzJ2aWRlb18xMDgwcF92MTZfZGlzdGlsbC80OGJlN2U5NC1kNDBkLTQ5NjYtODA4Zi01YzQyZjVkYzNkNDhfcmF3X3ZpZGVvX2NvdmVyLmpwZw:360x236.webp?x-kcdn-pid=112372"
+                        src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v16_distill/23acb91a-59b8-44b0-8932-30cde5b957ae_video.mp4?x-kcdn-pid=112372"
+                        className="aspect-video object-top object-cover rounded-xl w-full h-full"
+                      ></video>
+                    </LazyLoadComponent>
                     <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-xl items-end"></div>
                   </div>
                   <div
@@ -301,18 +312,20 @@ const LandingPage = () => {
                     onMouseEnter={() => handleMouseEnter(5)}
                     onMouseLeave={() => handleMouseLeave(5)}
                   >
-                    <video
-                      ref={(el) => (videoRefs.current[5] = el)}
-                      loop
-                      preload="auto"
-                      disablePictureInPicture
-                      playsInline
-                      muted
-                      disableRemotePlayback
-                      poster="https://s21-kling.klingai.com/kimg/EMXN1y8qgwEKBnVwbG9hZBIOeWxhYi1zdHVudC1zZ3AaaXNlL2FpX3BvcnRhbF9zZ3BfbTJ2X2ltZzJ2aWRlb18xMDgwcF92MTZfZGlzdGlsbC9lNjkyMGRjYy0yZDAzLTQxNmUtOGUzMi1kMGNhMzBmNzFiZjFfcmF3X3ZpZGVvX2NvdmVyLmpwZw:360x203.webp?x-kcdn-pid=112372"
-                      src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v16_distill/4ef81e26-e45f-4882-9aff-ceb22c4ab328_video.mp4?x-kcdn-pid=112372"
-                      className="aspect-video object-top object-cover rounded-xl w-full h-full"
-                    ></video>
+                    <LazyLoadComponent>
+                      <video
+                        ref={(el) => (videoRefs.current[5] = el)}
+                        loop
+                        preload="auto"
+                        disablePictureInPicture
+                        playsInline
+                        muted
+                        disableRemotePlayback
+                        poster="https://s21-kling.klingai.com/kimg/EMXN1y8qgwEKBnVwbG9hZBIOeWxhYi1zdHVudC1zZ3AaaXNlL2FpX3BvcnRhbF9zZ3BfbTJ2X2ltZzJ2aWRlb18xMDgwcF92MTZfZGlzdGlsbC9lNjkyMGRjYy0yZDAzLTQxNmUtOGUzMi1kMGNhMzBmNzFiZjFfcmF3X3ZpZGVvX2NvdmVyLmpwZw:360x203.webp?x-kcdn-pid=112372"
+                        src="https://v21-kling.klingai.com/bs2/upload-ylab-stunt-sgp/se/ai_portal_sgp_m2v_img2video_1080p_v16_distill/4ef81e26-e45f-4882-9aff-ceb22c4ab328_video.mp4?x-kcdn-pid=112372"
+                        className="aspect-video object-top object-cover rounded-xl w-full h-full"
+                      ></video>
+                    </LazyLoadComponent>
                     <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-xl items-end"></div>
                   </div>
                 </div>

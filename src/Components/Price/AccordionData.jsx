@@ -4,7 +4,8 @@ import React, { useState } from "react";
 
 export default function AccordionData() {
   const [expandedKeys, setExpandedKeys] = useState([
-    "Do you offer free trials for Archiks88 AI?","What is Archiks88 AI, and how does it work?"
+    "Do you offer free trials for Archiks88 AI?",
+    "What is Archiks88 AI, and how does it work?",
   ]);
 
   const defaultContent1 = {
@@ -65,8 +66,8 @@ export default function AccordionData() {
   });
 
   return (
-    <div className="mb-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+    <div className="">
+      <div className="grid grid-cols-1 md:grid-cols-2 mb-16">
         <h2 className="text-3xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm">
           Billing Questions 🎯
         </h2>

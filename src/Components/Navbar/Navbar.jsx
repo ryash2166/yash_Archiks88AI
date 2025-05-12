@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/Main.svg"
+import logo from "../../assets/Main.svg";
 import Button from "../Common/Button";
 import Login from "../Login/Login";
 import personPlaceholder from "../../assets/person.png";
@@ -128,12 +128,16 @@ const Navbar = ({ container = false }) => {
               </div>
             ) : (
               <div className="flex items-center gap-4">
-              <Link to="/pricing"><p className="text-blue text-base hover:underline">Pricing</p></Link>
-              <Button
-                className="bg-blue-light hover:!bg-secondary !px-3 sm:!px-6"
-                title="Sign In"
-                onClick={togglePopup}
-              />
+                <Link to="/pricing">
+                  <p className="text-blue-light text-base hover:underline">
+                    Pricing
+                  </p>
+                </Link>
+                <Button
+                  className="bg-blue-light hover:!bg-secondary !px-3 sm:!px-6"
+                  title="Sign In"
+                  onClick={togglePopup}
+                />
               </div>
             )}
           </div>

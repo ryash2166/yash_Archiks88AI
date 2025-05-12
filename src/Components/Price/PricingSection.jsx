@@ -109,7 +109,7 @@ const PricingSection = () => {
           Yearly 30% off
         </Tab>
       </TabList>
-      <div className="flex md:mt-10 justify-center w-full">
+      <div className="flex justify-center w-full">
         <TabPanel>
           <div className="flex flex-wrap justify-center gap-6">
             {monthlyPlans.map((plan, index) => (

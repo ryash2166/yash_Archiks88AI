@@ -27,17 +27,17 @@ const Price = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 text-white ">
-        <div className="flex items-center justify-center text-center flex-col mt-16 mb-4">
+      <div className="relative z-10 container mx-auto px-4 text-white mt-12">
+        <div className="flex items-center justify-center text-center flex-col mb-4">
           <div className="bg-black-500 rounded-xl text-sm md:text-base w-fit px-5 py-1">
             ARCHIKS88 AI
           </div>
           <h2 className="my-4 text-3xl md:text-5xl font-bold">
             Choose Plan to Get Started
           </h2>
-        </div>
-        <div className="mb-4 flex flex-col gap-12">
           <PricingSection />
+        </div>
+        <div className="mb-4 mt-12 flex flex-col gap-12">
           <Comparison />
           <CustomizedAccordions />
 

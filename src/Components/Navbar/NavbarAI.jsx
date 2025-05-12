@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import logo from "../../assets/Main.svg"
+import logo from "../../assets/Main.svg";
 import Button from "../Common/Button";
 import Login from "../Login/Login";
 import { Link } from "react-router-dom";
@@ -30,19 +30,21 @@ const NavbarAI = () => {
   const { token } = useNavigation();
 
   const [scrolled, setScrolled] = useState(false);
-  
-    useEffect(() => {
-      const handleScroll = () => {
-        setScrolled(window.scrollY > 50); // Adjust scrollY threshold as needed
-      };
-  
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50); // Adjust scrollY threshold as needed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <div className={`sticky top-0 w-full z-20 transition-all duration-500 ${
+    <div
+      className={`sticky top-0 w-full z-20 transition-all duration-500 ${
         scrolled ? "bg-[#111827]/95 backdrop-blur-sm shadow-md" : "bg-primary"
-      }`}>
+      }`}
+    >
       <header className="h-[68px] w-full px-1 sm:px-5">
         <div className="flex h-full justify-between items-center px-2 gap-2.5">
           <div className="flex items-center h-full">
@@ -116,11 +118,18 @@ const NavbarAI = () => {
                 )}
               </div>
             ) : (
-              <Button
-                className="bg-blue-light hover:!bg-secondary !px-3 sm:!px-6"
-                title="Sign In"
-                onClick={togglePopup}
-              />
+              <div className="flex items-center gap-4">
+                <Link to="/pricing">
+                  <p className="text-blue-light text-base hover:underline">
+                    Pricing
+                  </p>
+                </Link>
+                <Button
+                  className="bg-blue-light hover:!bg-secondary !px-3 sm:!px-6"
+                  title="Sign In"
+                  onClick={togglePopup}
+                />
+              </div>
             )}
           </div>
         </div>

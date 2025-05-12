@@ -1,8 +1,9 @@
 import React from "react";
 import { MdClose } from "react-icons/md";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import loginImg from "../../assets/login.png";
 import useAuthForm from "../../hooks/useAuthForm";
+import loginImg from "../../assets/login.png";
+import LazyLoadImg from "../Common/LazyLoadImg";
 
 const Login = ({ isVisible, onClose }) => {
   const {
@@ -41,27 +42,27 @@ const Login = ({ isVisible, onClose }) => {
         /> */}
         <div className="w-full max-h-[456px] h-full py-9 px-6 md:px-9 flex flex-col">
           <div className="flex items-center justify-between">
-          <h1 className="text-lg md:text-[22px] text-white leading-8 font-semibold">
-            {formState === "forgot"
-              ? "Password Recovery"
-              : formState === "reset"
-              ? "Reset Password"
-              : formState === "signup"
-              ? "Create Account"
-              : "Welcome to ArchikS88AI"}
-          </h1>
-          <button
-          className="text-3xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300"
-          onClick={onClose}
-        >
-          <MdClose />
-        </button>
+            <h1 className="text-lg md:text-[22px] text-white leading-8 font-semibold">
+              {formState === "forgot"
+                ? "Password Recovery"
+                : formState === "reset"
+                ? "Reset Password"
+                : formState === "signup"
+                ? "Create Account"
+                : "Welcome to ArchikS88AI"}
+            </h1>
+            <button
+              className="text-3xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300"
+              onClick={onClose}
+            >
+              <MdClose />
+            </button>
           </div>
 
           {errors.general && (
             <div className="mt-2 text-red-500 text-sm">{errors.general}</div>
           )}
-          
+
           {successMessage && (
             <div className="mt-2 text-green-500 text-sm">{successMessage}</div>
           )}
@@ -73,7 +74,9 @@ const Login = ({ isVisible, onClose }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={`w-full px-4 py-3 text-white bg-primary hover:border-secondary rounded-xl border ${
-                  errors.email ? "border-red-500" : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
+                  errors.email
+                    ? "border-red-500"
+                    : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
                 }`}
                 placeholder="Enter your email"
                 disabled={formState === "reset"}
@@ -91,7 +94,9 @@ const Login = ({ isVisible, onClose }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
-                      errors.password ? "border-red-500" : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
+                      errors.password
+                        ? "border-red-500"
+                        : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder={
                       formState === "signup"
@@ -119,7 +124,7 @@ const Login = ({ isVisible, onClose }) => {
                     <button
                       type="button"
                       onClick={() => setFormState("forgot")}
-                      className="text-blue hover:underline text-sm"
+                      className="text-blue-light hover:underline text-sm"
                     >
                       Forgot Password?
                     </button>
@@ -136,7 +141,9 @@ const Login = ({ isVisible, onClose }) => {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     className={`w-full px-4 py-3 pr-12 text-white bg-primary hover:border-secondary rounded-xl border ${
-                      errors.newPassword ? "border-red-500" : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
+                      errors.newPassword
+                        ? "border-red-500"
+                        : "border-blue-light focus:outline-none focus:ring-0.5 focus:ring-secondary"
                     }`}
                     placeholder="New Password"
                   />
@@ -183,7 +190,7 @@ const Login = ({ isVisible, onClose }) => {
                     <button
                       type="button"
                       onClick={() => setFormState("forgot")}
-                      className="text-blue hover:underline text-sm"
+                      className="text-blue-light hover:underline text-sm"
                     >
                       Forgot Password?
                     </button>
@@ -219,7 +226,7 @@ const Login = ({ isVisible, onClose }) => {
                     <button
                       type="button"
                       onClick={() => setFormState("signup")}
-                      className="text-blue hover:underline"
+                      className="text-blue-light hover:underline"
                     >
                       Sign Up
                     </button>
@@ -230,7 +237,7 @@ const Login = ({ isVisible, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setFormState("login")}
-                    className="text-blue hover:underline"
+                    className="text-blue-light hover:underline"
                   >
                     Back to Login
                   </button>
@@ -240,17 +247,17 @@ const Login = ({ isVisible, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setFormState("login")}
-                    className="text-blue hover:underline"
+                    className="text-blue-light hover:underline"
                   >
                     Back to Login
                   </button>
                 )}
-                
+
                 {formState === "reset" && (
                   <button
                     type="button"
                     onClick={() => setFormState("login")}
-                    className="text-blue hover:underline"
+                    className="text-blue-light hover:underline"
                   >
                     Back to Login
                   </button>

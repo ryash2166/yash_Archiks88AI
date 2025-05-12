@@ -114,30 +114,32 @@ const Profile = () => {
             <Masonry className="!m-auto">
               {displayedImages && displayedImages.length > 0 ? (
                 displayedImages.map((img) => (
-                  <div
-                    key={img._id}
-                    className="relative inline-block group mb-2 md:mr-2"
-                  >
-                    <LazyLoadImg
-                      src={img.imageUrl}
-                      alt={img.prompt}
-                      className="cursor-pointer rounded-[18px]"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
-                      <div className="flex gap-4">
-                        <FiDownload
-                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-secondary"
-                          onClick={() =>
-                            handleDownload(img.imageUrl, `${img._id}.png`)
-                          }
-                        />
-                        <FiTrash2
-                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-red-500"
-                          onClick={() => openDeleteModal(img._id)}
-                        />
+                  <LazyLoadComponent>
+                    <div
+                      key={img._id}
+                      className="relative inline-block group mb-2 md:mr-2"
+                    >
+                      <LazyLoadImg
+                        src={img.imageUrl}
+                        alt={img.prompt}
+                        className="cursor-pointer rounded-[18px]"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
+                        <div className="flex gap-4">
+                          <FiDownload
+                            className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-secondary"
+                            onClick={() =>
+                              handleDownload(img.imageUrl, `${img._id}.png`)
+                            }
+                          />
+                          <FiTrash2
+                            className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-red-500"
+                            onClick={() => openDeleteModal(img._id)}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </LazyLoadComponent>
                 ))
               ) : (
                 <p>No images generated yet.</p>

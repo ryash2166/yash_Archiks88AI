@@ -26,7 +26,13 @@ const PricingCard = ({
       )}
 
       <div className="text-center mb-6">
-        <h3 className={`text-2xl font-bold group-hover:text-secondary  ${isActive ? "text-secondary hover:" : "text-white"}`}>{title}</h3>
+        <h3
+          className={`text-2xl font-bold group-hover:text-secondary  ${
+            isActive ? "text-secondary hover:" : "text-white"
+          }`}
+        >
+          {title}
+        </h3>
         <p className="text-gray-400 mt-1">Starts with {yearlyPrice}</p>
       </div>
 
@@ -56,7 +62,10 @@ const PricingCard = ({
 
       <div className="mt-auto">
         <button className="w-full py-2.5 px-6 rounded-xl bg-secondary gap-2 text-white font-semibold transition-all hover:bg-[#6262f5] flex items-center justify-center">
-          Subscribe <MoveRight className="mt-1" />
+          Subscribe{" "}
+          <span className="">
+            <MoveRight className="mt-1" />
+          </span>
         </button>
       </div>
     </div>
