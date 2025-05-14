@@ -198,7 +198,7 @@ const LandingPage = () => {
               </p>
             </div>
             <div>
-              <div className="grid grid-cols-4 gap-2.5 w-full max-h-[540px] max-w-[1500px] relative max-lg:grid-cols-2 max-lg:max-h-max max-md:grid-cols-1">
+              <div className="grid grid-cols-4 gap-2.5 w-full max-h-[540px] max-w-screen relative max-lg:grid-cols-2 max-lg:max-h-max max-md:grid-cols-1">
                 <div
                   className="relative"
                   onMouseEnter={() => handleMouseEnter(0)}
@@ -338,7 +338,7 @@ const LandingPage = () => {
                 className="bg-black text-white sm:!text-base !py-3 sm:!py-4 !px-20 sm:max-w-80 rounded-full transition-all duration-300  bg-gradient-to-r from-purple-700 to-sky-600 hover:bg-gradient-to-l hover:from-purple-900 hover:to-sky-700 "
               />
               <div className="relative inline-block group sm:max-w-80">
-                <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
+                <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
                   <Button
                     onClick={togglePopup}
                     title="Try it Now!"
@@ -379,7 +379,7 @@ const LandingPage = () => {
                   visuals, motion, and sound—no editing required.
                 </p>
                 <div className="relative inline-block group mx-auto sm:max-w-80">
-                  <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
+                  <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
                     <Button
                       onClick={handleVideoClick}
                       title="Text to Video"
@@ -403,7 +403,7 @@ const LandingPage = () => {
                   adding motion, effects, and music.
                 </p>
                 <div className="relative inline-block mx-auto group sm:max-w-80">
-                  <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
+                  <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
                     <Button
                       onClick={handleVideoClick}
                       title="Image to Video"
@@ -466,7 +466,7 @@ const LandingPage = () => {
                   </p>
                 </div>
                 <div className="relative inline-block mx-auto group sm:max-w-80">
-                  <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
+                  <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
                     <Button
                       // onClick={handleVideoClick}
                       title="Try Our AI Actor Generator"
@@ -528,7 +528,7 @@ const LandingPage = () => {
                   </p>
                 </div>
                 <div className="relative inline-block mx-auto group sm:max-w-80">
-                  <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
+                  <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
                     <Button
                       // onClick={handleVideoClick}
                       title="Try Our Lip-Sync Video"
@@ -567,7 +567,7 @@ const LandingPage = () => {
                 <TrendingCreatives />
               </div>
               <div className="relative flex items-center justify-center  mt-10">
-                <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
+                <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
                   <Button
                     onClick={handleExploreClick}
                     title="View More"

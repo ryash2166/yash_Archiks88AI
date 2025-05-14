@@ -92,7 +92,7 @@ const PricingSection = () => {
   ];
   return (
     <Tabs className="flex flex-col justify-center items-center gap-10 ">
-      <TabList className="flex items-center gap-3 pricing relative border border-[#48454e] bg-[#101415] rounded-xl py-2 px-3 w-fit">
+      <TabList className="flex items-center gap-3 pricing relative border border-border-secondary bg-primary rounded-xl py-2 px-3 w-fit">
         <Tab
           active
           className="px-3 py-2 font-semibold inline-flex border-0 text-xs sm:text-sm rounded-xl cursor-pointer text-gray-500"

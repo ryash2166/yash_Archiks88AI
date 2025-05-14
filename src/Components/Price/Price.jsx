@@ -59,7 +59,7 @@ const Price = () => {
                   Create captivating short videos effortlessly with Archiks88 AI
                 </span>
                 <div className="relative flex items-center justify-center  mt-10">
-                  <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
+                  <div className="p-1 bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
                     <Button
                       onClick={handleLogin}
                       title="Get Started Now"

@@ -46,7 +46,7 @@ const Navbar = ({ container = false }) => {
       }`}
     >
       <header
-        className={`h-[68px] w-full px-4 backdrop-blur-sm shadow-md ${
+        className={`h-16 w-full px-4 backdrop-blur-sm shadow-md ${
           container ? "container mx-auto" : ""
         } `}
       >
@@ -58,7 +58,7 @@ const Navbar = ({ container = false }) => {
             <div className="flex items-center h-full">
               <Link
                 to={token ? "/dashboard" : "/"}
-                className="flex h-full max-sm:ml-[2px] items-center"
+                className="flex h-full ml-1 items-center"
                 onClick={handleLogoClick}
               >
                 <img src={logo} alt="Logo" />
@@ -99,7 +99,7 @@ const Navbar = ({ container = false }) => {
                 {/* Profile Dropdown */}
                 {showProfileDropdown && (
                   <div
-                    className="absolute top-full right-0 mt-2 w-48 bg-[#1a1f27] rounded-lg shadow-lg border border-[#2d333b]"
+                    className="absolute top-full right-0 mt-2 w-48 bg-primary rounded-lg shadow-lg border border-primary-border"
                     onClick={(e) => e.stopPropagation()} // Prevent dropdown from closing on click
                   >
                     <div className="py-2 px-4">
@@ -110,14 +110,14 @@ const Navbar = ({ container = false }) => {
                       <Link
                         to="/profile"
                         onClick={handleMyCreativesClick}
-                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-[#272d33] hover:text-white"
+                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-primary/20 hover:text-white"
                       >
                         <FaFolderClosed className="mr-3" />
                         My Creatives
                       </Link>
                       <button
                         onClick={handleLogout}
-                        className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-[#272d33] hover:text-red-500"
+                        className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-primary/20 hover:text-red-500"
                       >
                         <FaSignOutAlt className="mr-3" />
                         Logout

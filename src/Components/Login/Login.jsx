@@ -42,7 +42,7 @@ const Login = ({ isVisible, onClose }) => {
         /> */}
         <div className="w-full max-h-[456px] h-full py-9 px-6 md:px-9 flex flex-col">
           <div className="flex items-center justify-between">
-            <h1 className="text-lg md:text-[22px] text-white leading-8 font-semibold">
+            <h1 className="text-lg md:text-2xl text-white font-semibold">
               {formState === "forgot"
                 ? "Password Recovery"
                 : formState === "reset"
@@ -52,7 +52,7 @@ const Login = ({ isVisible, onClose }) => {
                 : "Welcome to ArchikS88AI"}
             </h1>
             <button
-              className="text-3xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300"
+              className="text-3xl font-bold text-gray-500 hover:text-gray-300"
               onClick={onClose}
             >
               <MdClose />
@@ -107,7 +107,7 @@ const Login = ({ isVisible, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 text-xl top-1/2 -translate-y-1/2 text-[#727485]"
+                    className="absolute right-3 text-xl top-1/2 -translate-y-1/2 text-gray-150 "
                   >
                     {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
                   </button>
@@ -150,7 +150,7 @@ const Login = ({ isVisible, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#727485]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-150 "
                   >
                     {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
                   </button>

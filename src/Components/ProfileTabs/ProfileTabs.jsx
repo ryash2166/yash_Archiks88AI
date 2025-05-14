@@ -26,10 +26,10 @@ const ProfileTabs = () => {
         case "All":
           return (
             <div className="text-center">
-              <div className="pt-[80px] mb-5">
+              <div className="pt-20 pt- mb-5">
                 <div className="w-full text-center flex flex-col justify-center items-center">
                   <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
-                  <p className="text-[#c5c7d5] text-sm">
+                  <p className="text-gray text-sm">
                     Release your creative potential. Experience the magic of
                     Archiks88 AI.
                   </p>
@@ -54,10 +54,10 @@ const ProfileTabs = () => {
         case "Images":
           return (
             <div className="text-center">
-              <div className="pt-[80px] mb-5">
+              <div className="pt-20 mb-5">
                 <div className="w-full text-center flex flex-col justify-center items-center">
                   <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
-                  <p className="text-[#c5c7d5] text-sm">No Result Found</p>
+                  <p className="text-gray text-sm">No Result Found</p>
                 </div> 
               </div>
             </div>
@@ -65,10 +65,10 @@ const ProfileTabs = () => {
         case "Videos":
           return (
             <div className="text-center">
-              <div className="pt-[80px] mb-5">
+              <div className="pt-20 mb-5">
                 <div className="w-full text-center flex flex-col justify-center items-center">
                   <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
-                  <p className="text-[#c5c7d5] text-sm">No Result Found</p>
+                  <p className="text-gray text-sm">No Result Found</p>
                 </div>
               </div>
             </div>
@@ -81,10 +81,10 @@ const ProfileTabs = () => {
         case "Creatives":
           return (
             <div className="text-center flex justify-center">
-              <div className="pt-[80px] mb-5">
+              <div className="pt-20 mb-5">
                 <div>
                   <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
-                  <p className="text-[#c5c7d5] text-sm mb-3">No Works</p>
+                  <p className="text-gray text-sm mb-3">No Works</p>
                 </div>
               </div>
             </div>
@@ -92,10 +92,10 @@ const ProfileTabs = () => {
         case "Shorts":
           return (
             <div className="text-center flex justify-center">
-              <div className="pt-[80px] mb-5">
+              <div className="pt-20 mb-5">
                 <div className="flex flex-col items-center">
                   <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
-                  <p className="text-[#c5c7d5] text-sm mb-3">
+                  <p className="text-gray text-sm mb-3">
                     You haven't published any works. Share your masterpiece now.
                   </p>
                 </div>
@@ -110,10 +110,10 @@ const ProfileTabs = () => {
         case "Creatives":
           return (
             <div className="text-center flex justify-center">
-              <div className="pt-[80px] mb-5">
+              <div className="pt-20 mb-5">
                 <div className="flex flex-col items-center">
                   <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
-                  <p className="text-[#c5c7d5] text-sm mb-3">
+                  <p className="text-gray text-sm mb-3">
                     You haven't liked any works. Show some love to our
                     masterpiece.
                   </p>
@@ -130,10 +130,10 @@ const ProfileTabs = () => {
         case "Shorts":
           return (
             <div className="text-center flex justify-center">
-              <div className="pt-[80px] mb-5">
+              <div className="pt-20 mb-5">
                 <div className="flex flex-col items-center">
                   <LazyLoadImg src={nowork} alt="No_Work" width={120} height={120} />
-                  <p className="text-[#c5c7d5] text-sm mb-3">
+                  <p className="text-gray text-sm mb-3">
                     You haven't liked any works. Show some love to our
                     masterpiece.
                   </p>
@@ -161,10 +161,10 @@ const ProfileTabs = () => {
         {["Published", "Assets", "Likes"].map((tab) => (
           <button
             key={tab}
-            className={`md:px-4 px-2 py-2 text-[20px] leading-7 font-medium transition-transform ${
+            className={`md:px-4 px-2 py-2 text-xl leading-7 font-medium transition-transform ${
               mainTab === tab
-                ? "bg-[#191d21] text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] border-b-2 border-teal-400 !ml-0"
-                : "text-[#c5c7d5] hover:text-white !ml-0"
+                ? "bg-primary text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] border-b-2 border-teal-400 !ml-0"
+                : "text-gray hover:text-white !ml-0"
             }`}
             onClick={() => setMainTab(tab)}
           >
@@ -175,16 +175,16 @@ const ProfileTabs = () => {
 
       {/* Sub Tabs */}
       <div className="flex justify-between items-center max-md:hidden">
-        <div className="flex items-center p-1 rounded-full bg-[#ffffff0a] border-[1px] border-[#ffffff1f]">
+        <div className="flex items-center p-1 rounded-full bg-primary border border-border-secondary">
           {(mainTab === "Assets"
             ? ["All", "Images", "Videos"]
             : ["Creatives", "Shorts"]
           ).map((subTab) => (
             <button
               key={subTab}
-              className={`py-[6px] px-6 text-sm leading-6 font-medium rounded-full transition ${
+              className={`py-1.5 px-6 text-sm leading-6 font-medium rounded-full transition ${
                 assetsSubTab === subTab
-                  ? "bg-[#191d21] bg-gradient-to-r focus:outline-none from-[#52ffba] via-[#23faec] to-[#0af]"
+                  ? "bg-primary bg-gradient-to-r focus:outline-none from-[#52ffba] via-[#23faec] to-[#0af]"
                   : "text-white"
               }`}
               onClick={() => setAssetsSubTab(subTab)}

@@ -7,7 +7,7 @@ const Comparison = () => {
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-3">
         Not sure which plan to choose?
       </h2>
-      <div className="text-[#c3c6c6] mb-3">
+      <div className="text-gray mb-3">
         <h1 className="border-b border-border-secondary p-4 text-lg font-semibold text-white mb-4">
           AI workflows
         </h1>
@@ -133,7 +133,7 @@ const Comparison = () => {
           </div>
         </div>
       </div>
-      <div className="text-[#c3c6c6]">
+      <div className="text-gray">
         <h1 className="border-b border-border-secondary p-4 text-lg font-semibold text-white mb-4">
           ArchikS88 AI Tools
         </h1>

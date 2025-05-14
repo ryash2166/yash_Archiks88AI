@@ -14,9 +14,9 @@ import LazyLoadImg from "../Components/Common/LazyLoadImg";
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
     <LazyLoadImg src={icon} alt={title} />
-    <span className="text-[16px]  text-left pl-[6px] text-white">{title}</span>
+    <span className="text-base  text-left pl-1.5 text-white">{title}</span>
     {subtitle && (
-      <span className="text-sm text-[#999bac] text-left pl-[6px]">
+      <span className="text-sm text-gray-200 text-left pl-1.5">
         ({subtitle})
       </span>
     )}
@@ -35,7 +35,7 @@ const Card = ({ children, className = "", disabled = false }) => (
 
 // Skeleton Loader Component
 const SkeletonLoader = ({ count = 4, selectedRatio }) => (
-  <div className="grid grid-cols-1 gap-4 w-full h-[300px]">
+  <div className="grid grid-cols-1 gap-4 w-full h-80">
     {Array.from({ length: count }).map((_, index) => (
       <div key={index} className="relative">
         <div
@@ -83,19 +83,19 @@ const ImageAI = () => {
           disablePictureInPicture
           disableRemotePlayback
           playsInline
-          className="sm:absolute sm:-top-[5px] md:left-[200px] sm:max-w-[380px] pointer-events-none hidden lg:!block"
+          className="sm:absolute sm:-top-1.5 md:left-52 sm:max-w-sm pointer-events-none hidden lg:!block"
         />
-        <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl bg-gradient-to-r from-[rgb(135,83,249)] to-[rgba(6,227,171,0.9)] bg-clip-text text-transparent hidden lg:!block">
+        <p className="absolute md:left-3 top-20 md:top-28 text-center w-80 tracking-wider font-bold text-4xl bg-gradient-to-r from-purple-700 to-blue-600 bg-clip-text text-transparent hidden lg:!block">
           Creative Space
         </p>
-        <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
+        <div className="pb-28 xl:pr-52 absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
           {loading ? (
             <div className="xl:ml-32 flex flex-col h-full justify-center items-center">
               <SkeletonLoader
                 count={formState.count}
                 selectedRatio={selectedRatio}
               />
-              <p className="text-[#727485] text-center text-md mt-3">
+              <p className="text-gray-100  text-center text-md mt-3">
                 Generating {formState.count} images...
               </p>
             </div>
@@ -123,21 +123,21 @@ const ImageAI = () => {
                   </div>
                 ))}
               </div>
-              <p className="text-[#727485] text-center text-md mt-3">
+              <p className="text-gray-100  text-center text-md mt-3">
                 Generated {results.length} images
               </p>
             </div>
           ) : (
             <div className="flex flex-col items-center">
               <LazyLoadImg src={nowork} alt="" />
-              <p className="text-[#c5c7d5] text-sm">
+              <p className="text-gray-200 text-sm">
                 {error || "Release your creative potential..."}
               </p>
             </div>
           )}
         </div>
         <main
-          className="w-full lg:max-w-[450px] absolute md:float-left overflow-y-scroll lg:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
+          className="w-full lg:max-w-md absolute md:float-left overflow-y-scroll lg:pt-32 pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
           onScroll={handleScroll}
         >
           <nav
@@ -150,10 +150,10 @@ const ImageAI = () => {
               ) => (
                 <button
                   key={tab}
-                  className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
+                  className={`md:px-3 px-2 py-2 text-xl md:font-semibold transition-transform ${
                     mainTab === tab
-                      ? "text-blue  border-b-2 border-secondary !ml-0"
-                      : "text-white hover:text-[#c5c7d5] !ml-0"
+                      ? "text-blue-light  border-b-2 border-secondary !ml-0"
+                      : "text-white hover:text-gray-200 !ml-0"
                   }`}
                   onClick={() => setMainTab(tab)}
                 >
@@ -163,14 +163,14 @@ const ImageAI = () => {
             )}
           </nav>
 
-          <section className="lg:max-w-[460px] relative mt-6 ">
+          <section className="lg:max-w-md relative mt-6 ">
             <Card>
               <SectionHeader icon={sun} title="Start / End Frame and Prompt" />
-              <div className="text-sm text-[#727485] mt-4">
-                <div className="bg-primary rounded-[12px] h-[158px] relative">
-                  <div className="mx-5 mt-7 lg:mt-[13px] absolute">
+              <div className="text-sm text-gray-150  mt-4">
+                <div className="bg-primary rounded-xl h-40 relative">
+                  <div className="mx-5 mt-7 lg:mt-3.5 absolute">
                     {!formState.prompt && (
-                      <p className="text-[#727485] leading-7">
+                      <p className="text-gray-150  leading-7">
                         Please describe your creative ideas for the video, or
                         view
                         <span className="text-blue"> Help Center</span> for
@@ -189,7 +189,7 @@ const ImageAI = () => {
                     onChange={(e) =>
                       setFormState({ ...formState, prompt: e.target.value })
                     }
-                    className=" absolute ml-5 max-lg:w-5/6 bg-transparent top-[30px] text-ellipsis outline-none overflow-y-hidden resize-none text-white"
+                    className=" absolute ml-5 max-lg:w-5/6 bg-transparent top-8 text-ellipsis outline-none overflow-y-hidden resize-none text-white"
                   />
                   {formState.prompt && (
                     <button
@@ -201,13 +201,13 @@ const ImageAI = () => {
                   )}
                 </div>
               </div>
-              <div className="flex w-full  items-center justify-between rounded-b-[12px] p-2">
+              <div className="flex w-full  items-center justify-between rounded-b-xl p-2">
                 <div className="hidden">
-                  <span className="text-[#999bac] text-sm mr-1">Hints:</span>
-                  <div className="inline-flex bg-[#ffffff0f] text-sm items-center rounded-lg mr-1 text-[#f5f8fa] p-2">
+                  <span className="text-gray-200 text-sm mr-1">Hints:</span>
+                  <div className="inline-flex bg-primary-light text-sm items-center rounded-lg mr-1 text-gray p-2">
                     Chinese style CG
                   </div>
-                  <div className="inline-flex bg-[#ffffff0f] text-sm items-center rounded-lg text-[#f5f8fa] p-2">
+                  <div className="inline-flex bg-primary-light text-sm items-center rounded-lg text-gray p-2">
                     Blue melancholy
                   </div>
                 </div>
@@ -219,9 +219,9 @@ const ImageAI = () => {
               </div>
             </Card>
 
-            <Card className="mb-[15px] lg:mb-32">
+            <Card className="mb-4 lg:mb-32">
               <SectionHeader icon={setting} title="Settings" />
-              <div className="mb-5 text-[#999bac] flex justify-start items-start">
+              <div className="mb-5 text-gray-200 flex justify-start items-start">
                 <div className="text-sm leading-8">
                   <div className="mb-2">Aspect Ratio:</div>
                   <AspectRatioSelector
@@ -231,7 +231,7 @@ const ImageAI = () => {
                 </div>
               </div>
               <div className="mt-5 block">
-                <label className="pr-3 mb-2 text-[#999bac] ">
+                <label className="pr-3 mb-2 text-gray-200 ">
                   Generating Count:
                   <span className="text-white"> {formState.count}</span>
                 </label>
@@ -257,7 +257,7 @@ const ImageAI = () => {
                     count={formState.count}
                     selectedRatio={selectedRatio}
                   />
-                  <p className="text-[#727485] text-center text-md mt-3">
+                  <p className="text-gray-100  text-center text-md mt-3">
                     Generating {formState.count} images...
                   </p>
                 </div>
@@ -285,14 +285,14 @@ const ImageAI = () => {
                       </div>
                     ))}
                   </div>
-                  <p className="text-[#727485] text-center text-md mt-3">
+                  <p className="text-gray-100  text-center text-md mt-3">
                     Generated {results.length} images
                   </p>
                 </div>
               ) : (
                 <div className="flex flex-col items-center">
                   <LazyLoadImg src={nowork} alt="" />
-                  <p className="text-[#c5c7d5] text-sm">
+                  <p className="text-gray-200 text-sm">
                     {error || "Release your creative potential..."}
                   </p>
                 </div>
@@ -303,28 +303,28 @@ const ImageAI = () => {
         {/* <AssetsPanel /> */}
         <footer className="flex items-center justify-center md:block">
           <div
-            className="fixed bottom-0 left-0 w-full h-32 md:block hidden pt-1 lg:px-12 z-[3]"
+            className="fixed bottom-0 left-0 w-full h-32 md:block hidden pt-1 lg:px-12 z-10"
             style={{
               background: "linear-gradient(0deg,#0d1116 50%,#0d111600)",
             }}
           ></div>
-          <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-3 px-4 lg:px-12 z-[3]">
-            <div className="inline-block lg:ml-[10px]">
+          <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-28 pt-3 px-4 lg:px-12 z-10">
+            <div className="inline-flex items-center justify-center lg:ml-2.5 max-lg:w-full">
               <button
                 type="submit"
                 disabled={formState.prompt ? false : true}
-                className={`px-4 py-[6px] mb-2 rounded-full w-[calc(100vw-32px)] lg:w-[344px] h-12
+                className={`px-4 py-1.5 mb-2 rounded-full w-full md:w-80 h-12
                     ${
                       formState.prompt
                         ? "bg-blue-light hover:!bg-secondary text-white"
-                        : "bg-[#333a45] text-[#727485] "
-                    } font-[550] text-lg`}
+                        : "bg-primary-light text-gray-150"
+                    } font-semibold text-lg`}
               >
                 {loading ? "Generating..." : "Generate"}
               </button>
             </div>
           </div>
-          <p className="text-[#727485] text-sm mb-3 hidden md:block fixed bottom-0 w-full pt-1 px-4 lg:px-12 z-[3] text-center">
+          <p className="text-gray-100  text-sm mb-3 hidden md:block fixed bottom-0 w-full pt-1 px-4 lg:px-12 z-10 text-center">
             The generated contents do not represent the views, positions or
             attitudes of Archiks88 AI. Please use them responsibly and kindly.
           </p>

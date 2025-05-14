@@ -108,7 +108,7 @@
 //       {/* Title */}
 //       <h2 className="mb-3 relative">
 //         <span
-//           className={`bg-[#191d21] text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-7 text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] transition-all duration-300 ease-in-out ${
+//           className={`bg-primary text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-7 text-transparent bg-clip-text bg-gradient-to-r from-[#52ffba] via-[#23faec] to-[#0af] transition-all duration-300 ease-in-out ${
 //             !isDisabled
 //               ? "group-hover:bg-gradient-to-l duration-300 ease-linear"
 //               : ""
@@ -220,7 +220,7 @@ const Banner = ({
       ref={bannerRef}
       style={style}
       to={to}
-      className={`${className} h-[92px] md:h-[127px] w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-[#5252e51f] text-[#e5e6ee] text-sm sm:text-base md:text-lg leading-6 inline-block pt-4 pl-4 md:pt-5 md:pl-5 xl:pt-8 xl:pl-8 backdrop-blur-[5px] bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
+      className={`${className} h-24 h md:h-32 w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-primary-border text-[#e5e6ee] text-sm sm:text-base md:text-lg leading-6 inline-block pt-4 pl-4 md:pt-5 md:pl-5 xl:pt-8 xl:pl-8 backdrop-blur-sm bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
         isDisabled ? "opacity-80 cursor-not-allowed" : ""
       }`}
     >
@@ -244,7 +244,7 @@ const Banner = ({
       {/* Title */}
       <h2 className="mb-3 relative">
         <span
-          className={`bg-[#191d21] text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-7 text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue-light transition-all duration-300 ease-in-out ${
+          className={`bg-primary text-lg sm:text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-secondary to-blue-light transition-all duration-300 ease-in-out ${
             !isDisabled
               ? "group-hover:bg-gradient-to-l duration-300 ease-linear"
               : ""
@@ -258,7 +258,7 @@ const Banner = ({
       <span className="block text-xs sm:text-sm relative">
         {subtitle}
         {showR && (
-          <span className="relative ml-[3px] text-[10px] sm:text-[12px] md:text-[14px]">
+          <span className="relative ml-1 text-xs md:text-sm">
             ®
           </span>
         )}

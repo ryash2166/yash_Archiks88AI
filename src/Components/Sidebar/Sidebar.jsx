@@ -35,13 +35,13 @@ const Sidebar = () => {
         <Link
           to={to}
           onClick={() => setActiveTab(tab)}
-          className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full duration-100 ease-linear flex items-center cursor-pointer ${
-            isActive ? "text-secondary" : "text-[#c5c7d5]"
+          className={`w-56 h-12 text-base px-4 py-2.5 mb-1 gap-[0.5em] relative rounded-full duration-100 ease-linear flex items-center cursor-pointer ${
+            isActive ? "text-secondary" : "text-gray"
           }`}
         >
           <div
             className={`w-[18px] h-[18px] flex items-center align-top ${
-              isActive ? "text-secondary" : "text-[#c5c7d5]"
+              isActive ? "text-secondary" : "text-gray"
             }`}
           >
             {React.cloneElement(icon, {
@@ -51,7 +51,7 @@ const Sidebar = () => {
           <span className="align-middle">{label}</span>
           {extraContent}
           {isActive && (
-            <div className="h-[16px] absolute rounded-full top-[9px] -left-3 w-1 bg-secondary mt-[6px]" />
+            <div className="h-4 absolute rounded-full top-2.5 -left-3 w-1 bg-secondary mt-1.5" />
           )}
         </Link>
       </div>
@@ -59,8 +59,8 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="max-h-[calc(100vh-68px)] overflow-y-auto h-full max-w-[260px] bg-primary overflow-auto antialiased bg-grid-white/[0.02] absolute float-left z-[2] max-lg:hidden">
-      <div className="h-full pt-[16px] px-3 pb-[32px] flex flex-col gap-[16px]">
+    <aside className="max-h-[calc(100vh-68px)] overflow-y-auto h-full max-w-64 bg-primar overflow-auto absolute float-left z-10 max-lg:hidden">
+      <div className="h-full pt-4 px-3 pb-8 flex flex-col gap-4">
         <div className="grow">
           <ul className="p-0">
             {/* Home */}
@@ -76,10 +76,10 @@ const Sidebar = () => {
 
             {/* Divider and Section Heading */}
             <div>
-              <li className="!h-[16px] mt-0 mb-0 pb-0 text-[#727485] text-[14px] pt-[27px]">
-                <hr className="border-t-[1px] w-[200px] border-[#24282c] !mb-2 !mt-[-19px]" />
+              <li className="!h-4 mt-0 mb-0 pb-0 text-gray-150  text-sm pt-7">
+                <hr className="border-t w-[200px] border-primary-border !mb-2 !mt-[-19px]" />
               </li>
-              <li className="h-10 text-[#727485] font-[14px] cursor-default px-[16px] py-[11px] mb-1 mt-3 w-[234px] leading-[22px] relative">
+              <li className="h-10 text-gray-150 cursor-default px-4 py-[11px] mb-1 mt-3 w-[234px] text-base relative">
                 AI Assets
               </li>
             </div>
@@ -93,8 +93,8 @@ const Sidebar = () => {
               "VideoAI",
               <FaVideo />,
               "AI Videos",
-              <div className="h-[20px] p-1 bg-[#ffffff14] rounded flex items-center">
-                <span className="text-[10px] font-normal align-middle text-blue">
+              <div className="h-5 p-0.5 bg-primary/20 rounded flex items-center">
+                <span className="text-[10px] font-normal align-middle text-blue-light">
                   Try Archiks88 1.6
                 </span>
               </div>
@@ -103,7 +103,7 @@ const Sidebar = () => {
             {/* AI Custom Model - Disabled State */}
             <div className="relative group">
               <li
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full flex items-center cursor-not-allowed text-[#727485]`}
+                className={`w-[234px] h-12 text-base px-4 py-[11px] mb-1 gap-[0.5em] relative rounded-full flex items-center cursor-not-allowed text-gray-150 `}
               >
                 <div className="w-[18px] h-[18px] flex items-center align-top">
                   <TbChartCandle />
@@ -114,10 +114,10 @@ const Sidebar = () => {
 
             {/* Divider */}
             <div>
-              <li className="!h-[16px] mt-0 mb-0 pb-0 text-[#727485] text-[14px] pt-[27px]">
-                <hr className="border-t-[1px] w-[200px] border-[#24282c] !mb-2 !mt-[-19px]" />
+              <li className="!h-4 mt-0 mb-0 pb-0 text-gray-150  text-sm pt-[27px]">
+                <hr className="border-t w-[200px] border-primary-border !mb-2 !mt-[-19px]" />
               </li>
-              <li className="h-10 text-[#727485] font-[14px] cursor-default px-[16px] py-[11px] mb-1 mt-3 w-[234px] leading-[22px] relative">
+              <li className="h-10 text-gray-150 cursor-default px-4 py-[11px] mb-1 mt-3 w-[234px] text-base relative">
                 My Space
               </li>
             </div>
@@ -133,7 +133,7 @@ const Sidebar = () => {
             {/* My Models - Disabled State */}
             <div className="relative group">
               <li
-                className={`w-[234px] h-[46px] text-[16px] px-[16px] py-[11px] mb-1 leading-[22px] gap-[0.5em] relative rounded-full flex items-center cursor-not-allowed text-[#727485]`}
+                className={`w-[234px] h-12 text-base px-4 py-[11px] mb-1 gap-[0.5em] relative rounded-full flex items-center cursor-not-allowed text-gray-150 `}
               >
                 <div className="w-[18px] h-[18px] flex items-center align-top">
                   <FaShield />
@@ -143,12 +143,12 @@ const Sidebar = () => {
             </div>
 
             {/* Divider */}
-            <div className="!h-[16px] mt-0 mb-0 pb-0 text-[#727485] text-[14px] pt-[27px]">
-              <hr className="border-t-[1px] w-[200px] border-[#24282c] !mb-2 !mt-[-19px]" />
+            <div className="!h-4 mt-0 mb-0 pb-0 text-gray-150  text-sm pt-[27px]">
+              <hr className="border-t w-[200px] border-primary-border !mb-2 !mt-[-19px]" />
             </div>
           </ul>
           <div className="relative flex">
-            <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
+            <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
               <Button
                 onClick={handlePrice}
                 title="Upgrade Now"
@@ -160,7 +160,7 @@ const Sidebar = () => {
         </div>
 
         {/* Social Media Icons */}
-        <div className="px-3 flex flex-row gap-[16px]">
+        <div className="px-3 flex flex-row gap-4">
           <LazyLoadImg src={discord} alt="Discord" width={28} height={28} />
           <LazyLoadImg src={twitter} alt="Twitter" width={28} height={28} />
           <LazyLoadImg src={youtube} alt="YouTube" width={28} height={28} />

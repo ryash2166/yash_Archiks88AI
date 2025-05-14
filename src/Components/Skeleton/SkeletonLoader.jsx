@@ -32,7 +32,7 @@ const ExploreSkeleton = () => {
 const ProfileSkeleton = () => {
     return (
       <div className="relative h-lvh w-full overflow-auto">
-        <div className="lg:pl-[260px] p-7 pt-0 mb-20 bg-primary">
+        <div className="lg:pl-64 p-7 pt-0 mb-20 bg-primary">
           <div className="animate-pulse w-full">
             <div className="h-auto md:h-[200px] w-full rounded-xl bg-slate-400/20  mb-5">
               <div className="flex items-center justify-center md:justify-between p-8">
@@ -56,7 +56,7 @@ const ProfileSkeleton = () => {
                   {[...Array(12)].map((_, index) => (
                     <div key={index} className="animate-pulse w-full relative">
                       <div className="h-64 w-full bg-slate-400/20 rounded-xl"></div>
-                      <div className="absolute inset-0 flex items-center gap-4 justify-center transition-all duration-300 cursor-pointer rounded-[18px]">
+                      <div className="absolute inset-0 flex items-center gap-4 justify-center transition-all duration-300 cursor-pointer rounded-2xl">
                         <div className="flex h-14 w-14 rounded-full bg-slate-400/25"></div>
                         <div className="flex h-14 w-14 rounded-full bg-slate-400/25"></div>
                       </div>

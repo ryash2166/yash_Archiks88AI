@@ -19,9 +19,9 @@ import LazyLoadImg from "../Components/Common/LazyLoadImg";
 const SectionHeader = ({ icon, title, subtitle }) => (
   <div className="flex items-center ">
     <LazyLoadImg src={icon} alt={title} />
-    <span className="text-[16px]  text-left pl-[6px] text-white">{title}</span>
+    <span className="text-base  text-left pl-1.5 text-white">{title}</span>
     {subtitle && (
-      <span className="text-sm text-[#999bac] text-left pl-[6px]">
+      <span className="text-sm text-gray text-left pl-1.5">
         ({subtitle})
       </span>
     )}
@@ -71,22 +71,22 @@ const VideoAI = () => {
         disablePictureInPicture
         disableRemotePlayback
         playsInline
-        className="sm:absolute sm:-top-[5px] md:left-[150px] sm:max-w-[450px] pointer-events-none hidden lg:!block"
+        className="sm:absolute sm:-top-1.5 md:left-40 sm:max-w-md pointer-events-none hidden lg:!block"
       />
-      <p className="absolute md:left-3 top-[80px] md:top-[110px] text-center w-[320px] tracking-wider font-bold text-4xl bg-gradient-to-r from-[rgb(135,83,249)] to-[rgba(6,227,171,0.9)] bg-clip-text text-transparent hidden lg:!block">
+      <p className="absolute md:left-3 top-20 md:top-28 text-center w-80 tracking-wider font-bold text-4xl bg-gradient-to-r from-purple-700 to-blue-500 bg-clip-text text-transparent hidden lg:!block">
         Creative Space
       </p>
-      <div className="pb-[118px] xl:pr-[200px] absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
+      <div className="pb-28 xl:pr-52 absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">
         <div className="flex flex-col items-center">
           <LazyLoadImg src={nowork} alt="" width={120} height={120} />
-          <p className="text-[#c5c7d5] text-sm">
+          <p className="text-gray text-sm">
             Release your creative potential. Experience the magic of Archiks88
             AI.
           </p>
         </div>
       </div>
       <main
-        className="w-full lg:max-w-[450px] absolute lg:float-left overflow-y-scroll lg:pt-[125px] pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
+        className="w-full lg:max-w-md absolute lg:float-left overflow-y-scroll lg:pt-32 pr-4 pl-5 pb-0 h-[calc(100%-68px)]"
         onScroll={handleScroll}
       >
         <nav
@@ -99,10 +99,10 @@ const VideoAI = () => {
             ) => (
               <button
                 key={tab}
-                className={`md:px-3 px-2 py-2 text-[20px] leading-7 md:font-semibold transition-transform ${
+                className={`md:px-3 px-2 py-2 text-xl md:font-semibold transition-transform ${
                   mainTab === tab
                     ? "text-secondary border-b-2 border-blue-light !ml-0"
-                    : "text-white hover:text-[#c5c7d5] !ml-0"
+                    : "text-white hover:text-gray !ml-0"
                 }`}
                 onClick={() => setMainTab(tab)}
               >
@@ -112,19 +112,19 @@ const VideoAI = () => {
           )}
         </nav>
 
-        <section className="lg:max-w-[460px] relative mt-6">
+        <section className="lg:max-w-md relative mt-6">
           {/* <Card>
             <SectionHeader icon={promt} title="Start / End Frame and Prompt" />
-            <div className="text-sm text-[#727485] mt-4">
-              <p className="mb-3 text-xs text-[#999bac]">
+            <div className="text-sm text-gray-150  mt-4">
+              <p className="mb-3 text-xs text-gray-200">
                 JPG / PNG files up to 10MB with minimum dimensions of 300px
               </p>
 
-              <div className="bg-primary rounded-t-[12px]">
+              <div className="bg-primary rounded-t-xl">
                 <div className="relative p-4">
-                  <div className="flex items-center justify-center h-[174px]">
+                  <div className="flex items-center justify-center h-44">
                     <div className="text-center">
-                      <div className="text-[#36ee45] text-lg flex items-center justify-center">
+                      <div className="text-gray text-lg flex items-center justify-center">
                         <LazyLoadImg
                           src={upload}
                           alt="Upload Icon"
@@ -144,7 +144,7 @@ const VideoAI = () => {
                       />
                       <div className="absolute left-1/2 transform -translate-x-1/2">
                         <span className="text-white">Select from</span>
-                        <button className="text-[#1be5ec] mx-[0.5em] hover:!text-white duration-250 ease-linear">
+                        <button className="text-gray mx-[0.5em] hover:!text-white duration-250 ease-linear">
                           History
                         </button>
                       </div>
@@ -153,7 +153,7 @@ const VideoAI = () => {
                 </div>
               </div>
 
-              <div className="border-t-[1px] bg-primary border-[#2e3136] flex w-full items-center justify-between rounded-b-[12px] p-2">
+              <div className="border-t bg-primary border-primary-border  flex w-full items-center justify-between rounded-b-xl p-2">
                 Hints
                 <div className="cursor-pointer h-12">
                   <LazyLoadImg
@@ -226,7 +226,7 @@ const VideoAI = () => {
               </div>
               <div className="mt-[1.5em] mb-3 flex justify-between">
                 <div>
-                  <span className="text-[#ffffffcc]">Prompt</span>
+                  <span className="text-gray-150">Prompt</span>
                   <span> (Optional)</span>
                 </div>
                 <div className="flex items-center text-sm leading-6 cursor-pointer text-white hover:text-[#82fac2] ease-linear duration-200">
@@ -248,14 +248,14 @@ const VideoAI = () => {
                   <span>Get Inspiration</span>
                 </div>
               </div>
-              <div className="bg-primary rounded-[12px] h-[158px] relative">
-                <div className="bg-primary rounded-[12px] h-[158px] relative">
-                  <div className="mx-5 mt-[13px] absolute">
+              <div className="bg-primary rounded-xl h-40 relative">
+                <div className="bg-primary rounded-xl h-40 relative">
+                  <div className="mx-5 mt-3 absolute">
                     {!inputText && (
-                      <p className="text-[#727485] leading-7">
+                      <p className="text-gray-100  leading-7">
                         Please describe your creative ideas for the video, or
                         view
-                        <span className="text-[#82fac2]"> Help Center</span> for
+                        <span className="text-gray-150"> Help Center</span> for
                         a quick start.
                       </p>
                     )}
@@ -264,7 +264,7 @@ const VideoAI = () => {
                     type="text"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
-                    className="w-full absolute mx-5 top-[27px] text-ellipsis bg-transparent outline-none z-10 text-white pr-8 "
+                    className="w-full absolute mx-5 top-7 text-ellipsis bg-transparent outline-none z-10 text-white pr-8 "
                   />
                   {inputText && (
                     <button
@@ -311,11 +311,11 @@ const VideoAI = () => {
             <div className="flex items-center justify-between">
               <SectionHeader icon={sun} title="Prompt" />
             </div>
-            <div className="text-sm text-[#727485] mt-4">
-              <div className="bg-primary rounded-[12px] h-[210px] relative">
-                <div className="mx-5 mt-7 lg:mt-[13px] absolute">
+            <div className="text-sm text-gray-150  mt-4">
+              <div className="bg-primary rounded-xl h-52 relative">
+                <div className="mx-5 mt-7 lg:mt-3 absolute">
                   {!prompt && (
-                    <p className="text-[#727485] leading-7">
+                    <p className="text-gray-100  leading-7">
                       Please describe your creative ideas for the video, or view
                       <span className="text-blue"> Help Center</span> for a
                       quick start.
@@ -328,7 +328,7 @@ const VideoAI = () => {
                   onChange={(e) => setPrompt(e.target.value)}
                   rows={5}
                   cols={38}
-                  className=" absolute ml-5 max-lg:w-5/6  bg-transparent top-[30px] text-ellipsis outline-none overflow-y-hidden resize-none text-white"
+                  className=" absolute ml-5 max-lg:w-5/6  bg-transparent top-8 text-ellipsis outline-none overflow-y-hidden resize-none text-white"
                 />
                 {prompt && (
                   <button
@@ -368,13 +368,13 @@ const VideoAI = () => {
                 )}
               </div>
             </div>
-            <div className="flex w-full  items-center justify-between mt-4 rounded-b-[12px] p-2">
+            <div className="flex w-full  items-center justify-between mt-4 rounded-b-xl p-2">
               <div>
-                <span className="text-[#999bac] text-sm mr-1">Hints:</span>
-                <div className="inline-flex bg-[#ffffff0f] text-sm items-center rounded-lg mr-1 text-[#f5f8fa] p-2">
+                <span className="text-gray-200 text-sm mr-1">Hints:</span>
+                <div className="inline-flex bg-primary text-sm items-center rounded-lg mr-1 text-white p-2">
                   Neon Car
                 </div>
-                <div className="inline-flex bg-[#ffffff0f] text-sm items-center rounded-lg text-[#f5f8fa] p-2">
+                <div className="inline-flex bg-primary text-sm items-center rounded-lg text-white p-2">
                   Dancing Panda
                 </div>
               </div>
@@ -444,8 +444,8 @@ const VideoAI = () => {
 
           <Card>
             <SectionHeader icon={setting} title="Settings" />
-            <form action="" className="text-[#727485] text-sm leading-6 mt-4">
-              <div className="mb-5 text-[#999bac] flex">
+            <form action="" className="text-gray-100  text-sm leading-6 mt-4">
+              <div className="mb-5 text-gray-200 flex">
                 <div className="flex w-full items-center">
                   <label className="pr-3 text-sm ">Creativity</label>
                   <Slider
@@ -459,8 +459,8 @@ const VideoAI = () => {
                   <label className="pl-3 text-sm ">Relevance</label>
                 </div>
               </div>
-              <div className="mb-5 text-[#999bac] flex justify-start items-start">
-                <div className="w-[80px] inline-flex justify-start items-start h-8 text-sm leading-8">
+              <div className="mb-5 text-gray-200 flex justify-start items-start">
+                <div className="w-20 inline-flex justify-start items-start h-8 text-sm leading-8">
                   <div className="flex items-center">
                     Mode
                     <svg
@@ -504,8 +504,8 @@ const VideoAI = () => {
                   </RadioGroup>
                 </div>
               </div>
-              <div className="mb-5 text-[#999bac] flex justify-start items-start">
-                <div className="w-[80px] inline-flex justify-start items-start h-8 text-sm leading-8">
+              <div className="mb-5 text-gray-200 flex justify-start items-start">
+                <div className="w-20 inline-flex justify-start items-start h-8 text-sm leading-8">
                   <div className="flex items-center">Duration:</div>
                 </div>
                 <div className="flex items-center flex-1 flex-wrap relative leading-8 text-sm">
@@ -531,7 +531,7 @@ const VideoAI = () => {
               </div>
             </form>
             <div className="mt-5 block cursor-not-allowed">
-              <label className="pr-3 mb-2 text-[#999bac] ">
+              <label className="pr-3 mb-2 text-gray-200 ">
                 Generating Count:
                 <span className="text-white"> 1</span>
               </label>
@@ -548,13 +548,13 @@ const VideoAI = () => {
 
           <Card disabled>
             <SectionHeader icon={camera} title="Camera Movement" />
-            <div className="text-[#999bac] text-sm leading-6 mt-4">
+            <div className="text-gray-200 text-sm leading-6 mt-4">
               Currently unavailable on Archiks88 1.6, please switch to Archiks88
               1.5
             </div>
             <div className="mt-4">
-              <div className="relative opacity-[30%] h-[220px] w-full rounded-[10px] bg-primary">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#333a45] rounded-xl h-[164px] w-[284px]">
+              <div className="relative opacity-30 h-56 w-full rounded-xl bg-primary">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-light rounded-xl h-40 w-72">
                   <LazyLoadImg
                     src={camera2}
                     alt="Movement"
@@ -562,8 +562,8 @@ const VideoAI = () => {
                   />
                 </div>
               </div>
-              <div className="opacity-[30%] flex items-center justify-between mt-2 h-8 w-full  px-3">
-                <div className="text-[#fffc] flex items-center ">
+              <div className="opacity-30 flex items-center justify-between mt-2 h-8 w-full  px-3">
+                <div className="text-gray-200 flex items-center ">
                   <span className="pr-1">Camera Controls</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -579,7 +579,7 @@ const VideoAI = () => {
                 </div>
                 <div className="flex justify-end">
                   <div className="w-full align-bottom">
-                    <div className="bg-[#0002] border-[1px] border-[#2d3e3f] rounded-lg flex items-center justify-between gap-4 px-3 h-8">
+                    <div className="bg-primary border border-gray-200 rounded-lg flex items-center justify-between gap-4 px-3 h-8">
                       <span className="">Camera Movement</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -599,14 +599,14 @@ const VideoAI = () => {
             </div>
           </Card>
 
-          <Card className="mb-[85px] md:mb-32" disabled>
+          <Card className="mb-24 md:mb-32" disabled>
             <SectionHeader
               icon={negative}
               title="Negative Prompt"
               subtitle="Optional"
             />
-            <div className="text-[#727485] mt-4 text-sm leading-6">
-              <div className="bg-primary rounded-[10px] h-[158px]">
+            <div className="text-gray-200  mt-4 text-sm leading-6">
+              <div className="bg-primary rounded-xl h-40">
                 <div className="grow-1 pt-3 px-4 pb-0  whitespace-pre-wrap">
                   List the types of content you don't want to see in the video.
                   Examples: animation, blur, distortion, disfigurement, low
@@ -621,20 +621,20 @@ const VideoAI = () => {
       {/* <AssetsPanel /> */}
       <footer className="flex items-center justify-center md:block">
         <div
-          className="fixed bottom-0 left-0 w-full h-[118px] md:block hidden pt-1 md:px-12 z-[3]"
+          className="fixed bottom-0 left-0 w-full h-28 md:block hidden pt-1 md:px-12 z-10"
           style={{ background: "linear-gradient(0deg,#0d1116 40%,#0d111600)" }}
         />
-        <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-[118px] pt-1 px-4 md:px-12 z-[3]">
-          <div className="inline-block md:ml-[10px]">
+        <div className="fixed bottom-0 left-0 w-full max-md:mb-4 md:h-28 pt-1 px-4 md:px-12 z-10">
+          <div className="inline-flex items-center justify-center md:ml-2.5 max-lg:w-full">
             <button
               onClick={handleGenerateVideo}
-              className="bg-[#333a45] text-[#727485] px-4 py-[6px] rounded-full w-[calc(100vw-32px)]  md:w-[344px]  h-12"
+              className="bg-primary-light text-gray-150  px-4 py-1.5 rounded-full w-full md:w-80 h-12"
             >
               Generate
             </button>
           </div>
         </div>
-        <p className="text-[#727485] text-sm mb-3 hidden md:block fixed bottom-0 w-full  pt-1 px-4 lg:px-12 z-[3] text-center">
+        <p className="text-gray-100  text-sm mb-3 hidden md:block fixed bottom-0 w-full  pt-1 px-4 lg:px-12 z-10 text-center">
           The generated contents do not represent the views, positions or
           attitudes of KLING AI. Please use them responsibly and kindly.
         </p>

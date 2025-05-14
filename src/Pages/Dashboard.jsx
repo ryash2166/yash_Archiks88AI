@@ -12,17 +12,17 @@ import Button from "../Components/Common/Button";
 const Dashboard = () => {
   return (
     <div className="relative w-full overflow-auto overflow-x-hidden">
-      <main className="lg:pl-[260px] pt-0 m-0 bg-primary">
+      <main className="lg:pl-64 pt-0 m-0 bg-primary">
         <MainVideo />
         <div className="relative max-xl:static">
-          <h1 className="absolute mt-[-320px] ml-5 lg:ml-0 max-xl:static max-lg:mx-4 max-xl:mt-0">
-            <p className="mt-10 lg:ml-8 max-w-full text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold bg-gradient-to-r from-[rgb(135,83,249)] to-[rgba(6,227,171,0.9)] bg-clip-text text-transparent">
+          <h1 className="absolute -mt-80 ml-5 lg:ml-0 max-xl:static max-lg:mx-4 max-xl:mt-0">
+            <p className="mt-10 lg:ml-8 max-w-full text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-600 bg-clip-text text-transparent">
               Next-Generation AI Creative Studio
             </p>
           </h1>
         </div>
         <div className="">
-          <div className="w-[calc(100%-40px)] -mt-[120px] mx-4 mb-0 max-lg:flex-col flex flex-wrap max-xl:mt-10">
+          <div className="-mt-28 mx-4 mb-0 max-lg:flex-col flex flex-wrap max-xl:mt-10">
             <Banner
               title="AI Images"
               className="mr-6 lg:mr-4 mb-4 lg:mb-0"
@@ -46,7 +46,7 @@ const Dashboard = () => {
 
         {/* Trending Shorts Section */}
         <SectionTitle title="Trending Shorts" />
-        <div className="mx-4 min-h-[220px]">
+        <div className="mx-4 min-h-56">
           <div className="flex flex-wrap justify-between max-lg:grid max-lg:grid-cols-2 max-sm:grid-cols-1 max-lg:gap-4">
             {TrendingCardData.map((card) => (
               <TrendingCard
@@ -65,8 +65,8 @@ const Dashboard = () => {
 
         {/* Trending Creatives Section */}
         <SectionTitle title="Trending Creatives" />
-        <div className="md:mx-4 -mt-[15px] mb-20 w-full">
-          <div className="p-[15px] max-md:p-3">
+        <div className="md:mx-4 -mt-4 mb-20 w-full">
+          <div className="p-4 max-md:p-3">
             <div className="md:hidden">
               <AutoCarousel />
             </div>
@@ -74,7 +74,7 @@ const Dashboard = () => {
           </div>
           <Button
             title="Explore More"
-            className="mx-auto flex items-center justify-center mt-[2em] px-8 !py-2 bg-blue-light hover:!bg-secondary"
+            className="mx-auto flex items-center justify-center mt-8 px-8 !py-2 bg-blue-light hover:bg-blue-light/70"
           />
         </div>
       </main>

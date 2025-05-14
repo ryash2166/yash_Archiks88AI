@@ -76,7 +76,7 @@ const Explore = () => {
 
   return (
     <div className="relative h-lvh w-full overflow-auto overflow-x-hidden">
-      <div className="lg:pl-[260px] pt-0 mb-20 bg-primary">
+      <div className="lg:pl-64 pt-0 mb-20 bg-primary">
         {/* Tab Header */}
         <div className="mb-8 pt-4 px-2 md:px-4">
           <h1 className="text-2xl font-bold text-white">Explore</h1>

@@ -20,7 +20,7 @@ const MainVideo = () => {
   }, [hasInteracted]);
 
   return (
-    <div className="ml-8 leading-[0] text-right h-[360px] overflow-hidden max-xl:hidden">
+    <div className="ml-8 text-right h-96 overflow-hidden max-xl:hidden">
       {/* First video with autoplay */}
       <video
         ref={firstVideoRef}
@@ -29,7 +29,7 @@ const MainVideo = () => {
         playsInline
         disableRemotePlayback
         preload="auto"
-        className="max-h-[360px] pointer-events-none w-auto"
+        className="max-h-96 pointer-events-none w-auto"
         autoPlay
         muted
         style={{ display: "block" }}
@@ -42,7 +42,7 @@ const MainVideo = () => {
         src="https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/home-loop-DOmEh9Jl.mp4"
         loop
         preload="auto"
-        className="max-h-[360px] pointer-events-none w-auto right-0"
+        className="max-h-96 pointer-events-none w-auto right-0"
         playsInline
         muted
         style={{ display: "none" }}

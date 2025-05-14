@@ -17,15 +17,20 @@ export default {
         "grid-white-visible": `linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
           linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
       },
+      padding: {
+        0.5: "2px",
+      },
       backgroundSize: {
         grid: "30px 30px",
       },
       colors: {
         primary: "#0d1116",
+        "primary-light": "#202831",
         secondary: "#5252e5",
         "border-secondary": "#3a3a6a",
         "blue-light": "#6c6cf5",
         "blue-dark": "#",
+        "primary-border": "#2e3136",
         black: {
           DEFAULT: "#1A1919",
           50: "#E8E8E8",
@@ -40,6 +45,7 @@ export default {
           DEFAULT: "#E8E6EA",
           50: "#EFEFEF",
           100: "#DFDFDF",
+          150: "#727485",
           200: "#BEBEBE",
           300: "#9E9E9E",
           400: "#8E8E8E",

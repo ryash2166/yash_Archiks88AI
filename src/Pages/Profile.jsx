@@ -12,6 +12,9 @@ import DeleteModal from "../Components/Modal/DeleteModal";
 import DeleteIcon from "../icons/delete";
 import EditIcon from "../icons/edit";
 import LazyLoadImg from "../Components/Common/LazyLoadImg";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
+
+
 const Profile = () => {
   const {
     profile,
@@ -40,11 +43,11 @@ const Profile = () => {
 
   return (
     <div className="relative h-lvh w-full overflow-auto">
-      <div className="lg:pl-[260px] pt-0 m-0 mt-3 bg-primary">
-        <div className="w-full h-[200px] mb-7">
-          {/* <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-[18px] h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3  ">
+      <div className="lg:pl-64 pt-0 m-0 mt-3 bg-primary">
+        <div className="w-full h-52 mb-7">
+          {/* <div className="bg-cover bg-[url(https://s1-def.ap4r.com/kos/s101/nlav112154/aiwp/assets/user-teaser-2-DmrbcmSD.jpg)] bg-center rounded-2xl h-full max-md:h-auto p-8 mx-5 flex items-center justify-between max-md:flex-col gap-3  ">
             <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
-              <div className="md:mr-6 w-[100px] h-[100px]">
+              <div className="md:mr-6 w-28 h-28">
                 <LazyLoadImg
                   src={profile.avatar || personPlaceholder}
                   alt="User Avatar"
@@ -52,26 +55,26 @@ const Profile = () => {
                 />
               </div>
               <div className="flex flex-col gap-2 max-md:pt-2 max-md:items-center justify-center text-white">
-                <div className="leading-[26px] text-lg whitespace-nowrap text-ellipsis">
+                <div className="text-lg whitespace-nowrap text-ellipsis">
                   {profile.name || "User"}
                 </div>
-                <div className="leading-6 text-sm hidden md:block">
+                <div className="text-sm hidden md:block">
                   {profile.bio || "Welcome to Archks88 AI"}
                 </div>
-                <div className="leading-6 text-sm ">
+                <div className="text-sm ">
                   Credits: {profile.credits}
                 </div>
               </div>
             </div>
             <button
-              className="hover:bg-secondary bg-transparent border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-secondary hover:text-white font-medium min-w-[106px]"
+              className="hover:bg-secondary bg-transparent border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-secondary hover:text-white font-medium min-w-28"
               onClick={openModal}
             >
               Edit Profile
             </button>
           </div> */}
-          <div className="relative p-[3px] mx-5 rounded-2xl bg-gradient-to-l to-purple-700 from-blue-500 ">
-            <div className="bg-login rounded-3xl h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-[200px]">
+          <div className="relative p-0.5 mx-5 rounded-2xl bg-gradient-to-l to-purple-700 from-blue-500 ">
+            <div className="bg-primary-light rounded-2xl h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-52">
               <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
                 <div className="md:mr-6 w-28 h-28">
                   <LazyLoadImg
@@ -81,19 +84,19 @@ const Profile = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-2 max-md:pt-2 max-md:items-center justify-center text-white">
-                  <div className="leading-[26px] text-lg whitespace-nowrap text-ellipsis">
+                  <div className="text-lg whitespace-nowrap text-ellipsis">
                     {profile.name || "User"}
                   </div>
-                  <div className="leading-6 text-sm hidden md:block">
+                  <div className="text-sm hidden md:block">
                     {profile.bio || "Welcome to Archks88 AI"}
                   </div>
-                  <div className="leading-6 text-sm">
+                  <div className="text-sm">
                     Credits: {profile.credits}
                   </div>
                 </div>
               </div>
               <button
-                className="hover:bg-secondary bg-blue-light border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-white font-medium min-w-[106px]"
+                className="hover:bg-secondary bg-blue-light border border-secondary h-10 leading-6 text-sm rounded-full cursor-pointer px-4 py-1.5 text-white font-medium min-w-28"
                 onClick={openModal}
               >
                 Edit Profile
@@ -102,15 +105,15 @@ const Profile = () => {
           </div>
         </div>
         <div className="max-md:mt-28 mb-24 mx-5">
-          {!profile?.images && <ProfileTabs />}
-          <ResponsiveMasonryWrapper
-            columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 4 }}
-          >
-            {profile?.images && profile.images.length > 0 && (
+        {profile?.images && profile.images.length > 0 && (
               <div className="sticky top-0 bg-primary z-10 text-white md:p-6 pb-3 w-full shadow-xl text-2xl max-md:text-lg font-semibold">
                 Your Creativity
               </div>
             )}
+          {!profile?.images && <ProfileTabs />}
+          <ResponsiveMasonryWrapper
+            columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 4 }}
+          >
             <Masonry className="!m-auto">
               {displayedImages && displayedImages.length > 0 ? (
                 displayedImages.map((img) => (
@@ -122,9 +125,9 @@ const Profile = () => {
                       <LazyLoadImg
                         src={img.imageUrl}
                         alt={img.prompt}
-                        className="cursor-pointer rounded-[18px]"
+                        className="cursor-pointer rounded-xl h-full"
                       />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-[18px]">
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-xl">
                         <div className="flex gap-4">
                           <FiDownload
                             className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-secondary"
@@ -151,7 +154,7 @@ const Profile = () => {
             profile.images.length > displayedImages.length && (
               <div className="flex items-center justify-center mt-5">
                 <div className="relative inline-block group sm:max-w-80">
-                  <div className="p-[2px] bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
+                  <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 rounded-full transition-all duration-300 group-hover:shadow-lg">
                     <Button
                       onClick={loadMoreImages}
                       title="Load More"
@@ -167,16 +170,16 @@ const Profile = () => {
       {isModalOpen && (
         <div
           id="modal-overlay"
-          className="fixed inset-0 backdrop-blur-[6px] flex justify-center items-center z-50"
+          className="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50"
           onClick={handleModalClick}
         >
           <div className="bg-login p-6 rounded-lg w-full mx-4 max-w-[464px]">
             <div className="flex justify-between items-center mb-6">
-              <h1 className="text-[22px] leading-8  text-white font-semibold">
+              <h1 className="text-2xl text-white font-semibold">
                 Edit Profile
               </h1>
               <button
-                className="text-2xl md:text-[30px] font-bold text-gray-500 hover:text-gray-300 transition-colors"
+                className="text-2xl md:text-3xl font-bold text-gray-500 hover:text-gray-300 transition-colors"
                 onClick={closeModal}
               >
                 <MdClose />
@@ -191,9 +194,9 @@ const Profile = () => {
                   <LazyLoadImg
                     src={tempProfile.avatar || personPlaceholder}
                     alt="User Avatar"
-                    className="object-cover inline-flex w-[80px] h-[80px] rounded-full group-hover:opacity-50 transition-opacity"
+                    className="object-cover inline-flex w-20 h-20 rounded-full group-hover:opacity-50 transition-opacity"
                   />
-                  <EditIcon className="w-5 h-5 block absolute bottom-[30px] left-[calc(50%-10px)] text-white cursor-pointer transition duration-200 group-hover:text-secondary" />
+                  <EditIcon className="w-5 h-5 block absolute bottom-8 left-[calc(50%-10px)] text-white cursor-pointer transition duration-200 group-hover:text-secondary" />
                 </label>
                 <div className="text-sm text-gray-500 mt-2">Change avatar</div>
                 <input
@@ -226,7 +229,7 @@ const Profile = () => {
                   value={tempProfile.bio || ""}
                   onChange={handleInputChange}
                   placeholder="Enter your bio"
-                  className="w-full text-white bg-primary rounded-lg px-[16px] pt-3 pb-8 focus:border focus:outline-none border-secondary text-sm leading-6 resize-none"
+                  className="w-full text-white bg-primary rounded-lg px-4 pt-3 pb-8 focus:border focus:outline-none border-secondary text-sm leading-6 resize-none"
                   maxLength={200}
                   rows="5"
                 ></textarea>
@@ -234,7 +237,7 @@ const Profile = () => {
                   {tempProfile.bio ? tempProfile.bio.length : 0}/200
                 </div>
                 <div className="absolute right-4 bottom-5 flex items-center">
-                  <div className="border-l-[1px] border-[#4e5062] h-4 mt-[1px] mr-[0.5em]"></div>
+                  <div className="border-l border-primary-border h-4 mt-px mr-[0.5em]"></div>
                   <button
                     type="button"
                     className="text-sm text-white transition duration-200 hover:text-secondary"
@@ -247,14 +250,14 @@ const Profile = () => {
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
-                  className="px-6 py-[6px] text-sm bg-transparent text-blue hover:underline"
+                  className="px-6 py-1.5 text-sm bg-transparent text-blue hover:underline"
                   onClick={closeModal}
                 >
                   Cancel
                 </button>
                 <Button
                   type="submit"
-                  className="py-[6px] px-6 text-black bg-blue-light cursor-pointer hover:bg-secondary"
+                  className="py-1.5 px-6 text-black bg-blue-light cursor-pointer hover:bg-secondary"
                   title="Save"
                 />
               </div>

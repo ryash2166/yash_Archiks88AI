@@ -42,16 +42,16 @@ const NavbarAI = () => {
   return (
     <div
       className={`sticky top-0 w-full z-20 transition-all duration-500 ${
-        scrolled ? "bg-[#111827]/95 backdrop-blur-sm shadow-md" : "bg-primary"
+        scrolled ? "bg-primary/95 backdrop-blur-sm shadow-md" : "bg-primary"
       }`}
     >
-      <header className="h-[68px] w-full px-1 sm:px-5">
+      <header className="h-16 w-full px-1 sm:px-5">
         <div className="flex h-full justify-between items-center px-2 gap-2.5">
           <div className="flex items-center h-full">
             <MobileMenu />
             <Link
               to={token ? "/dashboard" : "/"}
-              className="flex h-full max-sm:ml-[2px] items-center"
+              className="flex h-full ml-1 items-center"
               onClick={handleLogoClick}
             >
               <img src={logo} alt="Logo" />
@@ -90,7 +90,7 @@ const NavbarAI = () => {
                 {/* Profile Dropdown */}
                 {showProfileDropdown && (
                   <div
-                    className="absolute top-full right-0 mt-2 w-48 bg-[#1a1f27] rounded-lg shadow-lg border border-[#2d333b]"
+                    className="absolute top-full right-0 mt-2 w-48 bg-primary rounded-lg shadow-lg border border-primary-border"
                     onClick={(e) => e.stopPropagation()} // Prevent dropdown from closing on click
                   >
                     <div className="py-2 px-4">
@@ -101,14 +101,14 @@ const NavbarAI = () => {
                       <Link
                         onClick={handleMyCreativesClick}
                         to="/profile"
-                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-[#272d33] hover:text-white"
+                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-primary/20 hover:text-white"
                       >
                         <FaFolderClosed className="mr-3" />
                         My Creatives
                       </Link>
                       <button
                         onClick={handleLogout}
-                        className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-[#272d33] hover:text-red-500"
+                        className="w-full flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-primary/20 hover:text-red-500"
                       >
                         <FaSignOutAlt className="mr-3" />
                         Logout

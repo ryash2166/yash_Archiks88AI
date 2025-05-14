@@ -3,9 +3,9 @@ import LazyLoadImg from "./LazyLoadImg";
 
 const TestimonialCard = ({ name, testimonial, image }) => {
   return (
-    <div className="relative w-full mx-auto h-[280px]">
+    <div className="relative w-full mx-auto h-72">
       <div className="absolute inset-0 bg-gradient-to-r from-purple-700/20 to-sky-700/20 rounded-lg" />
-      <div className="absolute inset-[1px] rounded-lg p-6 flex flex-col h-full">
+      <div className="absolute inset-px rounded-lg p-6 flex flex-col h-full">
         <div className="flex items-center mb-3">
           <div className="w-12 h-12 rounded-full overflow-hidden mr-3 border-2 border-cyan-500/30">
             <LazyLoadImg
