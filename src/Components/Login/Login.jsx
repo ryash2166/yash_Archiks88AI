@@ -219,7 +219,7 @@ const Login = ({ isVisible, onClose }) => {
                     }[formState]}
               </button>
 
-              <div className="text-center text-sm text-gray-400">
+              <div className="text-center text-sm text-gray-400 mt-2">
                 {formState === "login" && (
                   <>
                     Don't have an account?{" "}

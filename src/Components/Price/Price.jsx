@@ -42,20 +42,20 @@ const Price = () => {
           <CustomizedAccordions />
 
           <div className="mb-4">
-            <div className="flex items-center justify-center relative">
+            <div className="flex items-center justify-center relative h-full w-full">
               <LazyLoadImg
                 src="https://shortful.ai/img/cta-4-bg.png"
                 alt="cta-4-bg"
-                className="w-full h-full opacity-10"
+                className="object-contain opacity-10 hidden lg:block"
               />
-              <div className="absolute flex flex-col items-center justify-center">
-                <div className="bg-blue/20 rounded-xl text-sm md:text-base w-fit px-5 py-1 mb-3">
+              <div className="lg:absolute flex flex-col items-center justify-center">
+                <div className="bg-blue-light/20 rounded-xl text-sm md:text-base w-fit px-5 py-1 mb-3">
                   ARCHIKS88 AI
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-bold text-center mb-3">
                   Create Viral Shorts in Minutes with AI
                 </h2>
-                <span className="text-gray-400">
+                <span className="text-gray-400 text-center">
                   Create captivating short videos effortlessly with Archiks88 AI
                 </span>
                 <div className="relative flex items-center justify-center  mt-10">

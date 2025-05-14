@@ -11,7 +11,7 @@ const PricingCard = ({
 }) => {
   return (
     <div
-      className={`relative rounded-3xl p-9 sm:w-[25rem] flex flex-col group border border-border-secondary transition-all duration-300 ${
+      className={`relative rounded-3xl p-9 sm:max-w-[25rem] flex flex-col group border border-border-secondary transition-all duration-300 ${
         isActive
           ? "bg-[#1a1a3a] border border-border-secondary z-10 bg-grid-white-visible bg-grid"
           : "bg-primary hover:bg-[#1a1a3a] hover:bg-grid-white-faint hover:bg-grid"

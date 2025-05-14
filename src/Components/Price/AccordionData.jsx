@@ -13,7 +13,7 @@ export default function AccordionData() {
       "No, we currently do not offer free trials. However, you can choose one of our affordable plans to get started and explore the full capabilities of Archiks88 AI. Flexible pricing plans for all content creators, Access to AI-powered video generation features, Affordable monthly and annual options.",
     "What happens if I cancel my subscription?":
       "If you cancel your subscription, you will retain access to Archiks88 AI features until the end of your current billing cycle. After that, your account will be downgraded to the free plan. Access remains active until the billing cycle ends, Your generated videos will still be available for download, Downgrade to free plan upon cancellation",
-    "What payment methods do you accept? ":
+    "What payment methods do you accept?":
       "We accept all major credit and debit cards, as well as PayPal for payments. For enterprise clients, we also offer custom invoicing solutions. Visa, Mastercard, and American Express supported, PayPal payments for added flexibility, Custom invoicing available for Enterprise plans ",
     "Can I upgrade or downgrade my plan at any time?":
       "Yes, you can easily upgrade or downgrade your plan from your account dashboard. Changes to your plan will take effect immediately, and any price difference will be adjusted on your next billing cycle. Upgrade to unlock additional video generation credits. Downgrade anytime to adjust to your needs. Immediate changes with pro-rated billing",
@@ -67,7 +67,7 @@ export default function AccordionData() {
 
   return (
     <div className="">
-      <div className="grid grid-cols-1 md:grid-cols-2 mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-16 gap-10">
         <h2 className="text-3xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm">
           Billing Questions 🎯
         </h2>
@@ -109,7 +109,7 @@ export default function AccordionData() {
           </Accordion>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <h2 className="text-3xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm ">
           Product Questions 🥉
         </h2>

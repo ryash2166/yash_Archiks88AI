@@ -102,16 +102,16 @@ const PricingSection = () => {
         <Tab className="px-3 py-2 font-semibold inline-flex border-0 text-xs sm:text-sm rounded-xl cursor-pointer text-gray-500">
           Yearly
         </Tab>
-        <Tab
+        <div
           disabled
           className="px-3 py-2 font-semibold inline-flex border-0 text-xs sm:text-sm rounded-xl bg-secondary cursor-not-allowed"
         >
           Yearly 30% off
-        </Tab>
+        </div>
       </TabList>
       <div className="flex justify-center w-full">
         <TabPanel>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-6">
             {monthlyPlans.map((plan, index) => (
               <PricingCard
                 key={index}
@@ -126,7 +126,7 @@ const PricingSection = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-6">
             {yearlyPlans.map((plan, index) => (
               <PricingCard
                 key={index}

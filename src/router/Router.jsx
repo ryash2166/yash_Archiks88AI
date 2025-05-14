@@ -39,7 +39,8 @@ const Router = () => {
   );
 
   // Determine if we're on the landing page to apply special classes
-  const isLandingPage = location.pathname === "/" || location.pathname === "/pricing";
+  const isLandingPage =
+    location.pathname === "/" || location.pathname === "/pricing";
 
   // Determine if we're on dashboard to apply special classes
   const isDashboard =

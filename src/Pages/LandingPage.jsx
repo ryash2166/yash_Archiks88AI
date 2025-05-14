@@ -419,14 +419,12 @@ const LandingPage = () => {
             <TestimonialSection />
           </div>
           <div className="mb-14 md:mt-40">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10">
-              <div className="flex items-center justify-center">
-                <LazyLoadImg
-                  src="https://shortful.ai/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimage.b58413c8.png&w=640&q=75"
-                  alt=""
-                  className=" object-contain"
-                />
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 justify-center gap-5 sm:gap-10">
+              <LazyLoadImg
+                src="https://shortful.ai/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimage.b58413c8.png&w=640&q=75"
+                alt=""
+                className="object-contain"
+              />
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col items-center justify-center gap-2.5 max-sm:mt-4 max-w-6xl mx-auto text-center ">
                   <h2 className="p-0 m-0 text-2xl md:text-4xl font-semibold text-white max-lg:text-center">
@@ -480,7 +478,7 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
-          <div className="mb-14 md:mt-40">
+          {/* <div className="mb-14 md:mt-40">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-10">
               <div className="flex flex-col gap-10 max-lg:order-2">
                 <div className="flex flex-col items-center justify-center gap-2.5 max-sm:mt-4 max-w-6xl mx-auto text-center ">
@@ -548,7 +546,7 @@ const LandingPage = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="mb-14 md:mt-40">
             <div className="flex flex-col items-center justify-center gap-2.5 max-sm:mt-4 mb-10 max-w-6xl mx-auto text-center ">
               <h2 className="p-0 m-0 text-3xl md:text-5xl font-semibold text-white">
