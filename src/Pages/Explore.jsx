@@ -18,12 +18,12 @@ const Explore = () => {
         {media.map((item) => (
           <div
             key={item._id}
-            className="relative group mb-2 hover:opacity-80 transition-opacity duration-300"
+            className="relative group hover:opacity-80 transition-opacity duration-300"
           >
             <LazyLoadImg
               src={item.imageUrl}
               alt={item.prompt || "Generated Image"}
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg inline-block"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="flex justify-between items-center gap-3">
