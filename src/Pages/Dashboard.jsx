@@ -27,13 +27,13 @@ const Dashboard = () => {
               title="AI Images"
               className="mr-6 lg:mr-4 mb-4 lg:mb-0"
               subtitle="Powered by Archiks88"
-              to="ImageAI"
+              to="/ImageAI"
             />
             <Banner
               title="AI Videos"
               className="mr-6 lg:mr-4 mb-4 lg:mb-0"
               subtitle="Powered by Archiks88"
-              to="VideoAI"
+              to="/VideoAI"
             />
             <Banner
               title="Video Editor"
