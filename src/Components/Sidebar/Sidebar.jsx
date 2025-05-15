@@ -93,7 +93,7 @@ const Sidebar = () => {
               "VideoAI",
               <FaVideo />,
               "AI Videos",
-              <div className="h-5 p-0.5 bg-primary/20 rounded flex items-center">
+              <div className="h-5 p-0.5 px-1 bg-primary-light rounded flex items-center">
                 <span className="text-[10px] font-normal align-middle text-blue-light">
                   Try Archiks88 1.6
                 </span>
