@@ -133,7 +133,6 @@
 
 // export default Banner;
 
-
 import React, { useState, useEffect, useRef } from "react";
 import ArrowIcon from "../../icons/arrow";
 import { Link } from "react-router-dom";
@@ -178,8 +177,8 @@ const Banner = ({
       const mouseY = e.clientY - centerY;
 
       // Increased rotation effect
-      const rotateY = mouseX * 0.025;
-      const rotateX = -mouseY * 0.025;
+      const rotateY = mouseX * 0.01;
+      const rotateX = -mouseY * 0.01;
 
       setRotation({ x: rotateX, y: rotateY });
     };
@@ -257,11 +256,7 @@ const Banner = ({
       {/* Subtitle */}
       <span className="block text-xs sm:text-sm relative">
         {subtitle}
-        {showR && (
-          <span className="relative ml-1 text-xs md:text-sm">
-            ®
-          </span>
-        )}
+        {showR && <span className="relative ml-1 text-xs md:text-sm">®</span>}
       </span>
     </Link>
   );
