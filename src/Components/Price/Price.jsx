@@ -27,7 +27,7 @@ const Price = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 text-white mt-12">
+      <div className="relative z-10 container mx-auto text-white mt-12">
         <div className="flex items-center justify-center text-center flex-col mb-4">
           <div className="bg-black-500 rounded-xl text-sm md:text-base w-fit px-5 py-1">
             ARCHIKS88 AI

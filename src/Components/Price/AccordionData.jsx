@@ -67,8 +67,8 @@ export default function AccordionData() {
 
   return (
     <div className="">
-      <div className="grid grid-cols-1 lg:grid-cols-2 mb-16 gap-10">
-        <h2 className="text-3xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-10 gap-10">
+        <h2 className="text-2xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm">
           Billing Questions 🎯
         </h2>
         <div className="relative">
@@ -110,14 +110,14 @@ export default function AccordionData() {
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <h2 className="text-3xl md:text-5xl font-bold max-sm:text-center sm:max-w-sm ">
+        <h2 className="text-2xl sm:text-5xl font-bold max-sm:text-center sm:max-w-sm ">
           Product Questions 🥉
         </h2>
         <div className="relative">
           <Accordion
             selectedKeys={expandedKeys}
             onSelectionChange={handleSelectionChange}
-            className="focus:outline-none"
+            className="focus:outline-none !px-0"
           >
             {[
               "What is Archiks88 AI, and how does it work?",

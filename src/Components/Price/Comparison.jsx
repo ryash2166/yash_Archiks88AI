@@ -3,7 +3,7 @@ import CheckIcon from "../../icons/check";
 
 const Comparison = () => {
   return (
-    <div className="text-white mb-16">
+    <div className="text-white mb-4">
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-3">
         Not sure which plan to choose?
       </h2>
