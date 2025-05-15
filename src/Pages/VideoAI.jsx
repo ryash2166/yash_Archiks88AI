@@ -73,7 +73,7 @@ const VideoAI = () => {
         playsInline
         className="sm:absolute sm:-top-1.5 md:left-40 sm:max-w-md pointer-events-none hidden lg:!block"
       />
-      <p className="absolute md:left-3 top-20 md:top-28 text-center w-80 tracking-wider font-bold text-4xl bg-gradient-to-r from-purple-700 to-blue-500 bg-clip-text text-transparent hidden lg:!block">
+      <p className="absolute md:left-3 top-20 md:top-28 text-center w-80 tracking-wider font-bold text-4xl bg-gradient-to-r from-purple-700 via-blue-500 to-blue-700 bg-clip-text text-transparent hidden lg:!block">
         Creative Space
       </p>
       <div className="pb-28 xl:pr-52 absolute w-full pl-[444px] flex justify-center items-center overflow-hidden h-[calc(100%-68px)] max-lg:hidden">

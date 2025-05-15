@@ -16,7 +16,7 @@ const Dashboard = () => {
         <MainVideo />
         <div className="relative max-xl:static">
           <h1 className="absolute -mt-80 ml-5 lg:ml-0 max-xl:static max-lg:mx-4 max-xl:mt-0">
-            <p className="mt-10 lg:ml-8 max-w-full text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-600 bg-clip-text text-transparent">
+            <p className="mt-10 lg:ml-8 max-w-full text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold bg-gradient-to-r from-purple-700 via-blue-500 to-blue-700 bg-clip-text text-transparent">
               Next-Generation AI Creative Studio
             </p>
           </h1>
