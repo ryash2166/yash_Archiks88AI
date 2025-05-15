@@ -112,7 +112,7 @@ const Profile = () => {
             )}
           {!profile?.images && <ProfileTabs />}
           <ResponsiveMasonryWrapper
-            columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 4 }}
+            columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 5 }}
           >
             <Masonry className="!m-auto">
               {displayedImages && displayedImages.length > 0 ? (
@@ -120,12 +120,12 @@ const Profile = () => {
                   <LazyLoadComponent>
                     <div
                       key={img._id}
-                      className="relative inline-block group mb-2 md:mr-2"
+                      className="relative group"
                     >
                       <LazyLoadImg
                         src={img.imageUrl}
                         alt={img.prompt}
-                        className="cursor-pointer rounded-xl h-full"
+                        className="cursor-pointer rounded-xl h-full w-full inline-block"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-xl">
                         <div className="flex gap-4">
