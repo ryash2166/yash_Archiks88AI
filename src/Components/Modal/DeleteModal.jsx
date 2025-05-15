@@ -59,7 +59,7 @@ const DeleteModal = ({ isOpen, onClose, onConfirm }) => {
           <div className="flex gap-4 mt-6 w-full">
             <button
               onClick={onClose}
-              className="flex-1 py-3 text-center text-blue font-medium bg-transparent border border-transparent hover:underline rounded-lg"
+              className="flex-1 py-3 text-center text-blue-light font-medium bg-transparent border border-blue-light hover:underline rounded-lg"
             >
               Close
             </button>
