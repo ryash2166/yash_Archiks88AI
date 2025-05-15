@@ -9,7 +9,7 @@ const AssetsPanel = () => {
   return (
     <div
       className={`h-full border-primary-border  bg-primary border rounded-xl pt-4 pb-0 px-3.5  absolute right-5 transition-all duration-300 ease-in-out  ${
-        isExpanded ? "w-[548px]" : "w-40"
+        isExpanded ? "max-w-xl w-full" : "max-w-40 w-full"
       } `}
     >
       {/* Header */}
