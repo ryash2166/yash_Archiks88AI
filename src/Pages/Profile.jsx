@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProfileTabs from "../Components/ProfileTabs/ProfileTabs";
 import personPlaceholder from "../assets/person.png";
 import { MdClose } from "react-icons/md";
@@ -12,8 +12,6 @@ import DeleteModal from "../Components/Modal/DeleteModal";
 import DeleteIcon from "../icons/delete";
 import EditIcon from "../icons/edit";
 import LazyLoadImg from "../Components/Common/LazyLoadImg";
-import { LazyLoadComponent } from "react-lazy-load-image-component";
-
 
 const Profile = () => {
   const {
@@ -73,7 +71,7 @@ const Profile = () => {
               Edit Profile
             </button>
           </div> */}
-          <div className="relative p-0.5 mx-5 rounded-2xl bg-gradient-to-l to-purple-700 from-blue-500 ">
+          <div className="relative p-0.5 mx-4 rounded-2xl bg-gradient-to-l to-purple-700 from-blue-500 ">
             <div className="bg-primary-light rounded-2xl h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-52">
               <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
                 <div className="md:mr-6 w-28 h-28">
@@ -90,9 +88,7 @@ const Profile = () => {
                   <div className="text-sm hidden md:block">
                     {profile.bio || "Welcome to Archks88 AI"}
                   </div>
-                  <div className="text-sm">
-                    Credits: {profile.credits}
-                  </div>
+                  <div className="text-sm">Credits: {profile.credits}</div>
                 </div>
               </div>
               <button
@@ -104,12 +100,12 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="max-md:mt-28 mb-24 mx-5">
-        {profile?.images && profile.images.length > 0 && (
-              <div className="sticky top-0 bg-primary z-10 text-white md:p-6 pb-3 w-full shadow-xl text-2xl max-md:text-lg font-semibold">
-                Your Creativity
-              </div>
-            )}
+        <div className="max-md:mt-28 mb-24 mx-4">
+          {profile?.images && profile.images.length > 0 && (
+            <div className="sticky top-0 bg-primary z-10 text-white md:p-6 pb-3 w-full shadow-xl text-2xl max-md:text-lg font-semibold">
+              Your Creativity
+            </div>
+          )}
           {!profile?.images && <ProfileTabs />}
           <ResponsiveMasonryWrapper
             columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 5 }}
@@ -117,32 +113,27 @@ const Profile = () => {
             <Masonry className="!m-auto">
               {displayedImages && displayedImages.length > 0 ? (
                 displayedImages.map((img) => (
-                  <LazyLoadComponent>
-                    <div
-                      key={img._id}
-                      className="relative group"
-                    >
-                      <LazyLoadImg
-                        src={img.imageUrl}
-                        alt={img.prompt}
-                        className="cursor-pointer rounded-xl h-full w-full inline-block"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-xl">
-                        <div className="flex gap-4">
-                          <FiDownload
-                            className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-blue-light"
-                            onClick={() =>
-                              handleDownload(img.imageUrl, `${img._id}.png`)
-                            }
-                          />
-                          <FiTrash2
-                            className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-red-500"
-                            onClick={() => openDeleteModal(img._id)}
-                          />
-                        </div>
+                  <div key={img._id} className="relative group">
+                    <LazyLoadImg
+                      src={img.imageUrl}
+                      alt={img.prompt}
+                      className="cursor-pointer rounded-xl h-full w-full inline-block"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 cursor-pointer rounded-xl">
+                      <div className="flex gap-4">
+                        <FiDownload
+                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-blue-light"
+                          onClick={() =>
+                            handleDownload(img.imageUrl, `${img._id}.png`)
+                          }
+                        />
+                        <FiTrash2
+                          className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-red-500"
+                          onClick={() => openDeleteModal(img._id)}
+                        />
                       </div>
                     </div>
-                  </LazyLoadComponent>
+                  </div>
                 ))
               ) : (
                 <p>No images generated yet.</p>

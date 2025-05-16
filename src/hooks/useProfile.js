@@ -143,7 +143,7 @@ const useProfile = () => {
         // If no timestamp, fallback to sorting by _id (which often contains timestamp)
         const dateA = new Date(a.createdAt || a._id);
         const dateB = new Date(b.createdAt || b._id);
-        return dateB - dateA;
+        return dateB - dagitteA;
       });
       const startIndex = 0;
       const endIndex = currentPage * imagesPerPage;
