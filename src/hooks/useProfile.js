@@ -113,6 +113,7 @@
 
 // export default useProfile;
 
+
 import { useState, useEffect } from "react";
 import { useNavigation } from "../Context/NavigationContext";
 
@@ -143,7 +144,7 @@ const useProfile = () => {
         // If no timestamp, fallback to sorting by _id (which often contains timestamp)
         const dateA = new Date(a.createdAt || a._id);
         const dateB = new Date(b.createdAt || b._id);
-        return dateB - dagitteA;
+        return dateB - dateA;
       });
       const startIndex = 0;
       const endIndex = currentPage * imagesPerPage;
@@ -171,7 +172,7 @@ const useProfile = () => {
 
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.size <= 2 * 1024 * 1024) {
+    if (file && file.size <= 2 * 1024 * 1024) { // 2MB
       const reader = new FileReader();
       reader.onload = () => {
         setTempProfile((prev) => ({ ...prev, avatar: reader.result }));
