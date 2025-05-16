@@ -113,7 +113,6 @@
 
 // export default useProfile;
 
-
 import { useState, useEffect } from "react";
 import { useNavigation } from "../Context/NavigationContext";
 
@@ -172,14 +171,14 @@ const useProfile = () => {
 
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.size <= 500 * 1024) {
+    if (file && file.size <= 2 * 1024 * 1024) {
       const reader = new FileReader();
       reader.onload = () => {
         setTempProfile((prev) => ({ ...prev, avatar: reader.result }));
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Image is too large. Please choose an image under 500KB.");
+      alert("Image is too large. Please choose an image under 2MB.");
     }
   };
 

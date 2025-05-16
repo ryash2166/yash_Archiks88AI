@@ -29,7 +29,7 @@ router.put('/', authMiddleware, async (req, res) => {
     if (bio && bio.length > 200) {
       return res.status(400).json({ error: 'Bio must be less than 200 characters' });
     }
-    if (avatar && avatar.length > 5242880) { // ~5MB
+    if (avatar && avatar.length > 2 * 1024 *1024) { // ~2MB
       return res.status(400).json({ error: 'Avatar image too large' });
     }
 
