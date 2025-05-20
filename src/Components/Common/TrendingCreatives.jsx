@@ -1,10 +1,8 @@
-import AutoCarousel from "./AutoCarousel";
 import PlayIcon from "../../icons/play";
 import { FaRegHeart } from "react-icons/fa";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { TrendingCreativesData } from "../../Data/AllData";
 import { useRef } from "react";
-import Button from "./Button";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 const TrendingCreatives = () => {
@@ -26,15 +24,14 @@ const TrendingCreatives = () => {
   };
 
   return (
-    <div className="columns-2 max-xl:columns-1">
-      <div className="max-md:hidden">{/* <AutoCarousel /> */}</div>
-      <ResponsiveMasonry
-        className="mt-3"
-        columnsCountBreakPoints={{ 576: 2, 768: 3, 992: 3 }}
-      >
-        <Masonry className="!m-auto" gutter="10px">
-          {TrendingCreativesData.map((item, index) => (
-            <LazyLoadComponent>
+    <div className="">
+      <LazyLoadComponent>
+        <ResponsiveMasonry
+          className="mt-3"
+          columnsCountBreakPoints={{ 480: 2, 575: 3, 1025: 6 }}
+        >
+          <Masonry className="!m-auto">
+            {TrendingCreativesData.map((item, index) => (
               <div
                 key={index}
                 className={`flex flex-col  cursor-pointer overflow-hidden rounded-xl relative group ${item.className}`}
@@ -73,10 +70,10 @@ const TrendingCreatives = () => {
                   </div>
                 </div>
               </div>
-            </LazyLoadComponent>
-          ))}
-        </Masonry>
-      </ResponsiveMasonry>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      </LazyLoadComponent>
     </div>
   );
 };

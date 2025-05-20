@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { SparklesCore } from "../Components/Landing/Sparkles";
 import Hero from "../Components/Landing/Hero";
 import Footer from "../Components/Footer/Footer";
@@ -10,7 +10,6 @@ import ImageToVideoIcon from "../icons/imagetovideo";
 import TextToImageIcon from "../icons/texttoImage";
 import TestimonialSection from "../Components/Common/TestimonialSection";
 import ArrowIcon from "../icons/arrow";
-import AutoCarousel from "../Components/Common/AutoCarousel";
 import TrendingCreatives from "../Components/Common/TrendingCreatives";
 import LazyLoadImg from "../Components/Common/LazyLoadImg";
 import { useNavigation } from "../Context/NavigationContext";
@@ -360,8 +359,8 @@ const LandingPage = () => {
               </h1>
               <p className="text-gray-400 text-base md:text-lg max-w-4xl mx-auto">
                 Turn text, images, or videos into stunning visuals—whether
-                you're starting from scratch or refining your masterpiece, we've
-                got you covered!
+                you&apos;re starting from scratch or refining your masterpiece,
+                we&apos;ve got you covered!
               </p>
             </div>
             <div className="flex flex-col lg:flex-row gap-10 ">
@@ -435,10 +434,10 @@ const LandingPage = () => {
                     to Life!
                   </h2>
                   <p className="text-base sm:text-lg max-lg:text-center text-gray-400">
-                    With Synthetic, you're in control. Unlike other platforms,
-                    you can create fully custom AI actors just by using natural
-                    language. Describe their look, style, and personality—and
-                    watch them come to life.
+                    With Synthetic, you&apos;re in control. Unlike other
+                    platforms, you can create fully custom AI actors just by
+                    using natural language. Describe their look, style, and
+                    personality—and watch them come to life.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">

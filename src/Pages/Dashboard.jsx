@@ -1,15 +1,23 @@
-import React from "react";
 import Banner from "../Components/Common/Banner";
 import SectionTitle from "../Components/Common/SectionTitle";
 import MainVideo from "../Components/Common/MainVideo";
 import { TrendingCardData } from "../Data/AllData";
-import AutoCarousel from "../Components/Common/AutoCarousel";
 import TrendingCard from "../Components/Common/TrendingCard";
 import TrendingCreatives from "../Components/Common/TrendingCreatives";
 import Footer from "../Components/Footer/Footer";
 import Button from "../Components/Common/Button";
+import { useNavigate } from "react-router-dom";
+import { useNavigation } from "../Context/NavigationContext";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const { setActiveTab } = useNavigation();
+
+  const handleExploreClick = () => {
+    navigate("/Explore");
+    setActiveTab("Explore");
+  };
+
   return (
     <div className="relative w-full overflow-auto overflow-x-hidden">
       <main className="lg:pl-64 pt-0 m-0 bg-primary">
@@ -65,17 +73,18 @@ const Dashboard = () => {
 
         {/* Trending Creatives Section */}
         <SectionTitle title="Trending Creatives" />
-        <div className="md:mx-4 -mt-4 mb-20 w-full">
-          <div className="p-4 max-md:p-3">
-            <div className="md:hidden">
-              <AutoCarousel />
+        <div className="mt-4 mb-20 w-full px-4">
+          <TrendingCreatives />
+          <div className="relative flex items-center justify-center  mt-10">
+            <div className="p-0.5 bg-gradient-to-r from-purple-700 to-sky-600 group  rounded-full transition-all duration-300 group-hover:shadow-lg">
+              <Button
+                onClick={handleExploreClick}
+                title="View More"
+                // icon={<ImageToVideoIcon className="w-6 h-6" />}
+                className="bg-black text-white sm:!text-base !py-2.5 !px-8 rounded-full w-full h-full transition-all duration-300 group-hover:bg-gradient-to-l group-hover:from-purple-900 group-hover:to-sky-700 font-medium"
+              />
             </div>
-            {/* <TrendingCreatives /> */}
           </div>
-          <Button
-            title="Explore More"
-            className="mx-auto flex items-center justify-center mt-8 px-8 !py-2 bg-blue-light hover:bg-blue-light/70"
-          />
         </div>
       </main>
       <Footer />
