@@ -21,7 +21,7 @@ const App = () => {
           element: <LandingPage />,
         },
         {
-          path: '/dashboard',
+          path: "/dashboard",
           element: (
             <ProtectedRoute>
               <Dashboard />
