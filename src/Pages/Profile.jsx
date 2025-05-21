@@ -108,7 +108,7 @@ const Profile = () => {
           )}
           {!profile?.images && <ProfileTabs />}
           <ResponsiveMasonryWrapper
-            columnsCountBreakPoints={{ 375: 1, 480: 2, 575: 2, 767: 3, 1025: 5 }}
+            columnsCountBreakPoints={{ 375: 1, 480: 2, 575: 2, 767: 3, 1025: 4, 1199: 5 }}
           >
             <Masonry className="!m-auto">
               {displayedImages && displayedImages.length > 0 ? (
