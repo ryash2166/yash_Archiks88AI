@@ -54,7 +54,7 @@ const TrendingCreatives = () => {
               <PlayIcon className="w-8 h-8 top-3 right-3 absolute" />
               <div className="absolute bottom-0 left-0 top-0 right-0 bg-creative rounded-md flex flex-row items-end p-4">
                 <div className="inline-block w-full align-bottom ">
-                  {/* <h4 className="text-base leading-[22.4px] mb-1 text-white overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap text-ellipsis">
+                  {/* <h4 className="text-base mb-1 text-white overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap text-ellipsis">
                     {item.title}
                   </h4>
                   <p className="text-sm leading-6 mb-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">

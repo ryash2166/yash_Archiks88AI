@@ -219,7 +219,7 @@ const Banner = ({
       ref={bannerRef}
       style={style}
       to={to}
-      className={`${className} h-24 h md:h-32 w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-[#5252e51f] text-gray text-sm sm:text-base md:text-lg leading-6 inline-block pt-4 pl-4 md:pt-5 md:pl-5 xl:pt-8 xl:pl-8 backdrop-blur-sm bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
+      className={`${className} h-24 h md:h-32 w-full lg:w-[calc((100%-48px)/3)] rounded-xl border border-[#5252e51f] text-gray text-sm sm:text-base md:text-lg inline-block pt-4 pl-4 md:pt-5 md:pl-5 xl:pt-8 xl:pl-8 backdrop-blur-sm bg-custom-gradient transition-all duration-300 ease-in-out relative overflow-hidden ${hoverClasses} ${
         isDisabled ? "opacity-80 cursor-not-allowed" : ""
       }`}
     >

@@ -15,7 +15,7 @@ const AssetsPanel = () => {
       {/* Header */}
       <div className="flex items-center justify-between overflow-hidden">
         <div className="flex flex-row items-center justify-between w-full gap-2">
-          <h2 className="text-white leading-6 text-left flex-1 text-base font-semibold">
+          <h2 className="text-white text-left flex-1 text-base font-semibold">
             Assets
           </h2>
           <p className="text-white flex  hover:text-blue-light cursor-pointer transition duration-200">

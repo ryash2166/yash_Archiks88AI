@@ -72,20 +72,20 @@ const Profile = () => {
             </button>
           </div> */}
           <div className="relative p-0.5 mx-4 rounded-2xl bg-gradient-to-l to-purple-700 from-blue-500 ">
-            <div className="bg-primary-light rounded-2xl h-full max-md:h-auto p-8 flex items-center justify-between max-md:flex-col gap-3 min-h-52">
-              <div className="flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-full">
-                <div className="md:mr-6 w-28 h-28">
+            <div className="bg-primary-light rounded-2xl h-full max-md:h-auto p-8 flex items-center justify-between max-sm:flex-col gap-3 min-h-52">
+              <div className="flex max-sm:flex-col max-sm:items-center sm:gap-6 max-sm:justify-center max-sm:w-full">
+                <div className="w-28 h-28">
                   <LazyLoadImg
                     src={profile.avatar || personPlaceholder}
                     alt="User Avatar"
                     className="object-cover object-center w-28 h-28 rounded-full"
                   />
                 </div>
-                <div className="flex flex-col gap-2 max-md:pt-2 max-md:items-center justify-center text-white">
+                <div className="flex flex-col gap-2 max-sm:pt-2 max-sm:items-center justify-center text-white">
                   <div className="text-lg whitespace-nowrap text-ellipsis">
                     {profile.name || "User"}
                   </div>
-                  <div className="text-sm hidden md:block">
+                  <div className="text-sm hidden md:block text-gray-200">
                     {profile.bio || "Welcome to Archks88 AI"}
                   </div>
                   <div className="text-sm">Credits: {profile.credits}</div>
@@ -108,7 +108,7 @@ const Profile = () => {
           )}
           {!profile?.images && <ProfileTabs />}
           <ResponsiveMasonryWrapper
-            columnsCountBreakPoints={{ 480: 1, 575: 2, 767: 3, 1025: 5 }}
+            columnsCountBreakPoints={{ 375: 1, 480: 2, 575: 2, 767: 3, 1025: 5 }}
           >
             <Masonry className="!m-auto">
               {displayedImages && displayedImages.length > 0 ? (
