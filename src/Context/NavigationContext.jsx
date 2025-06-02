@@ -586,6 +586,49 @@ export const NavigationProvider = ({ children }) => {
 
   const token = localStorage.getItem("token");
 
+  // Enhanced fetch function with error handling
+  const safeFetch = async (url, options = {}) => {
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...options.headers,
+        },
+      });
+
+      // Handle different response statuses
+      if (!response.ok) {
+        const errorData = await response.text();
+        let errorMessage;
+
+        try {
+          const parsed = JSON.parse(errorData);
+          errorMessage =
+            parsed.error || parsed.message || `HTTP ${response.status}`;
+        } catch {
+          errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+        }
+
+        throw new Error(errorMessage);
+      }
+
+      return response;
+    } catch (error) {
+      // Handle network errors (including service worker fetch failures)
+      if (error.name === "TypeError" && error.message.includes("fetch")) {
+        console.warn(
+          "Network request failed, possibly due to connectivity issues:",
+          error
+        );
+        throw new Error(
+          "Network connection failed. Please check your internet connection."
+        );
+      }
+      throw error;
+    }
+  };
+
   // Check authentication status on initial load
   useEffect(() => {
     checkAuthStatus();
@@ -603,29 +646,24 @@ export const NavigationProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch(apiList.checkAuthStatus, {
+      const res = await safeFetch(apiList.checkAuthStatus, {
         method: "GET",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        setProfile(data);
-        setIsAuthenticated(true);
-        setAuthLoading(false);
-        return true;
-      } else {
-        // Token is invalid or expired
-        localStorage.removeItem("token");
-        setIsAuthenticated(false);
-        setAuthLoading(false);
-        return false;
-      }
+      const data = await res.json();
+      setProfile(data);
+      setIsAuthenticated(true);
+      setAuthLoading(false);
+      return true;
     } catch (error) {
       console.error("Auth check error:", error);
+      // Don't remove token immediately on network errors
+      if (!error.message.includes("Network connection failed")) {
+        localStorage.removeItem("token");
+      }
       setIsAuthenticated(false);
       setAuthLoading(false);
       return false;
@@ -636,17 +674,12 @@ export const NavigationProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(apiList.login, {
+      const response = await safeFetch(apiList.login, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Login failed");
-      }
 
       if (data.token) {
         localStorage.setItem("token", data.token);
@@ -670,17 +703,12 @@ export const NavigationProvider = ({ children }) => {
   const signup = async (email, password, confirmPassword) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(apiList.signup, {
+      const response = await safeFetch(apiList.signup, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, confirmPassword }),
       });
 
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Signup failed");
-      }
 
       if (data.token) {
         localStorage.setItem("token", data.token);
@@ -719,19 +747,12 @@ export const NavigationProvider = ({ children }) => {
   const requestPasswordReset = async (email) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(apiList.requestPasswordReset, {
+      const response = await safeFetch(apiList.requestPasswordReset, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Email not found");
-      }
-
-      // If email exists, show the reset password form
       return { success: true, message: "Email exists" };
     } catch (error) {
       console.error("Password reset error:", error);
@@ -745,18 +766,12 @@ export const NavigationProvider = ({ children }) => {
   const resetPassword = async (email, newPassword, confirmPassword) => {
     try {
       setAuthLoading(true);
-      const response = await fetch(apiList.resetPassword, {
+      const response = await safeFetch(apiList.resetPassword, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: newPassword, confirmPassword }),
       });
 
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Password reset failed");
-      }
-
       return { success: true };
     } catch (error) {
       console.error("Password reset error:", error);
@@ -782,14 +797,9 @@ export const NavigationProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(apiList.media, {
+      const response = await safeFetch(apiList.media, {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
       });
-
-      if (!response.ok) throw new Error("Failed to fetch media");
 
       const data = await response.json();
       setMediaItems(data);
@@ -803,8 +813,10 @@ export const NavigationProvider = ({ children }) => {
 
   // Fetch profile data
   useEffect(() => {
-    fetchProfile();
-  }, []);
+    if (isAuthenticated) {
+      fetchProfile();
+    }
+  }, [isAuthenticated]);
 
   const fetchProfile = async () => {
     try {
@@ -817,29 +829,24 @@ export const NavigationProvider = ({ children }) => {
         return { success: false, error: "No token found" };
       }
 
-      const res = await fetch(apiList.fetchProfile, {
+      const res = await safeFetch(apiList.fetchProfile, {
         method: "GET",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        setProfile(data);
-        setIsAuthenticated(true);
-        return { success: true, data };
-      } else {
-        console.error("Failed to fetch profile");
-        setError("Failed to fetch profile");
-        setIsAuthenticated(false);
-        return { success: false, error: "Failed to fetch profile" };
-      }
+      const data = await res.json();
+      setProfile(data);
+      setIsAuthenticated(true);
+      return { success: true, data };
     } catch (error) {
       console.error("Error fetching profile:", error);
       setError(`Error fetching profile: ${error.message}`);
-      setIsAuthenticated(false);
+      // Don't set authenticated to false on network errors
+      if (!error.message.includes("Network connection failed")) {
+        setIsAuthenticated(false);
+      }
       return { success: false, error: error.message };
     } finally {
       setIsProfileLoading(false);
@@ -851,10 +858,9 @@ export const NavigationProvider = ({ children }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const res = await fetch(apiList.updateProfile, {
+      const res = await safeFetch(apiList.updateProfile, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
@@ -863,22 +869,17 @@ export const NavigationProvider = ({ children }) => {
           avatar: updatedProfile.avatar || personPlaceholder,
         }),
       });
-      if (res.ok) {
-        const updatedData = await res.json();
-        // Update only profile fields without overwriting images
-        setProfile((prev) => ({
-          ...prev,
-          name: updatedData.name,
-          bio: updatedData.bio,
-          avatar: updatedData.avatar,
-          credits: updatedData.credits || prev.credits,
-        }));
-        return { success: true, data: updatedData };
-      } else {
-        const errorData = await res.json();
-        setError(errorData.message || "Failed to update profile");
-        return { success: false, error: errorData.message };
-      }
+
+      const updatedData = await res.json();
+      // Update only profile fields without overwriting images
+      setProfile((prev) => ({
+        ...prev,
+        name: updatedData.name,
+        bio: updatedData.bio,
+        avatar: updatedData.avatar,
+        credits: updatedData.credits || prev.credits,
+      }));
+      return { success: true, data: updatedData };
     } catch (error) {
       console.error("Error updating profile:", error);
       setError(`Error updating profile: ${error.message}`);
@@ -890,12 +891,17 @@ export const NavigationProvider = ({ children }) => {
 
   // Handle image download
   const downloadImage = (imageUrl, fileName) => {
-    const link = document.createElement("a");
-    link.href = imageUrl;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      const link = document.createElement("a");
+      link.href = imageUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Download failed:", error);
+      setError("Failed to download image");
+    }
   };
 
   const deleteImage = async (imageId) => {
@@ -907,18 +913,12 @@ export const NavigationProvider = ({ children }) => {
         return { success: false, error: "Authentication required" };
       }
 
-      const response = await fetch(`${apiList.deleteImage}${imageId}`, {
+      const response = await safeFetch(`${apiList.deleteImage}${imageId}`, {
         method: "DELETE",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to delete image");
-      }
 
       // Update images locally instead of refetching the entire profile
       setProfile((prev) => ({
@@ -946,16 +946,13 @@ export const NavigationProvider = ({ children }) => {
         return { success: false, error: "Authentication required" };
       }
 
-      const response = await fetch(apiList.generateAIImage, {
+      const response = await safeFetch(apiList.generateAIImage, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ prompt }),
       });
-
-      if (!response.ok) throw new Error("Generation failed");
 
       const output = await response.json();
       setGeneratedImages((prev) => [...prev, ...output]);
@@ -963,22 +960,19 @@ export const NavigationProvider = ({ children }) => {
       // After generating images, fetch only the new images
       if (output && output.length > 0) {
         try {
-          const imageResponse = await fetch(apiList.fetchUserImages, {
+          const imageResponse = await safeFetch(apiList.fetchUserImages, {
             method: "GET",
             headers: {
-              "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
           });
 
-          if (imageResponse.ok) {
-            const imageData = await imageResponse.json();
-            // Update only the images part of the profile
-            setProfile((prev) => ({
-              ...prev,
-              images: imageData,
-            }));
-          }
+          const imageData = await imageResponse.json();
+          // Update only the images part of the profile
+          setProfile((prev) => ({
+            ...prev,
+            images: imageData,
+          }));
         } catch (imageError) {
           console.error("Error fetching new images:", imageError);
         }
@@ -1003,10 +997,9 @@ export const NavigationProvider = ({ children }) => {
 
     try {
       setLoading(true);
-      const response = await fetch(apiList.sendImageRequest, {
+      const response = await safeFetch(apiList.sendImageRequest, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
@@ -1017,11 +1010,6 @@ export const NavigationProvider = ({ children }) => {
           },
         }),
       });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Image generation failed");
-      }
 
       const data = await response.json();
       const urlsArray = Array.isArray(data.imageUrls) ? data.imageUrls : [];
@@ -1035,22 +1023,19 @@ export const NavigationProvider = ({ children }) => {
       // Fetch only new images instead of the entire profile
       if (urlsArray.length > 0) {
         try {
-          const imageResponse = await fetch(apiList.fetchUserImages, {
+          const imageResponse = await safeFetch(apiList.fetchUserImages, {
             method: "GET",
             headers: {
-              "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
           });
 
-          if (imageResponse.ok) {
-            const imageData = await imageResponse.json();
-            // Update only the images part of the profile
-            setProfile((prev) => ({
-              ...prev,
-              images: imageData,
-            }));
-          }
+          const imageData = await imageResponse.json();
+          // Update only the images part of the profile
+          setProfile((prev) => ({
+            ...prev,
+            images: imageData,
+          }));
         } catch (imageError) {
           console.error("Error fetching new images:", imageError);
         }
